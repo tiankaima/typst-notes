@@ -24,10 +24,15 @@ def create_project(project_name: str) -> str:
     """
     # folder is named as: $BASE_DIR/$(MD5(project_name)[:6])-$(project_name)
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    project_dir = os.path.join(base_dir, f"{hashlib.md5(project_name.encode()).hexdigest()[:6]}-{project_name}")
+
+    # replace all non-alphanumeric characters with underscore
+    project_name = "".join([c if c.isalnum() else "_" for c in project_name])
+    project_dir = os.path.join(
+        base_dir, f"{hashlib.md5(project_name.encode()).hexdigest()[:6]}-{project_name}")
     print(f"Creating project in {project_dir}")
     os.mkdir(project_dir)
     return project_dir
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

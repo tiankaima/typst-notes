@@ -1,5 +1,5 @@
-#align(center, text(20pt)[
-    *Sobolev inequalities and related problems*
+#align(center, text(20pt, font: "New Computer Modern Math")[
+    *Lecture Notes: Sobolev inequalities*
 ])
 #align(center, text(12pt)[
     Tiankai Ma
@@ -21,7 +21,7 @@
 // #pagebreak()
 
 #text(fill: blue)[
-    *Text colored in blue are added after class.*
+    *Text colored in blue were added after class.*
 ]
 = Preknowledge
 == Weak derivative
@@ -38,14 +38,14 @@ Using _integration by parts theorem_, we can extend the definition of derivative
     *Definition:*
     $u in L^1_"loc" (Omega)$ is said to have a weak derivative $v in L^1_"loc" (Omega)$ if:
 
-    $integral_Omega u(x) phi^prime (x) dif x ident - integral_Omega v(x) phi(x) dif x space.quad forall phi in CC_c^infinity (Omega) $
+    $ integral_Omega u(x) phi^prime (x) dif x eq.triple - integral_Omega v(x) phi(x) dif x space.quad forall phi in CC_c^infinity (Omega) $
 
     In this case, we say $v$ is the weak derivative of $u$ and write $v = u^prime$.
 
     *Generalization:*
     In $n$ dimensons, and multi-index $alpha = (alpha_1, alpha_2, ..., alpha_n)$, if we have:
 
-    $ integral_Omega u(x) D^alpha phi(x) dif x ident (-1)^(abs(alpha)) integral_Omega v(x) phi(x) dif x space.quad forall phi in CC_c^infinity (Omega) $
+    $ integral_Omega u(x) D^alpha phi(x) dif x eq.triple (-1)^(abs(alpha)) integral_Omega v(x) phi(x) dif x space.quad forall phi in CC_c^infinity (Omega) $
 
 
     here $ D^alpha u = (diff^abs(alpha) u) / (diff x_1^(alpha_1) diff x_2^(alpha_2) ... diff x_n^(alpha_n)) $
@@ -59,7 +59,7 @@ Weak derivatives are well-defined in the sense that:
 
 - if $u$ has a weak derivative $v$, then $v$ is unique.
 
-$ cases(v_1 = D^alpha u, v_2 = D^alpha u) => v_1 ident v_2 space.quad a.e. $
+$ cases(v_1 = D^alpha u, v_2 = D^alpha u) => v_1 eq.triple v_2 space.quad a.e. $
 
 - If $u in C^k(Omega)$, then $D^alpha u = D^alpha u$ (classical derivative)
 
@@ -138,11 +138,11 @@ $ dif/(dif epsilon) J(u + epsilon phi) = 0 "at" epsilon = 0 $
 
 $ dif/(dif epsilon) J(u + epsilon phi) = integral_ (Omega) nabla u nabla phi dif x - integral_ (Omega) f phi dif x $
 
-Consider $ integral nabla u nabla phi + integral Delta u phi = integral_(diff Omega) nabla u dot phi ident 0 $
+Consider $ integral nabla u nabla phi + integral Delta u phi = integral_(diff Omega) nabla u dot phi eq.triple 0 $
 
 we have:
 
-$ integral_ (Omega) Delta u phi dif x + integral_ (Omega) f phi dif x & ident 0, forall phi in CC_0^infinity (RR^n) \
+$ integral_ (Omega) Delta u phi dif x + integral_ (Omega) f phi dif x & eq.triple 0, forall phi in CC_0^infinity (RR^n) \
 => Delta u + f &= 0 $
 
 Thus leading to the weak solution of the PDE.
@@ -321,7 +321,7 @@ Last inequality uses Holder inequality.
 Letting $(gamma n)/(n-1) = ((gamma -1)p)/(p - 1)$, we have $ gamma = (p(n - 1))/(n - p)$, thus:
 $(gamma n)/(n-1) = ((gamma -1)p)/(p - 1) = p^*$, leading to the final result.
 
-
+#pagebreak()
 #text(fill: blue)[
     === Morrey inequality
 ]
@@ -404,7 +404,7 @@ $
     $ "RHS" = C(n, p) (integral_ (RR^n) abs(nabla u(x))^p lambda^(p-n) dif x)^(1/p)
             = lambda^(n/p - 1) C(n, p) (integral_ (RR^n) abs(nabla u(x))^p dif x)^(1/p) $
 
-    For independence of scaling, we need $lambda^(n/p^*) ident lambda^(n/p - 1) => n/p^* = n/p - 1$, which gives $1/p^* = 1/p - 1/n$. Q.E.D.
+    Since $C(n,p) tilde.not u(x) \/ u(lambda x)$, we need $lambda^(n/p^*) eq.triple lambda^(n/p - 1) => n/p^* = n/p - 1$, which gives $1/p^* = 1/p - 1/n$.
 ]
 
 == Question 1.2
@@ -419,29 +419,62 @@ $
 
 == Answer
 #text(fill: blue)[
+    // Using spherical coordinates, we have
+    $
+    // nabla u &= ((diff u)/(diff r), 1/r nabla_theta u) \
+    -"LHS" &= nabla(abs(nabla u)^(p-2)nabla u) = (p-2)abs(nabla u)^(p-2)laplace u + abs(nabla u)^(p-2) laplace u = (p-1)abs(nabla u)^(p-2)laplace u \
+    &= - C abs(u)^(p^*-2) u
+    $
 
-    Let $u(x) = v(r)$, where $r = abs(x)$, then we have
+    Deducing to ODE: (and taking $p = 2, u > 0$)
+    $
+    (diff^2 u)/(diff x^2) = -C u^(2^* - 1)
+    $
 
-    $ cases(
-        nabla u = x/r v'(r),
-        abs(nabla u) = v'(r)
-    ) $
-
-    $ "LHS" &= -"div"(abs(nabla u)^(p - 2) nabla u) = -"div"(v'(r)^(p - 2) x v'(r)) = -"div"(v'(r)^(p - 1) x)\
-            &= -(p - 1) v'(r)^(p - 2) v''(r) - (p - 1) v'(r)^(p - 3) v''(r)\
-            &= -(p - 1) v'(r)^(p - 3) v''(r) (v'(r) + (p - 2))\
-    "RHS" &= C abs(u)^(p^* - 2) u\
-            &= C v(r)^(p^* - 2) v(r) $
-
-    Thus we have
-
-    $ -(p - 1) v'(r)^(p - 3) v''(r) (v'(r) + (p - 2)) = C v(r)^(p - 2) v(r) $
-
-    Simiplify it, we have
-
-    $ -(p - 1) v'(r)^(p - 3) v''(r) (v'(r) + (p - 2)) = C v(r)^(p - 2) v(r) $
+    General solution for this ODE is:
+    $
+    u =
+    $
 ]
 
-= References
+#text(fill: red)[
+    #strike[
+        Haven't come up with a solution yet, will update later
+    ]
+]
 
-#lorem(100)
+#pagebreak()
+== Question 2
+#rect(fill: yellow.lighten(80%))[
+    Assuming the Sobolev inequalties:
+    $ norm(u)_(L^q (Omega)) <= C q^((n-1)/n) norm(u)_(L^n(Omega)) $
+    holds for any $q >= 1$, try to prove the following exponential type inequality (will need to use Stirling formula):
+    $
+    integral_Omega e^u dif x <= C e^(mu norm(u)_(L^n)^n) space.quad C, mu "are some constants"
+    $
+]
+
+== Answer
+#text(fill: blue)[
+    _This is already proven in previous sections, copying the proof here for completeness:_
+
+    We can show that:
+    $ integral e^u &= sum_(j=0)^infinity 1/(j!) integral u^j = sum_(j=0)^infinity 1/(j!) norm(u)_(L^j)^j\
+                &<= sum_(j=0)^infinity 1/(j!) (C dot j^((n-1)/n) norm(u)_(L^n))^j\
+                    &= C sum_(j=0)^infinity j^(j dot (n-1)/n) / (j!) norm(u)_(L^n)^j\ $
+
+    Using Strling's formula ($n! tilde.op n^n/e^n sqrt(2 pi n)$) , we have:
+
+    $ j^(j dot (n-1)/n) / (j!) tilde.op 1/(e^(-j + j/n) n^(j/n + 1/2) (j/n)!) <= C^prime 1/((j/n)!) $
+
+    Rewrite the sum, we have:
+
+    $ sum_(j=0)^infinity j^(j dot (n-1)/n) / (j!) norm(u)_(L^n)^j <=C^' sum_(j=0)^infinity norm(u)_(L^n)^j / ((j/n)!) 
+    = C' e^(norm(u)_(L^n)^n) $
+
+    Thus we have:
+
+    $ integral e^u <= C e^(norm(u)_(L^n)^n) $
+
+    Notice you could just take $C^prime = C e^mu$ for a cleaner formula.
+]

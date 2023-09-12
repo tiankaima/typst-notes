@@ -2,5 +2,10 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.autopep8"
     },
-    "python.formatting.provider": "none"
+    "autocorrect.enable": true,
+    "autocorrect.enableLint": true,
+    "autocorrect.formatOnSave": true,
+    "typst-preview.fontPaths": [
+        "${workspaceFolder}/fonts"
+    ]
 }

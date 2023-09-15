@@ -1,10 +1,7 @@
 #let definintion(body, name: "") = {
     box(
+        fill: yellow.lighten(70%),
         width: 100%,
-        stroke: (
-            paint: green,
-            thickness: 0.5pt,
-        ),
         inset: 12pt,
         outset: 0pt,
         radius: 0pt,
@@ -59,7 +56,7 @@
         ),
         inset: 12pt,
         outset: 0pt,
-        radius: 5pt,
+        radius: 0pt,
         clip: true,
     )[
         #text(
@@ -89,7 +86,7 @@
         clip: true,
     )[
         #text(
-            size: 11pt,
+            size: 9pt,
             weight: "bold",
         )[
             请思考/证明:

@@ -4,10 +4,107 @@
 
 ```plain
 Time: Week 1, 9.11 Mon
-Author: TianKai Ma
 ```
 
-== 补充知识
+== 数域扩张
+
+$
+    NN =>^("减法") ZZ =>^("除法") QQ =>^("极限") RR =>^("二次方程") CC
+$
+
+#definintion[
+    $
+    ZZ := {0} union NN^+ union (-NN^+) \
+    -NN^+ := {-n | n in NN^+}
+    $
+]
+
+#definintion[
+    $
+    QQ := {a/b | a,b in ZZ, b !=0}
+    $
+]
+
+
+#caption[
+$NN$的严格定义依赖Peano公理,移步 $=>$ @peano,这门课不做要求.
+]
+
+#caption[
+    $QQ$是可数集,移步 $=>$ @QQ.countable
+]
+
+== $RR$
+
+#homework[
+    $sqrt(2)$是无理数
+]
+
+常用的构造$RR$的方法有:
+
+- 十进制小数
+- Dedekind 分割
+- Cauchy 列
+
+=== 十进制小数
+
+$
+a_0.a_1a_2...=sum_(k=0)^infinity a_k/ 10^k
+$
+
+#homework[
+    通过十进制小数证明$RR$是不可数的
+]
+
+=== Dedekind分割
+
+这样构造核心是"分割"$QQ$, 将其分割为$A, B$,满足:
+
+- $Q = A union B$
+- $A sect B = emptyset$ (_这点可忽略,直接要求第三条_)
+- $forall a in A, forall b in B => a < b$
+
+#caption[
+请注意,Dedekind分割并不需要在无理数($RR without QQ$)处分割,分割出的也并不必然是无理数,课堂上似乎传递了这样的误解, 例如:
+
+$
+A := {x in QQ | x < 0}, quad B := {x in QQ | x >= 0}
+$
+这样的分割并不是一个无理数。
+
+]
+
+这样分割的结果会有如下三种可能:
+
+- 在$QQ$中$A$有最大数, $B$无最小数
+- 在$QQ$中$A$无最大数, $B$有最小数,在前面这两种情况中,我们说这个分割定义了有理数.
+- 在$QQ$中$A$无最大数, $B$无最小数,我们说这个分割定义了一个无理数$alpha$,向$A$或者$B$中任一添加这个$alpha$,都会让$QQ$更加"完备"
+
+#homework[
+    为什么没有第四种可能(在$QQ$中$A$有最大数, $B$有最小数)?
+]
+
+我们把所有有理数的分割的的集合称为实数集,记作$RR$.每个分割都对应一个实数.
+
+
+=== Cauchy列
+
+用收敛数列的极限来定义实数,例如
+
+$
+a_1 in QQ, quad a_1>sqrt(2), quad a_(n+1) = 1/2 (a_n + 2/a_n) \
+=> forall n, quad a_n in QQ, quad lim_(n->infinity) a_n = sqrt(2)
+$
+
+#caption[
+    有理数的极限未必是有理数,从这个意义上说,$RR$是在$QQ$上引入极限运算的结果,实数可以定义为有序完备域.
+]
+
+#pagebreak()
+
+== 一些问题
+
+=== 补充知识
 
 补充一些这门课可能用的记号和它们的`LaTeX`代码作为参考.
 
@@ -80,110 +177,7 @@ table(
     更多内容会在第一次作业提交之后的习题课上进行说明.
 ]
 
-== 数域扩张
-
-$
-    NN =>^("减法") ZZ =>^("除法") QQ =>^("极限") RR =>^("二次方程") CC
-$
-
-=== $NN$
-#caption[
-$NN$的严格定义依赖Peano公理,移步 $=>$ @peano,这门课不做要求.
-]
-
-=== $ZZ$
-#definintion[
-    $
-    ZZ := {0} union NN^+ union (-NN^+) \
-    -NN^+ := {-n | n in NN^+}
-    $
-]
-
-=== $QQ$
-#definintion[
-    $
-    QQ := {a/b | a,b in ZZ, b !=0}
-    $
-]
-
-#caption[
-    $QQ$是可数集,移步 $=>$ @QQ.countable
-]
-
-=== $RR$
-
-#homework[
-    $sqrt(2)$是无理数
-]
-
-常用的构造$RR$的方法有:
-
-- 十进制小数
-- Dedekind 分割
-- Cauchy 列
-
-==== 十进制小数
-
-$
-a_0.a_1a_2...=sum_(k=0)^infinity a_k/ 10^k
-$
-
-#homework[
-    通过十进制小数证明$RR$是不可数的
-]
-
-==== Dedekind分割
-
-这样构造核心是"分割"$QQ$, 将其分割为$A, B$,满足:
-
-- $Q = A union B$
-- $A sect B = emptyset$ (_这点可忽略,直接要求第三条_)
-- $forall a in A, forall b in B => a < b$
-
-请注意,Dedekind分割并不需要在无理数($RR without QQ$)处分割,分割出的也并不必然是无理数,课堂上似乎传递了这样的误解.
-
-#caption[
-    考虑
-    $
-    A := {x in QQ | x < 0}, quad B := {x in QQ | x >= 0}
-    $
-    这样的分割并不是一个无理数。
-]
-
-这样分割的结果会有如下三种可能:
-
-- 在$QQ$中$A$有最大数, $B$无最小数
-- 在$QQ$中$A$无最大数, $B$有最小数,在前面这两种情况中,我们说这个分割定义了有理数.
-- 在$QQ$中$A$无最大数, $B$无最小数,我们说这个分割定义了一个无理数$alpha$,向$A$或者$B$中任一添加这个$alpha$,都会让$QQ$更加"完备"
-
-#homework[
-    为什么没有第四种可能(在$QQ$中$A$有最大数, $B$有最小数)?
-]
-
-我们把所有有理数的分割的的集合称为实数集,记作$RR$.每个分割都对应一个实数.
-
-
-==== Cauchy列
-
-用收敛数列的极限来定义实数,例如
-
-$
-a_1 in QQ, quad a_1>sqrt(2), quad a_(n+1) = 1/2 (a_n + 2/a_n) \
-=> forall n, quad a_n in QQ, quad lim_(n->infinity) a_n = sqrt(2)
-$
-
-#caption[
-    有理数的极限未必是有理数,从这个意义上说,$RR$是在$QQ$上引入极限运算的结果,实数可以定义为有序完备域.
-]
-
-== 一些问题
-
 === 归纳法
-
-```plain
-Time: 2023.9.12
-Author: Tiankai Ma
-```
 
 #statement[
     对于一个列命题${S_n}$(其中每个元素$S_i$都是一个命题),如果能说明:
@@ -215,16 +209,25 @@ $
 因为确实容易混乱,我们把$S_(n+1)$的定义也写出来:
 
 $
-forall {a_k}_(k=1)^(n+1) quad sum_(k=1)^(n+1) a_k < 1 => product_(k=1)^(n+1) (1+a_k) > 1 + sum_(k=1)^(n+1) a_k
+forall {b_k}_(k=1)^(n+1) quad sum_(k=1)^(n+1) b_k < 1 => product_(k=1)^(n+1) (1+b_k) > 1 + sum_(k=1)^(n+1) b_k
 $
 
 在$S_(n+1)$的命题中,一般情况下并不能自然的得到前$n$项直接套用$S_n$中的结论,只不过:
 
 $
-a_1 +... + a_n < a_1 + ... +a_n + a_(n+1) < 1
+b_1 +... + b_n < (b_1 + ... +b_n) + b_(n+1) < 1
 $
 
-进而这里的前${a_k}_(k=1)^n$(前$n$项)自然符合$S_n$中的${a_n}$的要求,进而可以使用$S_n$的结论.事实上甚至可以对后$n$项使用$S_n$的结论(可以试试).
+进而这里的${b_k}_(k=1)^n$(前$n$项)自然符合$S_n$中的${a_n}$的要求,进而可以使用$S_n$的结论.事实上甚至可以对${b_k}_(k=2)^(n+1)$(后$n$项)使用$S_n$的结论(可以试试).
 
+=== 邻域
+
+#caption[
+    后续课程中会经常遇到以一点为中心的开区间,和去掉这点本身的开区间，分别称为这点的邻域和去心邻域.
+    $
+    U(a, delta) &:= (a-delta, a+delta) \
+    U^compose (a,delta) &:= (a-delta, a) union (a, a+delta)
+    $
+]
 
 #pagebreak()

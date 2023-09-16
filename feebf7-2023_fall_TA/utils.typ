@@ -96,6 +96,9 @@
             size: 9pt,
         )
         #body
+        #line(length: 100%, stroke: 0.2pt)
+        $=>$
+        #v(6cm)
     ]
 }
 

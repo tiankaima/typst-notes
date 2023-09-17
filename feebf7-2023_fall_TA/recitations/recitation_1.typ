@@ -2,6 +2,10 @@
 
 = 习题课 1
 
+```plain
+Time: Week 1, 09.17 Sun. 19:00 ~ 20:30
+```
+
 摘要: 归纳/初等不等式/可数/习题选讲
 
 == 归纳公理
@@ -18,15 +22,16 @@
 
 === 例题
 
-- $forall n in NN, f(n) = n^4 + 2n^3 + 2n^2 + n$ 证明 $6 | f(n)$
-    - 《数学基础选讲》 程艺 P3
+#homework[
+$forall n in NN, f(n) = n^4 + 2n^3 + 2n^2 + n$ 证明 $6 | f(n)$ (《数学基础选讲》 程艺 P3)
+]
 
-#v(6cm)
-
-- $a_1, a_2, ..., a_n (n>=2)$都是正数且$a_1 + a_2 + ... + a_n < 1$,求证:
+#homework[
+$a_1, a_2, ..., a_n (n>=2)$都是正数且$a_1 + a_2 + ... + a_n < 1$,求证:
 $
 1/(1- sum_(k=1)^n a_k) > product_(k=1)^n (1+a_k) > 1 + sum_(k=1)^n a_k
 $
+]
 
 #v(6cm)
 
@@ -72,7 +77,16 @@ $
 ]
 
 #proof[
-    #v(6cm)
+    $n=2$ 时, 
+    $
+    (1+x)^2 = x^2 + 2x + 1 >= 1 + 2x
+    $
+
+    假设 $n=k$ 时成立, 则 $n=k+1$ 时:
+
+    $
+    (1+x)^{k+1} = (1+x)^k (1+x) >= (1+k x)(1+x) = 1 + (k+1)x + k x^2 >= 1 + (k+1)x
+    $
 ]
 
 === HM-GM-AM-QM 不等式
@@ -82,10 +96,60 @@ $
     forall a_1, a_2, ..., a_n in RR_+\
     n/(1/a_1 + 1/a_2 + ... + 1/a_n) <= (a_1 a_2 ... a_n)^(1/n) <= (a_1 + a_2 + ... + a_n)/n <= sqrt((a_1^2 + a_2^2 + ... + a_n^2)/n)
     $
+
+    其中几个平均值的定义为:
+
+    - 算数平均值(#strong[A]rithmetic #strong[M]ean): $ "AM" = (a_1 + a_2 + ... + a_n)/n $
+    - 几何平均值(#strong[G]eometric #strong[M]ean): $ "GM" = (a_1 a_2 ... a_n)^(1/n) $
+    - 调和平均值(#strong[H]armonic #strong[M]ean): $ "HM" = n/(1/a_1 + 1/a_2 + ... + 1/a_n) $
+    - 平方平均值(#strong[Q]uadratic #strong[M]ean): $ "QM" = sqrt((a_1^2 + a_2^2 + ... + a_n^2)/n) $
 ]
 
 #proof[
-    #v(6cm)
+    首先说明$"AM"$和$"QM"$的不等式:
+
+    $
+    forall a_1, a_2, ..., a_n in RR_+\
+    (a_1 + a_2 + ... + a_n)/n <= sqrt((a_1^2 + a_2^2 + ... + a_n^2)/n)
+    $
+
+    是Cauchy不等式的推论.令 $x = (a_1, a_2, ..., a_n), y = (1, 1, ..., 1)$, 则:
+
+    $
+    (a_1 + a_2 + ... + a_n) = x dot.c y <= abs(x) abs(y) = sqrt(a_1^2 + a_2^2 + ... + a_n^2) dot.c sqrt(n)
+    $
+
+    简单变换即可得到上述不等式.
+
+    #line(length: 100%, stroke: 0.2pt)
+
+    接下来说明$"HM"$和$"QM"$的不等式是由$"AM"$和$"GM"$的不等式推出的:
+
+    $
+    forall a_1, a_2, ..., a_n in RR_+ quad
+    (a_1 a_2 ... a_n)^(1/n) <= (a_1 + a_2 + ... + a_n)/n
+    $
+
+    在上述不等式中将 $a_i$ 替换为 $1/a_i$, 则:
+
+    $
+    forall a_1, a_2, ..., a_n in RR_+
+    quad => quad
+    (1/a_1 1/a_2 ... 1/a_n)^(1/n) &<= (1/a_1 + 1/a_2 + ... + 1/a_n)/n \
+    &arrow.b.double \
+    (a_1 a_2 ... a_n)^(1/n) &>= n/(1/a_1 + 1/a_2 + ... + 1/a_n)
+    $
+
+    #line(length: 100%, stroke: 0.2pt)
+
+    $"AM"$和$"GM"$的不等式有着很显然的几何意义:
+
+    在$RR^2$上,
+    $
+    (a_1+a_2)/2 >= sqrt(a_1 a_2)
+    quad => quad
+    2(a_1+a_2) >= 4sqrt(a_1 a_2)
+    $
 ]
 
 #pagebreak()

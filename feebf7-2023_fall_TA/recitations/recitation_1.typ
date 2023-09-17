@@ -105,6 +105,57 @@ $
     - 平方平均值(#strong[Q]uadratic #strong[M]ean): $ "QM" = sqrt((a_1^2 + a_2^2 + ... + a_n^2)/n) $
 ]
 
+#caption[
+    $"AM"$和$"GM"$的不等式有着很显然的几何意义:
+
+    在$RR^2$上,
+    $
+    (a_1+a_2)/2 >= sqrt(a_1 a_2)
+    quad => quad
+    2(a_1+a_2) >= 4sqrt(a_1 a_2)
+    $
+
+    意味着, 面积相同的矩形,正方形的周长最小.注意到相同的结论可以直接推广到$RR^n$上.
+]
+
+#proof[
+    $"AM"$和$"GM"$的不等式,可通过上面这种性质做一个巧妙的证明:
+
+    $ alpha = "AM" = 1/n (a_1 + ... + a_n) $
+
+    若 $a_1, a_2, ..., a_n$ 不全相等, 则存在 $a_i < alpha < a_j$, 对这两项做如下替换:
+
+    $
+    a_i^prime &= alpha \
+    a_j^prime &= a_i + a_j - alpha
+    $
+
+    替换后满足:
+    $
+    "AM"^prime &= "AM" = alpha \
+    "GM"^prime &= "GM"/(a_i dot.c  a_j) * (a_i^prime dot.c a_j^prime) > "GM"
+    $
+
+    注意到 $"GM"^prime > "GM"$是严格的.
+
+    重复上述过程, 直到所有的 $a_i$ 都等于 $alpha$(容易说明只需要至多$n-1$步), 此时:
+    $
+    "AM" = "GM"^((n)) > "GM"^((n-1)) > ... > "GM"^(prime) > "GM"
+    $
+
+    证毕.
+
+    #caption[
+    上述证明同时说明,等号成立当且仅当 $a_1 = a_2 = ... = a_n$. 此时无需经过变换,$"AM" = "GM"$.
+
+    只要经过变换,就有严格的不等式成立.
+    ]
+
+    #homework[
+        $"AM"$和$"GM"$的不等式,也可以通过归纳法证明.
+    ]
+]
+
 #proof[
     首先说明$"AM"$和$"QM"$的不等式:
 
@@ -138,17 +189,6 @@ $
     (1/a_1 1/a_2 ... 1/a_n)^(1/n) &<= (1/a_1 + 1/a_2 + ... + 1/a_n)/n \
     &arrow.b.double \
     (a_1 a_2 ... a_n)^(1/n) &>= n/(1/a_1 + 1/a_2 + ... + 1/a_n)
-    $
-
-    #line(length: 100%, stroke: 0.2pt)
-
-    $"AM"$和$"GM"$的不等式有着很显然的几何意义:
-
-    在$RR^2$上,
-    $
-    (a_1+a_2)/2 >= sqrt(a_1 a_2)
-    quad => quad
-    2(a_1+a_2) >= 4sqrt(a_1 a_2)
     $
 ]
 

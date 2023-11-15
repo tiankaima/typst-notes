@@ -9,8 +9,15 @@
 #set par(
   first-line-indent: 15pt,
 )
-#set heading(numbering: "1.")
+#set heading(numbering: 
+ (..nums) => nums
+    .pos()
+    .slice(1)
+    .map(str)
+    .join(".")
+)
 #set math.equation(numbering: "(1)")
+
 #import "utils.typ": *
 
 #outline(depth:1)
@@ -20,6 +27,7 @@
 #include "lectures/lecture_0.typ"
 #include "lectures/lecture_1.typ"
 #include "lectures/lecture_2.typ"
+#include "lectures/lecture_4.typ"
 
 // Recitations
 #include "recitations/recitation_1.typ"

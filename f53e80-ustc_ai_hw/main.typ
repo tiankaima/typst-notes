@@ -90,7 +90,7 @@ $
 #set text(fill: blue)
 === Solution 6.11
 
-#table(columns: (auto, auto, auto, auto, auto, auto, auto, auto), stroke: blue,
+#table(columns: (auto, auto, auto, auto, auto, auto, auto, auto), stroke: blue, align: center,
 [],[WA],[NT],[Q],[NSW],[V],[SA],[T],
 [], [G], [R G B], [R G B], [R G B], [R], [R G B], [R G B],
 [WA, SA], [G], [R G B], [R G B], [R G B], [R], [R B], [R G B],
@@ -116,6 +116,39 @@ $
 === Solution 6.12
 
 树结构中每个弧最多会被检查一次，因此 AC-3 最坏轻快下复杂度为 $O(E D)$, 其中 $E$ 为弧的数量，$D$ 为定义域的大小。
+
+对应的算法考虑如下：
+
+- 对于每个节点$X_i$
+- 遍历子节点 $X_i$，对于每个节点，计算其允许的父节点所有取值 $D_(i j)$
+- 取所有 $D_(i j)$ 的交集 $D_1$
+- 计算 $X_i$ 与父节点 $X^'$ 的约束 $<X_i, X^'>$允许自身的所有取值 $D_0$
+- 获得 $D_i = D_0 sect D_1$ 作为 $X_i$ 的新定义域
+- 计算允许父节点的所有取值 $D' := {x in X' | exists x_i in D_i, {x_i, x} in <X_i, X^'>}$
+
+#box[
+对应伪代码：
+```python
+def AC3_Tree(cur: Node, father: Optional[Node]) -> list[Value]:
+  if cur is None:
+    return []
+
+  domains = []
+  for child in cur.children:
+    domains.append(AC3_Tree(child, cur))
+
+  domain_1 = intersect(domains)
+  if(father is not None):
+    domain_0 = intersect([father.domain, domain_1])
+    cur.domain = intersect([domain_0, father.domain])
+  else:
+    cur.domain = domain_1
+
+  return [x for x in father.domain if exists y in cur.domain, {x, y} in cur.constraint]
+```
+]
+
+向上返回结果的时候，由于每个节点的 $D_i$ 必须在其子节点提供的 $D_(i j)$ 的内部，当前节点的限缩
 
 #set text(fill: black)
 

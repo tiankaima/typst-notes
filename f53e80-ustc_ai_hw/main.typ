@@ -115,40 +115,44 @@ $
 #set text(fill: blue)
 === Solution 6.12
 
-树结构中每个弧最多会被检查一次，因此 AC-3 最坏轻快下复杂度为 $O(E D)$, 其中 $E$ 为弧的数量，$D$ 为定义域的大小。
+树结构中每个弧最多会被检查一次，因此 AC-3 最坏情况下复杂度为 $O(E D)$, 其中 $E$ 为弧的数量，$D$ 为定义域的大小。
 
-对应的算法考虑如下：
+// 对应的算法考虑如下：
 
-- 对于每个节点$X_i$
-- 遍历子节点 $X_i$，对于每个节点，计算其允许的父节点所有取值 $D_(i j)$
-- 取所有 $D_(i j)$ 的交集 $D_1$
-- 计算 $X_i$ 与父节点 $X^'$ 的约束 $<X_i, X^'>$允许自身的所有取值 $D_0$
-- 获得 $D_i = D_0 sect D_1$ 作为 $X_i$ 的新定义域
-- 计算允许父节点的所有取值 $D' := {x in X' | exists x_i in D_i, {x_i, x} in <X_i, X^'>}$
+// - 对于每个节点$X_i$, 当前的取值范围 $D_0$
+// - 遍历子节点 $X_j$, 记录 $<X_i, X_j>$ 允许的 $X_i$ 的取值范围 $D_(i,j)$
+// - 取所有 $D_(i j)$ 的交集 $D_1$
+// - 获得 $D_i = D_0 sect D_1$ 作为 $X_i$ 新的取值范围
+// - 遍历子节点 $X_j$, 记录 $<X_i, X_j>$ 允许的 $X_j$ 的取值范围 $D_(j)$, 记录到子节点上, 向下递归
 
-#box[
-对应伪代码：
-```python
-def AC3_Tree(cur: Node, father: Optional[Node]) -> list[Value]:
-  if cur is None:
-    return []
+// #box[
+// 对应伪代码：(Python-style)
+// ```python
+// class Node:
+//   D: set[Value]
+//   father: Node
+//   children: [Node]
 
-  domains = []
-  for child in cur.children:
-    domains.append(AC3_Tree(child, cur))
+// Constarint = [(Node, Node): [Value, Value]]
 
-  domain_1 = intersect(domains)
-  if(father is not None):
-    domain_0 = intersect([father.domain, domain_1])
-    cur.domain = intersect([domain_0, father.domain])
-  else:
-    cur.domain = domain_1
+// def AC3_Tree(cur: Node, C: Constarint) -> bool:
+//   D0 = cur.D
+//   Ds = [(v[0] for v in C[(cur, child)]) for child in children]
+//   D1 = intersect(Ds)
+//   cur.D = intersect(D0, D1)
+//   if len(cur.D) == 0:
+//     return False
 
-  return [x for x in father.domain if exists y in cur.domain, {x, y} in cur.constraint]
-```
-]
+//   for child in children:
+//     child.D = [v[1] for v in C[(cur, child)] if v[0] in cur.D]
+//     if not AC3_Tree(child, C):
+//       return False
 
-向上返回结果的时候，由于每个节点的 $D_i$ 必须在其子节点提供的 $D_(i j)$ 的内部，当前节点的限缩
+//   return True
+
+// AC3_Tree(root)
+// ```
+// ]
 
 #set text(fill: black)
 

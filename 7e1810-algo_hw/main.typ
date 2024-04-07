@@ -7,7 +7,7 @@
 
 PB21000030 马天开
 
-== HW 3
+== HW 3 (Week 4)
 Due: 2024.03.31
 == Question 12.2-3
 Write the `TREE-PREDECESSOR` procedure(which is symmetric to `TREE-SUCCESSOR`).
@@ -62,7 +62,7 @@ Modify the usual interval search not to break out the loop when a overlap is fou
 
 #pagebreak()
 
-== HW 2
+== HW 2 (Week 3)
 Due: 2024.03.24
 === Question 6.2-6
 The code for MAX-HEAPIFY is quite efficient in terms of constant factors, except possibly for the recursive call in line 10, for which some compilers might produce inefficient code. Write an efficient MAX-HEAPIFY that uses an iterative control construct (a loop) instead of recursion.
@@ -195,7 +195,7 @@ This is the required $O(n)$-time algorithm.
 
 #pagebreak()
 
-== HW 1
+== HW 1 (Week 2)
 Due: 2024.03.17
 === Question 2.3-5
 

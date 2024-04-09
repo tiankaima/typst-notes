@@ -1,6 +1,9 @@
-#align(center, text(17pt)[
+#align(
+  center,
+  text(17pt)[
     2023 秋季学期 数学分析 B1
-])
+  ],
+)
 
 = 课程信息
 

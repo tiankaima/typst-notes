@@ -1,26 +1,30 @@
 #set text(
-    font: "Source Han Serif SC",
-    size: 10pt,
+  font: "Source Han Serif SC",
+  size: 10pt,
 )
 
-#align(center, text(20pt)[
+#align(
+  center,
+  text(20pt)[
     2023秋 运筹学 笔记 & 作业
-])
-#align(center, text(12pt)[
+  ],
+)
+#align(
+  center,
+  text(12pt)[
     马天开 PB21000030
-])
-#align(center, text(12pt)[
+  ],
+)
+#align(
+  center,
+  text(12pt)[
     上次修改：#datetime.today().display("[year]-[month]-[day]")
-])
+  ],
+)
 
 #set math.equation(numbering: "(1)")
 
-#outline(depth:1)
-
-
-
-
-
+#outline(depth: 1)
 
 #pagebreak()
 
@@ -33,7 +37,7 @@
 
 考虑稀疏优化问题，我们已经直观地讨论了在 $italic(l)_0,italic(l)_1,italic(l)_2$ 三种范数下问题的解的可能形式．针对一般的$italic(l)_p$范数”：
 $
-norm(x)_p := (sum_(i=1)^n abs(x_i)^p)^(1/p), quad 0<p<2
+norm(x)_p := (sum_(i=1)^n abs(x_i)^p)^(1 / p), quad 0<p<2
 $
 我们考虑优化问题：
 $
@@ -156,12 +160,12 @@ A = mat(
 $
 其中$norm(B)_2 < 1$，$I$为单位矩阵。证明$A$可逆且
 $
-norm(A)_2 norm(A^(-1))_2 = (1+norm(B)_2)/(1-norm(B)_2)
+norm(A)_2 norm(A^(-1))_2 = (1+norm(B)_2) / (1-norm(B)_2)
 $
 
 === 答案
 $
-A^(-1) = 1/abs(I-B B^T) mat(
+A^(-1) = 1 / abs(I-B B^T) mat(
     I, -B;
     -B^T, I;
 )

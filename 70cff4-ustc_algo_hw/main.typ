@@ -1,6 +1,6 @@
 #set text(
-    font: "Source Han Serif SC",
-    size: 10pt,
+  font: ("Source Han Serif SC", "Source Han Serif"),
+  size: 10pt,
 )
 
 = USTC/ALGO24 算法基础 书面作业
@@ -134,7 +134,7 @@ Consider modifying the PARTITION procedure by randomly picking three elements fr
 The probability of getting worse than an $alpha$-to-$(1 - alpha)$ split is the probability of picking the smallest or the largest element as the median.
 
 $
-P = 2 * [binom(2,3) times alpha ^ 2(1 - alpha) + alpha ^ 3] = 6 alpha^2 - 4 alpha^3
+P = 2 * [binom(2,3) times alpha^2(1 - alpha) + alpha^3] = 6 alpha^2 - 4 alpha^3
 $
 
 #set text(fill: black)
@@ -163,7 +163,6 @@ COUNTING-SORT(A, B, k, d)
 ```
 
 This is the required $Theta(n + 10^d k)$ time algorithm.
-
 
 #set text(fill: black)
 

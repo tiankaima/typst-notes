@@ -3,11 +3,12 @@
 PB21000030 马天开
 
 #table(
-  columns: (1fr,1fr),
+  columns: (1fr, 1fr),
   align: center,
-  [ Input ],[ Output ],
-  image("imgs/input.jpg",width: 100%),
-  image("imgs/output.png",width: 100%)
+  [ Input ],
+  [ Output ],
+  image("imgs/input.jpg", width: 100%),
+  image("imgs/output.png", width: 100%),
 )
 
 做了个简单的图像风格化的程序，最后代码大概100行左右，效果如上图所示。
@@ -28,7 +29,6 @@ PB21000030 马天开
 == 亮点
 
 我也不清楚要说什么了，总之有些地方可能顺手一点用了 lambda 函数，有些地方写的也比较别扭（#strike[可能正常的编程语言写多了是这样的]）
-
 
 #pagebreak()
 

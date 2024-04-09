@@ -1,15 +1,20 @@
+#set text(
+  font: "Source Han Serif SC",
+  size: 10pt,
+)
+
 = 2023-2024 数学分析（B1）期中
 
 1. 用极限的定义证明： 若$limits(lim)_(n->infinity) a_n = limits(lim)_(n->infinity) b_n = c$, 则$limits(lim)_(n->infinity) max {a_n,b_n} = c$.
 2. 计算下列各题
 
-  1. $limits(lim)_(n->infinity) ((n+1)/(n-1))^n$
+  1. $limits(lim)_(n->infinity) ((n+1) / (n-1))^n$
 
   2. $limits(lim)_(n->infinity) ((n+1)^k-n^k), 0<k<1$
 
-  3. $limits(lim)_(n->infinity) (root(4,1+x+x^2)-1)/(tan 2x)$
+  3. $limits(lim)_(n->infinity) (root(4,1+x+x^2)-1) / (tan 2x)$
 
-  4. $limits(lim)_(n->infinity) (cos x - e^(-1/2 x^2))/(sin^4 x)$
+  4. $limits(lim)_(n->infinity) (cos x - e^(-1 / 2 x^2)) / (sin^4 x)$
 
   5. $limits(lim)_(x->a)((sin x)/(sin a))^(1/(x-a))$ ($a!=k pi, k in ZZ$)
 
@@ -30,7 +35,7 @@
 5. 设$f(x)$在$[a,b]$上连续, $(a,b)$上可微, 且
 
 $
-f(a)dot.c f(b) > 0, space.quad f(a) dot.c f((a+b)/2) < 0
+f(a)dot.c f(b) > 0, space.quad f(a) dot.c f((a+b) / 2) < 0
 $
 求证：$exists xi in (a,b)$, 使得$f'(xi)=f(xi)$.
 

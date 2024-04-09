@@ -16,5 +16,6 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "**/*.pdf": true,
-    }
+        "**/build/": true,
+    },
 }

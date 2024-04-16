@@ -10,7 +10,7 @@
 #let dcases(..args) = {
   math.cases(
     gap: 0.6em,
-    math.display(..args)
+    math.display(..args),
   )
 }
 
@@ -20,20 +20,20 @@
 ]
 
 #align(center)[
-= 习题课 7 讲义
-2024 Spring 数学分析 B2
+  = 习题课 7 讲义
+  2024 Spring 数学分析 B2
 
-PB21000030 马天开
+  PB21000030 马天开
 ]
 
 == 作业答案
 
 #text(weight: "bold")[
-- 4.1 P125 7(3)(4)(5)
-- 4.3 P125 9 10(3)(4) 11(1)(3) 13 18 19 20 21
-- 4.8 P156 2(1)(2)(3)(6)(7)(8)
-- 4.10 P156 1(2)(3)(5)(6) 3 5 6 7
-- 4.12 P166 1(1)(4)(5) 2(2)(5)(8) 3(2)(3) 4 6 7
+  - 4.1 P125 7(3)(4)(5)
+  - 4.3 P125 9 10(3)(4) 11(1)(3) 13 18 19 20 21
+  - 4.8 P156 2(1)(2)(3)(6)(7)(8)
+  - 4.10 P156 1(2)(3)(5)(6) 3 5 6 7
+  - 4.12 P166 1(1)(4)(5) 2(2)(5)(8) 3(2)(3) 4 6 7
 ]
 
 === 7(3)
@@ -46,7 +46,6 @@ $
 (diff^2 f)/(diff y^2) &= e^(2x) dot 2 \
 (diff^2 f)/(diff x diff y) &= e^(2x)(4+4y) \
 )\
-
 &dcases(
 (diff f)/(diff x) &= 0 \
 (diff f)/(diff y) &= 0 \
@@ -79,11 +78,11 @@ $
 $
 $
 &=> [4x(x^2+y^2)-2a^2x]dif x +[4y(x^2+y^2)+2a^2y]dif y = 0 \
-&=> (dif y)/(dif x) = -(4x(x^2+y^2)-2a^2x)/(4y(x^2+y^2)+2a^2y) \
+&=> (dif y) / (dif x) = -(4x(x^2+y^2)-2a^2x) / (4y(x^2+y^2)+2a^2y) \
 $
 
 $
-(dif y)/(dif x) = 0 space.quad => space.quad x = 0 "or" x^2+y^2=1/2a^2 \
+(dif y) / (dif x) = 0 space.quad => space.quad x = 0 "or" x^2+y^2=1 / 2a^2 \
 $
 
 考虑 $x=0 => (x,y) = (0,0)$ 此处不可微, 舍去
@@ -93,7 +92,7 @@ dcases(
   x^2+y^2=1/2a^2\
   x^2-y^2=1/4a^2\
 ) space.quad => space.quad
-y^2 = 1/8
+y^2 = 1 / 8
 $
 
 接下来可以用更一般的做法判断是否是极大值/极小值, 我们这里推荐一种更加初等但是高效的做法:
@@ -118,12 +117,14 @@ $
 $
 &x^2+y^2+z^2-2x+2y-4z-10=0 \
 => & (2x-2)dif x +(2y+2)dif y+(2z-4)dif z=0 \
-=> & (diff z)/(diff x) = -(x-1)/(z-2) space.quad (diff z)/(diff y) = -(y+1)/(z-2) \
-=> & (diff^2 z)/(diff x^2) = -((x-1)^2+(z-2)^2)/(z-2)^3 space.quad (diff^2 z)/(diff y^2) = -((z-2)^2+(y+1)^2)/(z-2)^3 space.quad (diff^2 z)/(diff x diff y) = 0 \
+=> & (diff z) / (diff x) = -(x-1) / (z-2) space.quad (diff z) / (diff y) = -(y+1) / (z-2) \
+=> & (diff^2 z) / (diff x^2) = -((x-1)^2+(z-2)^2) / (z-2)^3 space.quad (diff^2 z) / (diff y^2) = -((z-2)^2+(y+1)^2) / (
+  z-2
+)^3 space.quad (diff^2 z) / (diff x diff y) = 0 \
 $
 
 $
-((diff z)/(diff x), (diff z)/(diff y)) = (0, 0)  => (x, y) = (1, -1) \
+((diff z) / (diff x), (diff z) / (diff y)) = (0, 0) => (x, y) = (1, -1) \
 $
 
 此时对应 $z_1 = 6, z_2=-2$, 我们分别在两个点的局部判断这是极大值/极小值, 即 $(1,-1,6)$ 和 $(1,-1,-2)$
@@ -141,11 +142,9 @@ $
 #pagebreak()
 === 10(3)
 
-
 $
 u(x,y,z)&=sin(x)sin(y)sin(z)\
 U(x,y,z,phi)&=sin(x)sin(y)sin(z)-phi dot.c(x+y+z-pi/2)\
-
 &dcases(
 (diff U)/(diff x) &= cos(x)sin(y)sin(z)-phi=0\
 (diff U)/(diff y) &= sin(x)cos(y)sin(z)-phi=0\
@@ -157,10 +156,10 @@ $
 可以解出
 
 $
-P_0=(pi/6,pi/6,pi/6)\
-P_1=(pi/2,0,0)\
-P_2=(0,pi/2,0)\
-P_3=(0,0,pi/2)\
+P_0=(pi / 6,pi / 6,pi / 6)\
+P_1=(pi / 2,0,0)\
+P_2=(0,pi / 2,0)\
+P_3=(0,0,pi / 2)\
 $
 
 分别代入 $u$ 可以得到 $u(P_0)=1/8, u(P_1)=0, u(P_2)=0, u(P_3)=0$
@@ -168,7 +167,7 @@ $
 极大值极小值的判断不能直接从拉格朗日乘子法中得到, 应该通过如下方法判断:
 
 $
-u(x,y)=u(x,y,z)=u(x,y,pi/2-x-y)=sin(x)sin(y)cos(x+y)\
+u(x,y)=u(x,y,z)=u(x,y,pi / 2-x-y)=sin(x)sin(y)cos(x+y)\
 $
 
 接下来继续处理 $Delta=(diff^2 u)/(diff x^2) dot.c (diff^2 u)/(diff y^2)-((diff^2 u)/(diff x diff y))^2$, 按照一般的二元函数的处理 (#strike[也许可以从头开始就按照这样的做法]), 最终可以获得结果.
@@ -176,34 +175,34 @@ $
 #image("./imgs/6.png", width: 50%)
 
 #box[
-更一般的, 我们可以做如下处理:
+  更一般的, 我们可以做如下处理:
 
-$
-u&=sin(x)sin(y)sin(z)\
-dif u&=cos(x)sin(y)sin(z)dif x + sin(x)cos(y)sin(z)dif y + sin(x)sin(y)cos(z)dif z\
-$
+  $
+  u&=sin(x)sin(y)sin(z)\
+  dif u&=cos(x)sin(y)sin(z)dif x + sin(x)cos(y)sin(z)dif y + sin(x)sin(y)cos(z)dif z\
+  $
 ]
 
 #align(center)[
   #rect[
     $
-    &x+y+z=pi/2 space.quad=>space.quad dif x + dif y + dif z = 0\
+    &x+y+z=pi / 2 space.quad=>space.quad dif x + dif y + dif z = 0\
     $
   ]
 ]
 
 $
 => & dif u = (cos(x)sin(y)sin(z) - sin(x)sin(y)cos(z))dif x + (sin(x)cos(y)sin(z) - sin(x)sin(y)cos(z))dif y\
-=> & (diff u)/(diff x)=(cos(x)sin(y)sin(z) - sin(x)sin(y)cos(z))=0\
-=> & (diff u)/(diff y)=(sin(x)cos(y)sin(z) - sin(x)sin(y)cos(z))=0\
-=> & (diff^2 u)/(diff x^2)= -2sin(x)sin(y)sin(z) - 2cos(x)sin(y)cos(z)=-1\
-=> & (diff^2 u)/(diff y^2) = -2sin(x)sin(y)sin(z) - 2sin(x)cos(y)cos(z)=-1\
-=> & (diff^2 u)/(diff x diff y) = cos(x)cos(y)sin(z) - sin(x)cos(y)cos(z) - cos(x)sin(y)cos(z) - sin(x)sin(y)sin(z)=-1/2\
+=> & (diff u) / (diff x)=(cos(x)sin(y)sin(z) - sin(x)sin(y)cos(z))=0\
+=> & (diff u) / (diff y)=(sin(x)cos(y)sin(z) - sin(x)sin(y)cos(z))=0\
+=> & (diff^2 u) / (diff x^2)= -2sin(x)sin(y)sin(z) - 2cos(x)sin(y)cos(z)=-1\
+=> & (diff^2 u) / (diff y^2) = -2sin(x)sin(y)sin(z) - 2sin(x)cos(y)cos(z)=-1\
+=> & (diff^2 u) / (diff x diff y) = cos(x)cos(y)sin(z) - sin(x)cos(y)cos(z) - cos(x)sin(y)cos(z) - sin(x)sin(y)sin(z)=-1 / 2\
 $
 
 所以有
 $
-Delta = A C - B^2 = 3/4 >0 space.quad A=-1<0
+Delta = A C - B^2 = 3 / 4 >0 space.quad A=-1<0
 $
 正定, 最大值 $ u(pi/6,pi/6,pi/6)=1/8 $
 
@@ -221,15 +220,21 @@ $
 
 $
 &dif u = y z dif x + x z dif y + x y dif z\
-\
-&dif x + dif y + dif z = 0\
-&x dif x + y dif y + z dif z = 0\
 $
+
+#align(center)[
+  #rect[
+    $
+    dif x + dif y + dif z = 0\
+    x dif x + y dif y + z dif z = 0\
+    $
+  ]
+]
 
 在后两个方程中, 解出 $dif y, dif z$ 关于 $dif x$的表达式为:
 
 $
-dif y = (z-x)/(y-z) dif x quad dif z = (x-y)/(y-z) dif x
+dif y = (z-x) / (y-z) dif x quad dif z = (x-y) / (y-z) dif x
 $
 
 接下来可以类似处理得到 $(dif u)/(dif x) , (dif^2 u)/(dif x^2)$, 按照一元函数的极值点处理即可.
@@ -252,9 +257,10 @@ $
 首先考虑 $(diff U)/(diff x),(diff U)/(diff y),(diff U)/(diff z)$ 中 $mu x,mu y,mu z$的对称性, 我们将这三项对应加起来:
 
 $
-&(diff U)/(diff x) + (diff U)/(diff y) + (diff U)/(diff z)\
+&quad (diff U) / (diff x) + (diff U) / (diff y) + (diff U) / (diff z)\
 &= x z + y z + x y - 3 lambda - 2 mu (x+y+z)\
-&= x z + y z + x y - 3 lambda = 0
+&= x z + y z + x y - 3 lambda \
+&= 0
 $
 
 前面一项是已知的, 得益于这样的关系:
@@ -262,7 +268,7 @@ $
 $
 (x+y+z)^2&=x^2+y^2+z^2+2(x y+y z+z x)\
 &=1+2(x y+y z+z x)=0 \
-=> & x y+y z+z x = -1/2
+=> & x y+y z+z x = -1 / 2
 $
 
 因此得到 $lambda = - 1/6$, 接下来只需要关心前两项 $(diff U)/(diff x), (diff U)/(diff y)$:
@@ -275,26 +281,26 @@ x z + 1/6 - 2 mu y = 0 \
   y^2 z + 1/6 y - 2 mu x y = 0 \
   x^2 z + 1/6 x - 2 mu y x = 0 \
 )\
-&=> [z(x+y) + 1/6](x-y) = 0 \
-&=> [(x+y)^2 - 1/6](x-y) = 0 \
+&=> [z(x+y) + 1 / 6](x-y) = 0 \
+&=> [(x+y)^2 - 1 / 6](x-y) = 0 \
 $
 
-接下来我们分别讨论 $x=y$ 和 $(x+y)^2=1/6$. 其实他们反映的是一种情况的两个对称.
+接下来我们分别讨论 $x=y$ 和 $(x+y)^2=1/6$. 其实他们反映的是一种情况的对称.
 
 - $x=y$
 
 $
 x=y => z=-2x\
-x^2 + y^2 + z^2 = 6 x^2 = 1 => x = plus.minus sqrt(6)/6 \
-P_1(sqrt(6)/6,sqrt(6)/6, -sqrt(6)/3) quad P_2(-sqrt(6)/6, -sqrt(6)/6, sqrt(6)/3)
+x^2 + y^2 + z^2 = 6 x^2 = 1 => x = plus.minus sqrt(6) / 6 \
+P_1(sqrt(6) / 6,sqrt(6) / 6, -sqrt(6) / 3) quad P_2(-sqrt(6) / 6, -sqrt(6) / 6, sqrt(6) / 3)
 $
 
-- $(x+y)^2=1/6$
+- $(x+y)^2=1 / 6$
 
 $
-(x+y)^2=1/6 => z^2 = 1/6 \
-=> x^2 + y^2 = 5/6 \
-(x-y)^2 = 9/6 \
+(x+y)^2=1 / 6 => z^2 = 1 / 6 \
+=> x^2 + y^2 = 5 / 6 \
+(x-y)^2 = 9 / 6 \
 $
 
 $
@@ -305,8 +311,8 @@ dcases(
 $
 
 $
-&P_3(sqrt(6)/3, -sqrt(6)/6, -sqrt(6)/6) quad &P_4(-sqrt(6)/3, sqrt(6)/6, sqrt(6)/6) \
-&P_5(sqrt(6)/6, -sqrt(6)/3, sqrt(6)/6) quad &P_6(-sqrt(6)/6, sqrt(6)/3, -sqrt(6)/6) \
+&P_3(sqrt(6) / 3, -sqrt(6) / 6, -sqrt(6) / 6) quad &P_4(-sqrt(6) / 3, sqrt(6) / 6, sqrt(6) / 6) \
+&P_5(sqrt(6) / 6, -sqrt(6) / 3, sqrt(6) / 6) quad &P_6(-sqrt(6) / 6, sqrt(6) / 3, -sqrt(6) / 6) \
 $
 
 因此 $ u_max = sqrt(6)/18 quad u_min = -sqrt(6)/18 $
@@ -323,9 +329,8 @@ $
 即便没有这样的几何直观, 处理起来也是固定的模式, 先讨论内部的极值点、再讨论边界上的条件极值.
 
 $
-(diff z)/(diff x) = 2x quad (diff z)/(diff y) = -2y \
-
-(diff^2 z)/(diff x^2) = 2 quad (diff^2 z)/(diff y^2) = -2 quad (diff^2 z)/(diff x diff y) = 0
+(diff z) / (diff x) = 2x quad (diff z) / (diff y) = -2y \
+(diff^2 z) / (diff x^2) = 2 quad (diff^2 z) / (diff y^2) = -2 quad (diff^2 z) / (diff x diff y) = 0
 $
 
 Hessian 矩阵总是负定的, 函数在${(x,y)mid("|") x^2+y^2 <4}$内部不存在极值点. (事实上也说明在任何区域内部都不存在极值点)
@@ -339,7 +344,7 @@ Hessian 矩阵总是负定的, 函数在${(x,y)mid("|") x^2+y^2 <4}$内部不存
   max_(overline(Omega)) u = max_(partial Omega) u
   $
 
-  - *极值原理*: 非调和函数的最值总在边界上取得.
+  - *极值原理*: 非常数调和函数的最值总在边界上取得.
 
   $
   max_(Omega) u = max_(partial Omega) u \

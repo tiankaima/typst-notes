@@ -648,9 +648,9 @@ $
 &quad integral.double_D y / (1+x^2+y^2)^(3 / 2) dif x dif y quad D=[0,1]times[0,1]\
 &=integral_0^1 dif x integral_0^1 y / (1+x^2+y^2)^(3 / 2) dif y\
 &=integral_0^1 dif x integral_0^1 (1 / 2 dif y^2) / (1+x^2+y^2)^(3 / 2)\
-&=integral_0^1 -(1+x^2+y^2)^(-1 / 2)|_0^1 dif x\
+&=integral_0^1 [-(1+x^2+y^2)^(-1 / 2)]_0^1 dif x\
 &=integral_0^1 -1 / sqrt(2+x^2) + 1 / sqrt(1+x^2) dif x\
-&=-ln(x+sqrt(2+x^2)) + ln(x+sqrt(1+x^2))|_0^1\
+&=[-ln(x+sqrt(2+x^2)) + ln(x+sqrt(1+x^2))]_0^1\
 &=-ln(1+sqrt(3)) + ln(1+sqrt(2)) + 1 / 2ln 2\
 &=quad ln(-1+sqrt(3))+ln(1+sqrt(2))-1 / 2ln 2
 $
@@ -693,7 +693,7 @@ $
 $
 &quad integral.double_D x^2 / y^2 dif x dif y\
 &= integral_1^2dif x integral_(1 / x)^x x^2 / y^2 dif y\
-&= integral_1^2 (-x^2 / y)|_(y=1 / x)^(y=x) dif x\
+&= integral_1^2 [-x^2 / y]_(y=1 / x)^(y=x) dif x\
 &= integral_1^2 (-x+x^3) dif x\
 &= -2^2 / 2 + 2^4 / 4 + 1 / 2 - 1 / 4\
 &= 9 / 4
@@ -800,7 +800,7 @@ $
 &=integral_0^(arctan R) dif theta integral_0^R sec^2 theta dot r dif r\
 // &=integral_0^(arctan R) dif theta sec^2 theta r^2/2 |_0^R\
 &=R^2/2 integral_0^(arctan R) sec^2 theta dif theta\
-&=R^2/2 tan theta |_0^(arctan R)\
+&=R^2/2 [tan theta]_0^(arctan R)\
 // &=1/2 R^2 tan(arctan R)\
 &=1/2 R^3
 $

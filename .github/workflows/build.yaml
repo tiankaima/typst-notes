@@ -31,8 +31,17 @@ jobs:
         id: date
         run: echo "DATE=$(date +%Y-%m-%d-%H:%M)" >> $GITHUB_ENV
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
         with:
           name: "${{ github.ref_name }} — ${{ env.DATE }}"
           files: "./build/*"
+          make_latest: false
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type != 'tag'
+        with:
+          name: "${{ github.ref_name }} — ${{ env.DATE }}"
+          files: "./build/*"
+          tag_name: ci_latest
+          make_latest: true

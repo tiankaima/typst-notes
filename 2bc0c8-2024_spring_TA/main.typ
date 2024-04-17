@@ -9,7 +9,6 @@
 
 #let dcases(..args) = {
   math.cases(
-    gap: 0.6em,
     math.display(..args),
   )
 }
@@ -365,3 +364,227 @@ P_1(0,2) quad P_2(0,-2) quad P_3(2,0) quad P_4(-2,0)
 $
 
 容易得到 $z_min = -4, z_max = 4$
+
+#pagebreak()
+=== 11(3)
+
+$
+&z=sin(x)+sin(y)-sin(x+y) quad D={(x,y)mid("|")x>=0,y>=0,x+y<=2pi} \
+$
+
+区域内的情况：
+
+$
+&dcases(
+(diff z)/(diff x) &= cos(x)-cos(x+y) = 0 \
+(diff z)/(diff y) &= cos(y)-cos(x+y) = 0 \
+) \
+
+&P_1(0,0) quad P_2(2pi,0) quad P_3(0,2pi) quad P_4(pi/3, pi/3)
+$
+
+$ => z_min = 0, z_max=sqrt(3)/2 quad forall x in D^o $
+
+边界上的情况，我们分成三段：
+
+$
+&l_1: {0}times[0,2pi] \
+&l_2: [0,2pi]times{0} \
+&l_3: {(x,y)mid("|")x+y=2pi,x>=0,y>=0} \
+$
+
+其中 $l_1, l_2$ 是对称的，我们只考虑 $l_1$:
+
+$
+&z = sin(0) + sin(y) - sin(0+y) eq.triple 0 quad &(x,y) in l_1 \
+&z = sin(x) + sin(2pi-x) - sin(2pi) eq.triple 0 quad &(x,y) in l_3 \
+$
+
+// TODO: 补充 z = sin(x) + sin(2pi-x) - sin(2pi) 的图像
+
+
+#pagebreak()
+=== 13
+$
+dcases(
+  z=x^2+2y^2\
+  z=6-2x^2-y^2\
+) quad => quad  x^2 + y^2 = 2
+$
+
+问题转为考虑 $z=x^2+2y^2$ 在 $x^2+y^2=2$ 上的最值问题, 应用拉格朗日乘子法:
+
+$
+L(x,y, mu) = x^2+2y^2 + mu(x^2+y^2-2) \
+dcases(
+  (diff L)/(diff x) = 2x(1+mu) = 0 \
+  (diff L)/(diff y) = 4y(1+mu) = 0 \
+  x^2+y^2 = 2 \
+)\
+P_1(0,sqrt(2)) quad P_2(0,-sqrt(2)) quad P_3(sqrt(2),0) quad P_4(-sqrt(2),0)
+$
+
+因此 $z_min = 2, z_max = 4$
+
+//TODO: 补图
+
+#pagebreak()
+=== 14
+
+$
+f(x,y)=3x^2y-x^4-2y^2\
+dcases(
+  (diff f)/(diff x)|_((0,0)) = 6x y-4x^3 = 0 \
+  (diff f)/(diff y)|_((0,0)) = 3x^2-4y = 0 \
+  (diff^2 f)/(diff x^2)|_((0,0)) = 6y-12x^2 = 0 \
+  (diff^2 f)/(diff y^2)|_((0,0)) = -4 \
+  (diff^2 f)/(diff x diff y)|_((0,0)) = 6x = 0 \
+)\
+$
+
+$Delta = A C-B^2=0$ 欠定, 我们继续往下算:
+
+$
+dcases(
+(diff^3 f)/(diff x^3)|_((0,0)) = -24x = 0 \
+(diff^3 f)/(diff x^2 diff y)|_((0,0)) = 6 \
+(diff^3 f)/(diff x diff y^2)|_((0,0)) = 0 \
+(diff^3 f)/(diff y^3)|_((0,0)) = 0 = 0 \
+)
+$
+
+因此 $f(x,y)$的三阶 Taylor 展开为:
+
+$
+f(x,y) = -4y^2+18x^2y + o(rho^3)
+$
+
+显然 $f(0,0)=0$ 不是极值点.
+
+我们考虑任意过 $(0,0)$ 的直线 $y=k x$, 有:
+$
+f(x) = 3k x^3 - x^4 - 2k^2 x^2\
+dcases(
+(dif f)/(dif x)|_((0,0)) = 9k x^2 - 4x^3 - 4k^2 x = 0\
+(dif^2 f)/(dif x^2)|_((0,0)) = 18k x - 12x^2 - 4k^2 = - 4k^2<0\
+)
+$
+因此在每条过原点的直线上 $(0,0)$ 都是极大值点.
+
+#pagebreak()
+=== 18
+
+$
+f(x,y) = (x - x_1)^2 + (y - y_1)^2 + dots.c + (x - x_n)^2 + (y - y_n)^2\
+dcases(
+  (diff f)/(diff x) = 2(x - x_1) + dots.c + 2(x - x_n) = 0\
+  (diff f)/(diff y) = 2(y - y_1) + dots.c + 2(y - y_n) = 0\
+  (diff^2 f)/(diff x^2) = 2n\
+  (diff^2 f)/(diff y^2) = 2n\
+  (diff^2 f)/(diff x diff y) = 0\
+)\
+$
+
+因此解出
+$
+=> x = (x_1 + dots.c + x_n) / n quad y = (y_1 + dots.c + y_n) / n\
+$
+
+$
+Delta = A C - B^2 = 2n^2 - 0 = 2n^2 > 0 quad A = 2n > 0
+$
+因此是极小值点.
+
+
+#pagebreak()
+=== 19
+
+$
+f(x,y, mu) = x y z - mu(x^2/a^2 + y^2/b^2 + z^2/c^2 - 1)\
+dcases(
+  (diff f)/(diff x) = y z - 2 mu x / a^2 = 0\
+  (diff f)/(diff y) = x z - 2 mu y / b^2 = 0\
+  (diff f)/(diff z) = x y - 2 mu z / c^2 = 0\
+  x^2/a^2 + y^2/b^2 + z^2/c^2 = 1\
+)\
+(x,y,z) = cal(k) (a,b,c) quad=>quad cal(k)=sqrt(3)/3
+$
+
+此时 $V = 8x y z = 8/9 sqrt(3)$, 为最大值.
+
+// #pagebreak()
+=== 20
+$
+f(x,y,z,mu)=(x+y+2z-9)/(sqrt(1^2+1^2+2^2)) - mu(x^2/4+y^2+z^2-1)\
+dcases(
+  (diff f)/(diff x) = 1/(sqrt(6)) - mu x / 2 = 0\
+  (diff f)/(diff y) = 1/(sqrt(6)) - 2mu y = 0\
+  (diff f)/(diff z) = 2/(sqrt(6)) - 2mu z = 0\
+  x^2/4 + y^2 + z^2 = 1\
+)\
+
+P_1(4/3,1/3,2/3) quad P_2(-4/3,-1/3,-2/3)
+$
+
+// #pagebreak()
+=== 21
+$
+F(x,y,z)=sqrt(x)-sqrt(y)-sqrt(z)-sqrt(a) eq.triple 0\
+dif F = 1/(2sqrt(x))dif x - 1/(2sqrt(y))dif y - 1/(2sqrt(z))dif z = 0\
+1/(2sqrt(x_0))(x-x_0) - 1/(2sqrt(y_0))(y-y_0) - 1/(2sqrt(z_0))(z-z_0) = 0\
+x/(2sqrt(x_0)) - y/(2 sqrt(y_0)) - z/(2 sqrt(z_0)) = sqrt(x_0)/2 - sqrt(y_0)/2 - sqrt(z_0)/2\
+$
+
+所有截距之和:
+
+$
+l_1+l_2+l_3=(sqrt(x_0)-sqrt(y_0)-sqrt(z_0))^2 = a
+$
+
+四面体体积:
+
+$
+1/6 l_1 dot l_2 dot l_3 = 1/6 sqrt(a) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0)
+$
+
+$
+f(x_0, y_0, z_0, mu) = sqrt(a) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0) - mu(sqrt(x_0) - sqrt(y_0) - sqrt(z_0) - sqrt(a)) \
+f(l,m,n,mu) = l m n - mu(l - m - n - a)\
+dcases(
+  (diff f)/(diff l) = m n - mu = 0\
+  (diff f)/(diff m) = l n - mu = 0\
+  (diff f)/(diff n) = l m - mu = 0\
+  l m n = a\
+)\
+=> quad l = m = n = sqrt(a)
+$
+
+所以最大四面体面积为 $a^2/6$, 截面: $x-y-z+a=0$
+
+#pagebreak()
+=== P156 1
+
+- (2)
+$
+integral_0^2 dif x integral_(2x)^(6-x)f(x,y)dif y = integral_0^4 dif y integral_0^(y/2) f(x,y)dif x + integral_4^6 dif y integral_0^(6-y) f(x,y)dif x\
+$
+- (3)
+$
+integral_0^a dif y integral_(a-sqrt(a^2-y^2))^(a+sqrt(a^2-y^2))f(x,y)dif x = integral_0^(2a) dif x integral_(0)^(sqrt(a^2-(x-a)^2))f(x,y)dif y\
+$
+- (5)
+$
+integral_0^1 dif x integral_0^x f(x,y) dif y+integral_1^2 dif x+integral_0^(2-x) f(x,y) dif y = integral_0^2 dif y integral_0^(2-y) f(x,y) dif x\
+$
+- (6)
+$
+integral_0^1dif y integral_(1/2)^1f(x,y)dif x+integral_1^2dif y integral_(1/2)^(1/y)f(x,y)dif x = integral_(1/2)^1dif x integral_(0)^(1/x)f(x,y)dif y\
+$
+
+=== 2
+
+- (1)
+$
+&integral.double_D y/(1+x^2+y^2)^(3/2) dif x dif y quad D=[0,1]times[0,1]\
+&=integral_0^1 dif x integral_0^1 y/(1+x^2+y^2)^(3/2) dif y\
+$

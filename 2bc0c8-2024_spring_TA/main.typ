@@ -142,12 +142,12 @@ $
 === 10(3)
 
 $
-u(x,y,z)&=sin(x)sin(y)sin(z)\
-U(x,y,z,phi)&=sin(x)sin(y)sin(z)-phi dot.c(x+y+z-pi/2)\
+u(x,y,z)&=sin x sin y sin z\
+U(x,y,z,phi)&=sin x sin y sin z -phi dot.c(x+y+z-pi/2)\
 &dcases(
-(diff U)/(diff x) &= cos(x)sin(y)sin(z)-phi=0\
-(diff U)/(diff y) &= sin(x)cos(y)sin(z)-phi=0\
-(diff U)/(diff z) &= sin(x)sin(y)cos(z)-phi=0\
+(diff U)/(diff x) &= cos x sin y sin z -phi=0\
+(diff U)/(diff y) &= sin x cos y sin z -phi=0\
+(diff U)/(diff z) &= sin x sin y cos z -phi=0\
 &x+y+z=pi/2\
 )
 $
@@ -166,7 +166,7 @@ $
 极大值极小值的判断不能直接从拉格朗日乘子法中得到, 应该通过如下方法判断:
 
 $
-u(x,y)=u(x,y,z)=u(x,y,pi / 2-x-y)=sin(x)sin(y)cos(x+y)\
+u(x,y)=u(x,y,z)=u(x,y,pi / 2-x-y)=sin x sin y cos(x+y)\
 $
 
 接下来继续处理 $Delta=(diff^2 u)/(diff x^2) dot.c (diff^2 u)/(diff y^2)-((diff^2 u)/(diff x diff y))^2$, 按照一般的二元函数的处理 (#strike[也许可以从头开始就按照这样的做法]), 最终可以获得结果.
@@ -177,8 +177,8 @@ $
   更一般的, 我们可以做如下处理:
 
   $
-  u&=sin(x)sin(y)sin(z)\
-  dif u&=cos(x)sin(y)sin(z)dif x + sin(x)cos(y)sin(z)dif y + sin(x)sin(y)cos(z)dif z\
+  u&=sin x sin y sin z \
+  dif u&=cos x sin y sin z dif x + sin x cos y sin z dif y + sin x sin y cos z dif z\
   $
 ]
 
@@ -191,12 +191,12 @@ $
 ]
 
 $
-=> & dif u = (cos(x)sin(y)sin(z) - sin(x)sin(y)cos(z))dif x + (sin(x)cos(y)sin(z) - sin(x)sin(y)cos(z))dif y\
-=> & (diff u) / (diff x)=(cos(x)sin(y)sin(z) - sin(x)sin(y)cos(z))=0\
-=> & (diff u) / (diff y)=(sin(x)cos(y)sin(z) - sin(x)sin(y)cos(z))=0\
-=> & (diff^2 u) / (diff x^2)= -2sin(x)sin(y)sin(z) - 2cos(x)sin(y)cos(z)=-1\
-=> & (diff^2 u) / (diff y^2) = -2sin(x)sin(y)sin(z) - 2sin(x)cos(y)cos(z)=-1\
-=> & (diff^2 u) / (diff x diff y) = cos(x)cos(y)sin(z) - sin(x)cos(y)cos(z) - cos(x)sin(y)cos(z) - sin(x)sin(y)sin(z)=-1 / 2\
+=> & dif u = (cos x sin y sin z  - sin x sin y cos z )dif x + (sin x cos y sin z  - sin x sin y cos z )dif y\
+=> & (diff u) / (diff x)=cos x sin y sin z  - sin x sin y cos z=0\
+=> & (diff u) / (diff y)=sin x cos y sin z  - sin x sin y cos z=0\
+=> & (diff^2 u) / (diff x^2)= -2sin x sin y sin z  - 2cos x sin y cos z =-1\
+=> & (diff^2 u) / (diff y^2) = -2sin x sin y sin z  - 2sin x cos y cos z =-1\
+=> & (diff^2 u) / (diff x diff y) = cos x cos y sin z  - sin x cos y cos z  - cos x sin y cos z  - sin x sin y sin z =-1 / 2\
 $
 
 所以有
@@ -205,7 +205,7 @@ Delta = A C - B^2 = 3 / 4 >0 space.quad A=-1<0
 $
 正定, 最大值 $ u(pi/6,pi/6,pi/6)=1/8 $
 
-下图是 $u(x,y,z)=sin(x)sin(y)sin(z)$ 的热力图,通过颜色来反应无法画出的另一维度的信息.
+下图是 $u(x,y,z)=sin x sin y sin z $ 的热力图,通过颜色来反应无法画出的另一维度的信息.
 #image("imgs/5.png", width: 50%)
 
 #pagebreak()
@@ -369,15 +369,15 @@ $
 === 11(3)
 
 $
-&z=sin(x)+sin(y)-sin(x+y) quad D={(x,y)mid("|")x>=0,y>=0,x+y<=2pi} \
+&z=sin x +sin y -sin(x+y) quad D={(x,y)mid("|")x>=0,y>=0,x+y<=2pi} \
 $
 
 区域内的情况：
 
 $
 &dcases(
-(diff z)/(diff x) &= cos(x)-cos(x+y) = 0 \
-(diff z)/(diff y) &= cos(y)-cos(x+y) = 0 \
+(diff z)/(diff x) &= cos x -cos(x+y) = 0 \
+(diff z)/(diff y) &= cos y -cos(x+y) = 0 \
 ) \
 
 &P_1(0,0) quad P_2(2pi,0) quad P_3(0,2pi) quad P_4(pi/3, pi/3)
@@ -396,11 +396,11 @@ $
 其中 $l_1, l_2$ 是对称的，我们只考虑 $l_1$:
 
 $
-&z = sin(0) + sin(y) - sin(0+y) eq.triple 0 quad &(x,y) in l_1 \
-&z = sin(x) + sin(2pi-x) - sin(2pi) eq.triple 0 quad &(x,y) in l_3 \
+&z = sin 0  + sin y  - sin(0+y) eq.triple 0 quad &(x,y) in l_1 \
+&z = sin x  + sin(2pi-x) - sin(2pi) eq.triple 0 quad &(x,y) in l_3 \
 $
 
-// TODO: 补充 z = sin(x) + sin(2pi-x) - sin(2pi) 的图像
+// TODO: 补充 z = sin x  + sin(2pi-x) - sin(2pi) 的图像
 
 
 #pagebreak()
@@ -512,7 +512,7 @@ $
 
 此时 $V = 8x y z = 8/9 sqrt(3)$, 为最大值.
 
-// #pagebreak()
+#pagebreak()
 === 20
 $
 f(x,y,z,mu)=(x+y+2z-9)/(sqrt(1^2+1^2+2^2)) - mu(x^2/4+y^2+z^2-1)\
@@ -526,7 +526,7 @@ dcases(
 P_1(4/3,1/3,2/3) quad P_2(-4/3,-1/3,-2/3)
 $
 
-// #pagebreak()
+#pagebreak()
 === 21
 $
 F(x,y,z)=sqrt(x)-sqrt(y)-sqrt(z)-sqrt(a) eq.triple 0\
@@ -581,10 +581,158 @@ $
 integral_0^1dif y integral_(1/2)^1f(x,y)dif x+integral_1^2dif y integral_(1/2)^(1/y)f(x,y)dif x = integral_(1/2)^1dif x integral_(0)^(1/x)f(x,y)dif y\
 $
 
+#pagebreak()
 === 2
 
 - (1)
 $
-&integral.double_D y/(1+x^2+y^2)^(3/2) dif x dif y quad D=[0,1]times[0,1]\
+&quad integral.double_D y/(1+x^2+y^2)^(3/2) dif x dif y quad D=[0,1]times[0,1]\
 &=integral_0^1 dif x integral_0^1 y/(1+x^2+y^2)^(3/2) dif y\
+&=integral_0^1 dif x integral_0^1 (1/2 dif y^2)/(1+x^2+y^2)^(3/2)\
+&=integral_0^1 -(1+x^2+y^2)^(-1/2)|_0^1 dif x\
+&=integral_0^1 -1/sqrt(2+x^2) + 1/sqrt(1+x^2) dif x\
+&=-ln(x+sqrt(2+x^2)) + ln(x+sqrt(1+x^2))|_0^1\
+&=-ln(1+sqrt(3)) + ln(1+sqrt(2)) + 1/2ln 2\
+&=quad ln(-1+sqrt(3))+ln(1+sqrt(2))-1/2ln 2
+$
+
+
+- (2)
+$
+&quad integral.double_D sin(x+y) dif x dif y quad D=[0,1]times[0,1]\
+&=integral_0^1 dif x integral_0^1 sin(x+y) dif y\
+&=integral_0^1 (-cos(1+x)+cos x) dif x\
+&=-sin 2 + sin 1 + sin 1 - sin 0\
+&=2sin 1 - sin 2
+$
+
+- (3)
+$
+&quad integral.double_D cos(x+y) dif x dif y\
+&=integral_0^pi dif x integral_x^pi cos(x+y) dif y\
+&=-integral_0^pi sin(2x)+sin x dif x\
+&=-2
+$
+
+#align(center)[
+  #rect[
+    $
+    integral_0^pi sin(2x) dif x = 1/2 integral_0^(2pi) sin x  dif x = 0
+    $
+  ]
+]
+
+#pagebreak()
+- (6)
+$
+&quad integral.double_D (sin y)/y dif x dif y\
+&= integral_0^1 dif y integral_(y^2)^y (sin y)/y dif x\
+&= integral_0^1 (1-y)sin y dif y\
+&= 1-sin 1
+$
+
+- (7)
+$
+&quad integral.double_D x^2/y^2 dif x dif y\
+&= integral_1^2dif x integral_(1/x)^x x^2/y^2 dif y\
+&= integral_1^2 (-x^2/y)|_(y=1/x)^(y=x) dif x\
+&= integral_1^2 (-x+x^3) dif x\
+&= -2^2/2 + 2^4/4 + 1/2 - 1/4\
+&= 9/4
+$
+
+- (8)
+$
+&quad integral.double_D abs(cos(x+y)) dif x dif y\
+&= integral_0^(pi/4) dif x integral_0^x dif y + integral_(pi/4)^(pi/2) dif x integral_0^(pi/2-x) dif y - integral_(pi/4)^(pi/2) dif x integral_(pi/2 - x)^(x) dif y \
+&= pi/2 - 1
+$
+
+#pagebreak()
+=== 3
+
+- (1)
+$
+&quad integral.double_D (x^2+y^2) dif x dif y quad D = [-1,1]times [-1,1]\
+&= 4 integral.double_(D^') (x^2+y^2) dif x dif y quad D^' = [0,1]times [0,1]\
+&= 8 integral.double_(D^') x^2 dif x dif y\
+&= 8 integral_0^1 x^2 dif x\
+&= 8/3
+$
+
+- (2)
+
+#image("imgs/8.png", width: 50%)
+
+$
+integral.double_D sin x sin y dif x dif y = 0
+$
+
+#pagebreak()
+=== 5
+
+$
+integral_0^a dif x integral_0^x f(x)f(y) dif y &= integral_0^a dif y integral_0^x f(y)f(x) dif x \
+
+=> integral_0^a dif x integral_0^x f(x)f(y) dif y &= 1/2 integral.double_D f(x)f(y) dif x dif y quad &D = [0,a]times[0,a]\
+&= 1/2 (integral_0^a f(x) dif x)^2 quad qed \
+
+integral_0^a dif x integral_0^x f(y) dif y &= integral_0^a dif y integral_y^a f(y) dif x\
+&=integral_0^a (a-y) f(y) dif y quad qed
+$
+
+// #pagebreak()
+=== 6
+$
+integral.double_D (diff^2 f)/(diff x diff y) dif x dif y & = integral_a^b dif x integral_c^d (diff^2 f)/(diff x diff y) dif y\
+&= integral_a^b ((diff f)/(diff x)(x,d) - (diff f)/(diff x)(x,c)) dif x\
+&= f(b,d) - f(a,d) - f(b,c) + f(a,c) quad qed
+$
+
+// #pagebreak()
+=== 7
+$
+1/(2pi r_0) integral.double_(r<r_0) f(r,theta) r dif r dif theta = 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(r,theta) r dif r\
+\
+forall epsilon>0, exists r_0 = r_0(theta) quad s.t. quad r<r_0 => |f(r,theta)-f(0,0)|<epsilon\
+\
+=> 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(r,theta) r dif r < 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 (f(0, 0) + epsilon) r dif r = f(0,0) + epsilon\
+=> 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(r,theta) r dif r > 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 (f(0, 0) - epsilon) r dif r = f(0,0) - epsilon\
+\
+\
+=> (1/(2pi r_0) integral.double_(r<r_0) f(r,theta) r dif r dif theta - f(0,0)) < epsilon  quad  forall epsilon, exists r, forall r_0<r quad qed
+$
+
+#pagebreak()
+=== P166 1
+
+- (1)
+$
+&quad integral_0^R dif x integral_0^(sqrt(R^2-x^2)) ln(1+x^2+y^2) dif y\
+&= integral_0^(2pi) dif theta integral_0^R ln(1+r^2) r dif r\
+&= 2pi integral_0^R ln(1+r^2) r dif r\
+&= pi integral_0^R^2 ln(1+t) dif t\
+&= pi[(t+1)ln(1+t)-t]_0^R^2\
+&= pi[(R^2+1)ln(1+R^2)-R^2]
+$
+
+- (4)
+$
+&quad integral_0^(1/(sqrt(2))) dif x integral_x^(sqrt(1-x^2)) x y(x+y) dif y \
+&=integral_(pi/4)^(pi/2) dif theta integral_0^1 r cos theta dot r sin theta dot (r cos theta + r sin theta) r dif r\
+&=1/5 integral_(pi/4)^(pi/2) (cos^2 theta sin theta + cos theta sin^2 theta) dif theta\
+&=1/15
+$
+
+- (5)
+
+$
+&quad integral_0^(R/(sqrt(1+R^2))) dif x integral_0^(R x)(1+(y^2)/(x^2)) dif y + integral_(R/sqrt(1+R^2))^(R) dif x integral_0^(sqrt(R^2-x^2))(1+(y^2)/(x^2)) dif y\
+&=integral_0^(arctan R) dif theta integral_0^R (r^2)/(r^2 cos^2 theta) r dif r\
+&=integral_0^(arctan R) dif theta integral_0^R sec^2 theta dot r dif r\
+// &=integral_0^(arctan R) dif theta sec^2 theta r^2/2 |_0^R\
+&=R^2/2 integral_0^(arctan R) sec^2 theta dif theta\
+&=R^2/2 tan theta |_0^(arctan R)\
+// &=1/2 R^2 tan(arctan R)\
+&=1/2 R^3
 $

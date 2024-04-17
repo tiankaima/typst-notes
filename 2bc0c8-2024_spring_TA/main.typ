@@ -294,33 +294,37 @@ $
 
 接下来我们分别讨论 $x=y$ 和 $(x+y)^2=1/6$. 其实他们反映的是一种情况的对称.
 
-- $x=y$
+#box(width: 100%)[
+  - $x=y$
 
-$
-x=y => z=-2x\
-x^2 + y^2 + z^2 = 6 x^2 = 1 => x = plus.minus sqrt(6) / 6 \
-P_1(sqrt(6) / 6,sqrt(6) / 6, -sqrt(6) / 3) quad P_2(-sqrt(6) / 6, -sqrt(6) / 6, sqrt(6) / 3)
-$
+  $
+  x=y => z=-2x\
+  x^2 + y^2 + z^2 = 6 x^2 = 1 => x = plus.minus sqrt(6) / 6 \
+  P_1(sqrt(6) / 6,sqrt(6) / 6, -sqrt(6) / 3) quad P_2(-sqrt(6) / 6, -sqrt(6) / 6, sqrt(6) / 3)
+  $
+]
 
-- $(x+y)^2=1 / 6$
+#box(width: 100%)[
+  - $(x+y)^2=1 / 6$
 
-$
-(x+y)^2=1 / 6 => z^2 = 1 / 6 \
-=> x^2 + y^2 = 5 / 6 \
-(x-y)^2 = 9 / 6 \
-$
+  $
+  (x+y)^2=1 / 6 => z^2 = 1 / 6 \
+  => x^2 + y^2 = 5 / 6 \
+  (x-y)^2 = 9 / 6 \
+  $
 
-$
-dcases(
+  $
+  dcases(
   (x-y) = plus.minus 3/6sqrt(6) \
   (x+y) = plus.minus 1/6sqrt(6) \
 )\
-$
+  $
 
-$
-&P_3(sqrt(6) / 3, -sqrt(6) / 6, -sqrt(6) / 6) quad &P_4(-sqrt(6) / 3, sqrt(6) / 6, sqrt(6) / 6) \
-&P_5(sqrt(6) / 6, -sqrt(6) / 3, sqrt(6) / 6) quad &P_6(-sqrt(6) / 6, sqrt(6) / 3, -sqrt(6) / 6) \
-$
+  $
+  &P_3(sqrt(6) / 3, -sqrt(6) / 6, -sqrt(6) / 6) quad &P_4(-sqrt(6) / 3, sqrt(6) / 6, sqrt(6) / 6) \
+  &P_5(sqrt(6) / 6, -sqrt(6) / 3, sqrt(6) / 6) quad &P_6(-sqrt(6) / 6, sqrt(6) / 3, -sqrt(6) / 6) \
+  $
+]
 
 因此 $ u_max = sqrt(6)/18 quad u_min = -sqrt(6)/18 $
 
@@ -471,7 +475,11 @@ $
 f(x,y) = -2y^2+3x^2y + o(rho^3)
 $
 
-#image("imgs/12.png", width: 50%)
+#align(center)[
+  #image("imgs/12.png", width: 70%)
+
+  (蓝色是级数逼近)
+]
 
 显然 $f(0,0)=0$ 不是极值点.
 
@@ -610,7 +618,7 @@ $
 #align(center)[
   #box(width: 95%)[
     #table(
-      columns: (auto,auto,auto),
+      columns: (auto, auto, auto),
       align: bottom,
       stroke: none,
       [
@@ -715,7 +723,9 @@ $
 #image("imgs/8.png", width: 50%)
 
 $
-integral.double_D sin x sin y dif x dif y = 0
+integral.double_D sin x sin y dif x dif y &= integral sin x dot dif x integral_(y_2(x))^(y_1(x)) sin y dot y dif y\
+(forall x, y_1(x) + y_2(x) = 0) &=> integral 0 dot sin x dif x\
+&=0
 $
 
 #pagebreak()
@@ -882,33 +892,31 @@ dcases(
 \
 sigma(D_1) = sigma(D_2)
 \
-
 => integral.double_(D_1) - integral.double_(D_2) <=0 quad=>quad "LHS"-"RHS" <= 0
 $
-
 
 #image("imgs/19.png", width: 40%)
 
 #rect(width: 100%)[
-#strike[骗分做法:]
+  #strike[骗分做法:]
 
-$
-integral.double_(x^2+y^2<=1) e^(x^2+y^2) dif x dif y
-&= integral_0^(2pi) dif theta integral_0^1 r e^r dif r\
-&= 2pi integral_0^1 r e^(r^2) dif r\
-&= 2pi [1 / 2 e^(r^2)]_0^1\
-&= pi(e-1)
-$
+  $
+  integral.double_(x^2+y^2<=1) e^(x^2+y^2) dif x dif y
+  &= integral_0^(2pi) dif theta integral_0^1 r e^r dif r\
+  &= 2pi integral_0^1 r e^(r^2) dif r\
+  &= 2pi [1 / 2 e^(r^2)]_0^1\
+  &= pi(e-1)
+  $
 
-$
-(integral_(-sqrt(pi) / 2)^(sqrt(pi) / 2)e^(x^2)dif x)^2
-&= (2 integral_0^(sqrt(pi) / 2)e^(x^2)dif x)^2\
-&>= (2 integral_0^(sqrt(pi) / 2) (1+ x^2 + x^4 / 2)dif x)^2\
-&= (pi^(1 / 2) + 1 / 12 pi^(3 / 2)+1 / 160 pi^(5 / 2))^2\
-&>= pi + 1 / 6 pi^2 + 1 / 144 pi^3 + 1 / 80 pi^3 + 1 / 960 pi^4
-$
+  $
+  (integral_(-sqrt(pi) / 2)^(sqrt(pi) / 2)e^(x^2)dif x)^2
+  &= (2 integral_0^(sqrt(pi) / 2)e^(x^2)dif x)^2\
+  &>= (2 integral_0^(sqrt(pi) / 2) (1+ x^2 + x^4 / 2)dif x)^2\
+  &= (pi^(1 / 2) + 1 / 12 pi^(3 / 2)+1 / 160 pi^(5 / 2))^2\
+  &>= pi + 1 / 6 pi^2 + 1 / 144 pi^3 + 1 / 80 pi^3 + 1 / 960 pi^4
+  $
 
-#strike[这不可能是正常做法, 这样放缩至少需要把 $pi > 22/7$ 代入, 然后至少计算到小数点后三位.]
+  #strike[这不可能是正常做法, 这样放缩至少需要把 $pi > 22/7$ 代入, 然后至少计算到小数点后三位.]
 ]
 
 #pagebreak()

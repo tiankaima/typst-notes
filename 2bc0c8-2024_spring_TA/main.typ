@@ -191,12 +191,12 @@ $
 ]
 
 $
-=> & dif u = (cos x sin y sin z  - sin x sin y cos z )dif x + (sin x cos y sin z  - sin x sin y cos z )dif y\
-=> & (diff u) / (diff x)=cos x sin y sin z  - sin x sin y cos z=0\
-=> & (diff u) / (diff y)=sin x cos y sin z  - sin x sin y cos z=0\
-=> & (diff^2 u) / (diff x^2)= -2sin x sin y sin z  - 2cos x sin y cos z =-1\
-=> & (diff^2 u) / (diff y^2) = -2sin x sin y sin z  - 2sin x cos y cos z =-1\
-=> & (diff^2 u) / (diff x diff y) = cos x cos y sin z  - sin x cos y cos z  - cos x sin y cos z  - sin x sin y sin z =-1 / 2\
+=> & dif u = (cos x sin y sin z - sin x sin y cos z)dif x + (sin x cos y sin z - sin x sin y cos z)dif y\
+=> & (diff u) / (diff x)=cos x sin y sin z - sin x sin y cos z=0\
+=> & (diff u) / (diff y)=sin x cos y sin z - sin x sin y cos z=0\
+=> & (diff^2 u) / (diff x^2)= -2sin x sin y sin z - 2cos x sin y cos z =-1\
+=> & (diff^2 u) / (diff y^2) = -2sin x sin y sin z - 2sin x cos y cos z =-1\
+=> & (diff^2 u) / (diff x diff y) = cos x cos y sin z - sin x cos y cos z - cos x sin y cos z - sin x sin y sin z =-1 / 2\
 $
 
 所以有
@@ -237,6 +237,14 @@ dif y = (z-x) / (y-z) dif x quad dif z = (x-y) / (y-z) dif x
 $
 
 接下来可以类似处理得到 $(dif u)/(dif x) , (dif^2 u)/(dif x^2)$, 按照一元函数的极值点处理即可.
+
+#rect(width: 100%, inset: 1em)[
+  这样的思路主要源自这样的几何直观: 一个过原点的平面截一个单位球总会得到一个闭曲线:
+
+  #image("imgs/9.png", width: 50%)
+]
+
+#pagebreak()
 
 按照一般的 Lagrange 乘子法:
 
@@ -379,11 +387,10 @@ $
 (diff z)/(diff x) &= cos x -cos(x+y) = 0 \
 (diff z)/(diff y) &= cos y -cos(x+y) = 0 \
 ) \
-
-&P_1(0,0) quad P_2(2pi,0) quad P_3(0,2pi) quad P_4(pi/3, pi/3)
+&P_1(0,0) quad P_2(2pi,0) quad P_3(0,2pi) quad P_4(pi / 3, pi / 3)
 $
 
-$ => z_min = 0, z_max=sqrt(3)/2 quad forall x in D^o $
+$ => z_min = 0, z_max=sqrt(3) / 2 quad forall x in D^o $
 
 边界上的情况，我们分成三段：
 
@@ -396,12 +403,11 @@ $
 其中 $l_1, l_2$ 是对称的，我们只考虑 $l_1$:
 
 $
-&z = sin 0  + sin y  - sin(0+y) eq.triple 0 quad &(x,y) in l_1 \
-&z = sin x  + sin(2pi-x) - sin(2pi) eq.triple 0 quad &(x,y) in l_3 \
+&z = sin 0 + sin y - sin(0+y) eq.triple 0 quad &(x,y) in l_1 \
+&z = sin x + sin(2pi-x) - sin(2pi) eq.triple 0 quad &(x,y) in l_3 \
 $
 
-// TODO: 补充 z = sin x  + sin(2pi-x) - sin(2pi) 的图像
-
+#image("imgs/11.png", width: 50%)
 
 #pagebreak()
 === 13
@@ -409,8 +415,10 @@ $
 dcases(
   z=x^2+2y^2\
   z=6-2x^2-y^2\
-) quad => quad  x^2 + y^2 = 2
+) quad => quad x^2 + y^2 = 2
 $
+
+#image("imgs/10.png", width: 50%)
 
 问题转为考虑 $z=x^2+2y^2$ 在 $x^2+y^2=2$ 上的最值问题, 应用拉格朗日乘子法:
 
@@ -426,38 +434,44 @@ $
 
 因此 $z_min = 2, z_max = 4$
 
-//TODO: 补图
-
 #pagebreak()
 === 14
 
-$
-f(x,y)=3x^2y-x^4-2y^2\
-dcases(
+#rect(width: 100%, inset: 1em)[
+  #columns(2)[
+    $
+    f(x,y)=3x^2y-x^4-2y^2\
+    dcases(
   (diff f)/(diff x)|_((0,0)) = 6x y-4x^3 = 0 \
   (diff f)/(diff y)|_((0,0)) = 3x^2-4y = 0 \
   (diff^2 f)/(diff x^2)|_((0,0)) = 6y-12x^2 = 0 \
   (diff^2 f)/(diff y^2)|_((0,0)) = -4 \
   (diff^2 f)/(diff x diff y)|_((0,0)) = 6x = 0 \
 )\
-$
+    $
 
-$Delta = A C-B^2=0$ 欠定, 我们继续往下算:
+    #colbreak()
 
-$
-dcases(
+    $Delta = A C-B^2=0$ 欠定, 我们继续往下算:
+
+    $
+    dcases(
 (diff^3 f)/(diff x^3)|_((0,0)) = -24x = 0 \
 (diff^3 f)/(diff x^2 diff y)|_((0,0)) = 6 \
 (diff^3 f)/(diff x diff y^2)|_((0,0)) = 0 \
 (diff^3 f)/(diff y^3)|_((0,0)) = 0 = 0 \
 )
-$
+    $
+  ]
+]
 
 因此 $f(x,y)$的三阶 Taylor 展开为:
 
 $
-f(x,y) = -4y^2+18x^2y + o(rho^3)
+f(x,y) = -2y^2+3x^2y + o(rho^3)
 $
+
+#image("imgs/12.png", width: 50%)
 
 显然 $f(0,0)=0$ 不是极值点.
 
@@ -495,7 +509,6 @@ Delta = A C - B^2 = 2n^2 - 0 = 2n^2 > 0 quad A = 2n > 0
 $
 因此是极小值点.
 
-
 #pagebreak()
 === 19
 
@@ -507,32 +520,35 @@ dcases(
   (diff f)/(diff z) = x y - 2 mu z / c^2 = 0\
   x^2/a^2 + y^2/b^2 + z^2/c^2 = 1\
 )\
-(x,y,z) = cal(k) (a,b,c) quad=>quad cal(k)=sqrt(3)/3
+(x,y,z) = cal(k) (a,b,c) quad=>quad cal(k)=sqrt(3) / 3
 $
 
 此时 $V = 8x y z = 8/9 sqrt(3)$, 为最大值.
 
+#image("imgs/13.png", width: 50%)
+
 #pagebreak()
 === 20
 $
-f(x,y,z,mu)=(x+y+2z-9)/(sqrt(1^2+1^2+2^2)) - mu(x^2/4+y^2+z^2-1)\
+f(x,y,z,mu)=abs(x+y+2z-9) / (sqrt(1^2+1^2+2^2)) - mu(x^2/4+y^2+z^2-1)\
 dcases(
-  (diff f)/(diff x) = 1/(sqrt(6)) - mu x / 2 = 0\
-  (diff f)/(diff y) = 1/(sqrt(6)) - 2mu y = 0\
-  (diff f)/(diff z) = 2/(sqrt(6)) - 2mu z = 0\
+  (diff f)/(diff x) = -1/(sqrt(6)) - mu x / 2 = 0\
+  (diff f)/(diff y) = -1/(sqrt(6)) - 2mu y = 0\
+  (diff f)/(diff z) = -2/(sqrt(6)) - 2mu z = 0\
   x^2/4 + y^2 + z^2 = 1\
 )\
-
-P_1(4/3,1/3,2/3) quad P_2(-4/3,-1/3,-2/3)
+P_1(4 / 3,1 / 3,2 / 3) quad P_2(-4 / 3,-1 / 3,-2 / 3)
 $
+
+#image("imgs/14.png", width: 60%)
 
 #pagebreak()
 === 21
 $
 F(x,y,z)=sqrt(x)-sqrt(y)-sqrt(z)-sqrt(a) eq.triple 0\
-dif F = 1/(2sqrt(x))dif x - 1/(2sqrt(y))dif y - 1/(2sqrt(z))dif z = 0\
-1/(2sqrt(x_0))(x-x_0) - 1/(2sqrt(y_0))(y-y_0) - 1/(2sqrt(z_0))(z-z_0) = 0\
-x/(2sqrt(x_0)) - y/(2 sqrt(y_0)) - z/(2 sqrt(z_0)) = sqrt(x_0)/2 - sqrt(y_0)/2 - sqrt(z_0)/2\
+dif F = 1 / (2sqrt(x))dif x - 1 / (2sqrt(y))dif y - 1 / (2sqrt(z))dif z = 0\
+1 / (2sqrt(x_0))(x-x_0) - 1 / (2sqrt(y_0))(y-y_0) - 1 / (2sqrt(z_0))(z-z_0) = 0\
+x / (2sqrt(x_0)) - y / (2 sqrt(y_0)) - z / (2 sqrt(z_0)) = sqrt(x_0) / 2 - sqrt(y_0) / 2 - sqrt(z_0) / 2\
 $
 
 所有截距之和:
@@ -544,11 +560,13 @@ $
 四面体体积:
 
 $
-1/6 l_1 dot l_2 dot l_3 = 1/6 sqrt(a) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0)
+1 / 6 l_1 dot l_2 dot l_3 = 1 / 6 sqrt(a) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0)
 $
 
 $
-f(x_0, y_0, z_0, mu) = sqrt(a) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0) - mu(sqrt(x_0) - sqrt(y_0) - sqrt(z_0) - sqrt(a)) \
+f(
+  x_0, y_0, z_0, mu
+) = sqrt(a) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0) - mu(sqrt(x_0) - sqrt(y_0) - sqrt(z_0) - sqrt(a)) \
 f(l,m,n,mu) = l m n - mu(l - m - n - a)\
 dcases(
   (diff f)/(diff l) = m n - mu = 0\
@@ -566,36 +584,68 @@ $
 
 - (2)
 $
-integral_0^2 dif x integral_(2x)^(6-x)f(x,y)dif y = integral_0^4 dif y integral_0^(y/2) f(x,y)dif x + integral_4^6 dif y integral_0^(6-y) f(x,y)dif x\
+integral_0^2 dif x integral_(2x)^(6-x)f(x,y)dif y = integral_0^4 dif y integral_0^(y / 2) f(
+  x,y
+)dif x + integral_4^6 dif y integral_0^(6-y) f(x,y)dif x\
 $
 - (3)
 $
-integral_0^a dif y integral_(a-sqrt(a^2-y^2))^(a+sqrt(a^2-y^2))f(x,y)dif x = integral_0^(2a) dif x integral_(0)^(sqrt(a^2-(x-a)^2))f(x,y)dif y\
+integral_0^a dif y integral_(a-sqrt(a^2-y^2))^(a+sqrt(a^2-y^2))f(
+  x,y
+)dif x = integral_0^(2a) dif x integral_(0)^(sqrt(a^2-(x-a)^2))f(x,y)dif y\
 $
 - (5)
 $
-integral_0^1 dif x integral_0^x f(x,y) dif y+integral_1^2 dif x+integral_0^(2-x) f(x,y) dif y = integral_0^2 dif y integral_0^(2-y) f(x,y) dif x\
+integral_0^1 dif x integral_0^x f(x,y) dif y+integral_1^2 dif x+integral_0^(2-x) f(
+  x,y
+) dif y = integral_0^2 dif y integral_0^(2-y) f(x,y) dif x\
 $
 - (6)
 $
-integral_0^1dif y integral_(1/2)^1f(x,y)dif x+integral_1^2dif y integral_(1/2)^(1/y)f(x,y)dif x = integral_(1/2)^1dif x integral_(0)^(1/x)f(x,y)dif y\
+integral_0^1dif y integral_(1 / 2)^1f(x,y)dif x+integral_1^2dif y integral_(1 / 2)^(1 / y)f(
+  x,y
+)dif x = integral_(1 / 2)^1dif x integral_(0)^(1 / x)f(x,y)dif y\
 $
+
+#align(center)[
+  #box(width: 95%)[
+    #table(
+      columns: (auto,auto,auto),
+      align: bottom,
+      stroke: none,
+      [
+        #image("imgs/15.png")
+        (2)
+      ],
+      [
+        #image("imgs/16.png")
+        (3)
+      ],
+      [
+        #image("imgs/17.png")
+        (5)
+
+        #image("imgs/18.png")
+        (6)
+      ],
+    )
+  ]
+]
 
 #pagebreak()
 === 2
 
 - (1)
 $
-&quad integral.double_D y/(1+x^2+y^2)^(3/2) dif x dif y quad D=[0,1]times[0,1]\
-&=integral_0^1 dif x integral_0^1 y/(1+x^2+y^2)^(3/2) dif y\
-&=integral_0^1 dif x integral_0^1 (1/2 dif y^2)/(1+x^2+y^2)^(3/2)\
-&=integral_0^1 -(1+x^2+y^2)^(-1/2)|_0^1 dif x\
-&=integral_0^1 -1/sqrt(2+x^2) + 1/sqrt(1+x^2) dif x\
+&quad integral.double_D y / (1+x^2+y^2)^(3 / 2) dif x dif y quad D=[0,1]times[0,1]\
+&=integral_0^1 dif x integral_0^1 y / (1+x^2+y^2)^(3 / 2) dif y\
+&=integral_0^1 dif x integral_0^1 (1 / 2 dif y^2) / (1+x^2+y^2)^(3 / 2)\
+&=integral_0^1 -(1+x^2+y^2)^(-1 / 2)|_0^1 dif x\
+&=integral_0^1 -1 / sqrt(2+x^2) + 1 / sqrt(1+x^2) dif x\
 &=-ln(x+sqrt(2+x^2)) + ln(x+sqrt(1+x^2))|_0^1\
-&=-ln(1+sqrt(3)) + ln(1+sqrt(2)) + 1/2ln 2\
-&=quad ln(-1+sqrt(3))+ln(1+sqrt(2))-1/2ln 2
+&=-ln(1+sqrt(3)) + ln(1+sqrt(2)) + 1 / 2ln 2\
+&=quad ln(-1+sqrt(3))+ln(1+sqrt(2))-1 / 2ln 2
 $
-
 
 - (2)
 $
@@ -617,7 +667,7 @@ $
 #align(center)[
   #rect[
     $
-    integral_0^pi sin(2x) dif x = 1/2 integral_0^(2pi) sin x  dif x = 0
+    integral_0^pi sin(2x) dif x = 1 / 2 integral_0^(2pi) sin x dif x = 0
     $
   ]
 ]
@@ -625,27 +675,27 @@ $
 #pagebreak()
 - (6)
 $
-&quad integral.double_D (sin y)/y dif x dif y\
-&= integral_0^1 dif y integral_(y^2)^y (sin y)/y dif x\
+&quad integral.double_D (sin y) / y dif x dif y\
+&= integral_0^1 dif y integral_(y^2)^y (sin y) / y dif x\
 &= integral_0^1 (1-y)sin y dif y\
 &= 1-sin 1
 $
 
 - (7)
 $
-&quad integral.double_D x^2/y^2 dif x dif y\
-&= integral_1^2dif x integral_(1/x)^x x^2/y^2 dif y\
-&= integral_1^2 (-x^2/y)|_(y=1/x)^(y=x) dif x\
+&quad integral.double_D x^2 / y^2 dif x dif y\
+&= integral_1^2dif x integral_(1 / x)^x x^2 / y^2 dif y\
+&= integral_1^2 (-x^2 / y)|_(y=1 / x)^(y=x) dif x\
 &= integral_1^2 (-x+x^3) dif x\
-&= -2^2/2 + 2^4/4 + 1/2 - 1/4\
-&= 9/4
+&= -2^2 / 2 + 2^4 / 4 + 1 / 2 - 1 / 4\
+&= 9 / 4
 $
 
 - (8)
 $
 &quad integral.double_D abs(cos(x+y)) dif x dif y\
-&= integral_0^(pi/4) dif x integral_0^x dif y + integral_(pi/4)^(pi/2) dif x integral_0^(pi/2-x) dif y - integral_(pi/4)^(pi/2) dif x integral_(pi/2 - x)^(x) dif y \
-&= pi/2 - 1
+&= integral_0^(pi / 4) dif x integral_0^x dif y + integral_(pi / 4)^(pi / 2) dif x integral_0^(pi / 2-x) dif y - integral_(pi / 4)^(pi / 2) dif x integral_(pi / 2 - x)^(x) dif y \
+&= pi / 2 - 1
 $
 
 #pagebreak()
@@ -657,7 +707,7 @@ $
 &= 4 integral.double_(D^') (x^2+y^2) dif x dif y quad D^' = [0,1]times [0,1]\
 &= 8 integral.double_(D^') x^2 dif x dif y\
 &= 8 integral_0^1 x^2 dif x\
-&= 8/3
+&= 8 / 3
 $
 
 - (2)
@@ -673,10 +723,10 @@ $
 
 $
 integral_0^a dif x integral_0^x f(x)f(y) dif y &= integral_0^a dif y integral_0^x f(y)f(x) dif x \
-
-=> integral_0^a dif x integral_0^x f(x)f(y) dif y &= 1/2 integral.double_D f(x)f(y) dif x dif y quad &D = [0,a]times[0,a]\
-&= 1/2 (integral_0^a f(x) dif x)^2 quad qed \
-
+=> integral_0^a dif x integral_0^x f(x)f(y) dif y &= 1 / 2 integral.double_D f(x)f(y) dif x dif y quad &D = [0,a]times[
+  0,a
+]\
+&= 1 / 2 (integral_0^a f(x) dif x)^2 quad qed \
 integral_0^a dif x integral_0^x f(y) dif y &= integral_0^a dif y integral_y^a f(y) dif x\
 &=integral_0^a (a-y) f(y) dif y quad qed
 $
@@ -684,23 +734,31 @@ $
 // #pagebreak()
 === 6
 $
-integral.double_D (diff^2 f)/(diff x diff y) dif x dif y & = integral_a^b dif x integral_c^d (diff^2 f)/(diff x diff y) dif y\
-&= integral_a^b ((diff f)/(diff x)(x,d) - (diff f)/(diff x)(x,c)) dif x\
+integral.double_D (diff^2 f) / (diff x diff y) dif x dif y & = integral_a^b dif x integral_c^d (diff^2 f) / (diff x diff y) dif y\
+&= integral_a^b ((diff f) / (diff x)(x,d) - (diff f) / (diff x)(x,c)) dif x\
 &= f(b,d) - f(a,d) - f(b,c) + f(a,c) quad qed
 $
 
 // #pagebreak()
 === 7
 $
-1/(2pi r_0) integral.double_(r<r_0) f(r,theta) r dif r dif theta = 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(r,theta) r dif r\
+1 / (2pi r_0) integral.double_(r<r_0) f(
+  r,theta
+) r dif r dif theta = 1 / (2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(r,theta) r dif r\
 \
 forall epsilon>0, exists r_0 = r_0(theta) quad s.t. quad r<r_0 => |f(r,theta)-f(0,0)|<epsilon\
 \
-=> 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(r,theta) r dif r < 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 (f(0, 0) + epsilon) r dif r = f(0,0) + epsilon\
-=> 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(r,theta) r dif r > 1/(2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 (f(0, 0) - epsilon) r dif r = f(0,0) - epsilon\
+=> 1 / (2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(
+  r,theta
+) r dif r < 1 / (2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 (f(0, 0) + epsilon) r dif r = f(0,0) + epsilon\
+=> 1 / (2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 f(
+  r,theta
+) r dif r > 1 / (2pi r_0) integral_0^(2pi) dif theta integral_0^r_0 (f(0, 0) - epsilon) r dif r = f(0,0) - epsilon\
 \
 \
-=> (1/(2pi r_0) integral.double_(r<r_0) f(r,theta) r dif r dif theta - f(0,0)) < epsilon  quad  forall epsilon, exists r, forall r_0<r quad qed
+=> (
+  1 / (2pi r_0) integral.double_(r<r_0) f(r,theta) r dif r dif theta - f(0,0)
+) < epsilon quad forall epsilon, exists r, forall r_0<r quad qed
 $
 
 #pagebreak()
@@ -718,10 +776,10 @@ $
 
 - (4)
 $
-&quad integral_0^(1/(sqrt(2))) dif x integral_x^(sqrt(1-x^2)) x y(x+y) dif y \
-&=integral_(pi/4)^(pi/2) dif theta integral_0^1 r cos theta dot r sin theta dot (r cos theta + r sin theta) r dif r\
-&=1/5 integral_(pi/4)^(pi/2) (cos^2 theta sin theta + cos theta sin^2 theta) dif theta\
-&=1/15
+&quad integral_0^(1 / (sqrt(2))) dif x integral_x^(sqrt(1-x^2)) x y(x+y) dif y \
+&=integral_(pi / 4)^(pi / 2) dif theta integral_0^1 r cos theta dot r sin theta dot (r cos theta + r sin theta) r dif r\
+&=1 / 5 integral_(pi / 4)^(pi / 2) (cos^2 theta sin theta + cos theta sin^2 theta) dif theta\
+&=1 / 15
 $
 
 - (5)
@@ -745,41 +803,42 @@ $
 &quad integral.double_D sqrt(x^2/a^2+y^2/b^2) dif x dif y\
 (x=a dot r sin theta, y=b dot r cos theta) & = integral.double_D r dot a b dot r dif r dif theta\
 &= a b integral_0^(arctan(b\/a)) dif theta integral_0^2 r^2 dif r\
-&= 8/3 a b dot arctan(b/a)
+&= 8 / 3 a b dot arctan(b/a)
 $
 
 - (5)
 
 $
-(x y = u, x^2/y=v) => (x=root(3,u v), y = root(3,u^2/v))\
-
-(diff (x,y))/(diff (u,v)) = abs(mat(
+(x y = u, x^2 / y=v) => (x=root(3,u v), y = root(3,u^2/v))\ \
+(diff (x,y)) / (diff (
+  u,v
+)) = abs(mat(
   1/3 u^(-2/3) v^(1/3), 1/3 u^(1/3) v^(-2/3);
   2/3 u^(-1/3) v^(-1/3), -1/3 u^(2/3) v^(-4/3)
-)) = abs( -1/9v^(-1) - 2/9 v^(-1)) = 1/3 v^(-1) quad u,v > 0\
+)) = abs( -1/9v^(-1) - 2/9 v^(-1)) = 1 / 3 v^(-1) quad u,v > 0\ \
 $
 
 $
 integral.double_D x y dif x dif y
-&= 1/3integral.double_D u^1 v^(-1) dif u dif v\
-&= 1/3integral_1^2dif u integral_1^2 u/v dif v\
-&= 1/3(integral_1^2 u dif u)(integral_1^2 (dif v)/v)\
-&= 1/2 ln 2
+&= 1 / 3integral.double_D u^1 v^(-1) dif u dif v\
+&= 1 / 3integral_1^2dif u integral_1^2 u / v dif v\
+&= 1 / 3(integral_1^2 u dif u)(integral_1^2 (dif v) / v)\
+&= 1 / 2 ln 2
 $
 
 - (8)
 
 $
 (x+y = u, y=v) => (x=u-v,y=v)\
-(diff (x,y))/(diff (u,v)) = abs(mat(1,-1;0, 1)) = 1
+(diff (x,y)) / (diff (u,v)) = abs(mat(1,-1;0, 1)) = 1
 $
 
 $
-integral.double_D sin y/(x+y) dif x dif y &=integral_0^1 dif t integral_0^t sin y/t dif y\
-&=integral_0^1 dif t dot (t cos t/t - t cos 0/t)\
+integral.double_D sin y / (x+y) dif x dif y &=integral_0^1 dif t integral_0^t sin y / t dif y\
+&=integral_0^1 dif t dot (t cos t / t - t cos 0 / t)\
 &=integral_0^1 (-t cos 1 + t) dif t\
-&=1/2 - 1/2 cos 1\
-&=sin^2 1/2
+&=1 / 2 - 1 / 2 cos 1\
+&=sin^2 1 / 2
 $
 
 #pagebreak()
@@ -796,12 +855,12 @@ $
   考虑变换 $u=x+y,v=y/x quad => quad x = u/(1+v), y=(u v)/(1+v)$
 
   $
-  (diff (x,y))/(diff (u,v)) = u/(1+v)^2
+  (diff (x,y)) / (diff (u,v)) = u / (1+v)^2
   $
 
   $
-  integral.double_D dif x dif y &= integral.double_D u/(1+v)^2 dif u dif v\
-  &=(integral_a^b u dif u)(integral_k^m (dif v)/(1+v)^2)\
+  integral.double_D dif x dif y &= integral.double_D u / (1+v)^2 dif u dif v\
+  &=(integral_a^b u dif u)(integral_k^m (dif v) / (1+v)^2)\
   &=(b^2-a^2)(arctan(m) - arctan(k))
   $
 
@@ -810,26 +869,47 @@ $
 证明:$integral.double_(x^2+y^2<=1) e^(x^2+y^2) dif x dif y<= (integral_(-sqrt(pi)/2)^(sqrt(pi)/2)e^(x^2)dif x)^2$
 
 $
+"LHS"-"RHS" = integral.double_D - integral.double_(D^') = 4 integral.double_(D_1) - 4 integral.double_(D_2)
+$
+
+注意到
+$
+dcases(
+  forall (x,y) in D_1 quad x^2+y^2 <=1\
+  forall (x,y) in D_2 quad x^2+y^2 >= 1\
+)\
+=> forall (x_1,y_1) in D_1, (x_2,y_2) in D_2 quad f(x_1,y_1) <= f(x_2,y_2)\
+\
+sigma(D_1) = sigma(D_2)
+\
+
+=> integral.double_(D_1) - integral.double_(D_2) <=0 quad=>quad "LHS"-"RHS" <= 0
+$
+
+
+#image("imgs/19.png", width: 40%)
+
+#rect(width: 100%)[
+#strike[骗分做法:]
+
+$
 integral.double_(x^2+y^2<=1) e^(x^2+y^2) dif x dif y
 &= integral_0^(2pi) dif theta integral_0^1 r e^r dif r\
 &= 2pi integral_0^1 r e^(r^2) dif r\
-&= 2pi [1/2 e^(r^2)]_0^1\
+&= 2pi [1 / 2 e^(r^2)]_0^1\
 &= pi(e-1)
 $
 
-#strike[右侧没想明白, 暴力也能做就是了:]
-
 $
-(integral_(-sqrt(pi)/2)^(sqrt(pi)/2)e^(x^2)dif x)^2
-&= (2 integral_0^(sqrt(pi)/2)e^(x^2)dif x)^2\
-&>= (2 integral_0^(sqrt(pi)/2) (1+ x^2 + x^4/2)dif x)^2\
-&= (pi^(1/2) + 1/12 pi^(3/2)+1/160 pi^(5/2))^2\
-&>= pi + 1/6 pi^2 + 1/144 pi^3 + 1/80 pi^3 + 1/960 pi^4
+(integral_(-sqrt(pi) / 2)^(sqrt(pi) / 2)e^(x^2)dif x)^2
+&= (2 integral_0^(sqrt(pi) / 2)e^(x^2)dif x)^2\
+&>= (2 integral_0^(sqrt(pi) / 2) (1+ x^2 + x^4 / 2)dif x)^2\
+&= (pi^(1 / 2) + 1 / 12 pi^(3 / 2)+1 / 160 pi^(5 / 2))^2\
+&>= pi + 1 / 6 pi^2 + 1 / 144 pi^3 + 1 / 80 pi^3 + 1 / 960 pi^4
 $
 
 #strike[这不可能是正常做法, 这样放缩至少需要把 $pi > 22/7$ 代入, 然后至少计算到小数点后三位.]
-
-#strike[但考场做不出来用这种骗分也说不定呢]
+]
 
 #pagebreak()
 === 6
@@ -848,7 +928,9 @@ $
 考虑变换 $s=x+y, t=x-y, (diff (x,y))/(diff (s,t)) = 1/2$
 
 $
-integral.double_D f(x-y) dif x dif y &= integral.double_(D^') 1/2 f(t) dif s dif t\
-&=1/2 integral_(-A)^A dif t integral_(abs(t) - A)^(A-abs(t)) f(t) dif s\
+integral.double_D f(x-y) dif x dif y &= integral.double_(D^') 1 / 2 f(t) dif s dif t\
+&=1 / 2 integral_(-A)^A dif t integral_(abs(t) - A)^(A-abs(t)) f(t) dif s\
 &=integral_(-A)^A (A-abs(t)) f(t) dif t quad qed
 $
+
+#image("imgs/20.png", width: 50%)

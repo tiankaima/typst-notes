@@ -736,3 +736,119 @@ $
 // &=1/2 R^2 tan(arctan R)\
 &=1/2 R^3
 $
+
+#pagebreak()
+=== 2
+- (2)
+
+$
+&quad integral.double_D sqrt(x^2/a^2+y^2/b^2) dif x dif y\
+(x=a dot r sin theta, y=b dot r cos theta) & = integral.double_D r dot a b dot r dif r dif theta\
+&= a b integral_0^(arctan(b\/a)) dif theta integral_0^2 r^2 dif r\
+&= 8/3 a b dot arctan(b/a)
+$
+
+- (5)
+
+$
+(x y = u, x^2/y=v) => (x=root(3,u v), y = root(3,u^2/v))\
+
+(diff (x,y))/(diff (u,v)) = abs(mat(
+  1/3 u^(-2/3) v^(1/3), 1/3 u^(1/3) v^(-2/3);
+  2/3 u^(-1/3) v^(-1/3), -1/3 u^(2/3) v^(-4/3)
+)) = abs( -1/9v^(-1) - 2/9 v^(-1)) = 1/3 v^(-1) quad u,v > 0\
+$
+
+$
+integral.double_D x y dif x dif y
+&= 1/3integral.double_D u^1 v^(-1) dif u dif v\
+&= 1/3integral_1^2dif u integral_1^2 u/v dif v\
+&= 1/3(integral_1^2 u dif u)(integral_1^2 (dif v)/v)\
+&= 1/2 ln 2
+$
+
+- (8)
+
+$
+(x+y = u, y=v) => (x=u-v,y=v)\
+(diff (x,y))/(diff (u,v)) = abs(mat(1,-1;0, 1)) = 1
+$
+
+$
+integral.double_D sin y/(x+y) dif x dif y &=integral_0^1 dif t integral_0^t sin y/t dif y\
+&=integral_0^1 dif t dot (t cos t/t - t cos 0/t)\
+&=integral_0^1 (-t cos 1 + t) dif t\
+&=1/2 - 1/2 cos 1\
+&=sin^2 1/2
+$
+
+#pagebreak()
+=== 3
+
+- (2)
+
+  考虑变换 $u=x-y,v=y, (diff (x,y))/(diff (u,v))=1$
+
+  因此在 $x-y$ 下的面积与 $u-v$下相等, 均为 $pi a^2$
+
+- (3)
+
+  考虑变换 $u=x+y,v=y/x quad => quad x = u/(1+v), y=(u v)/(1+v)$
+
+  $
+  (diff (x,y))/(diff (u,v)) = u/(1+v)^2
+  $
+
+  $
+  integral.double_D dif x dif y &= integral.double_D u/(1+v)^2 dif u dif v\
+  &=(integral_a^b u dif u)(integral_k^m (dif v)/(1+v)^2)\
+  &=(b^2-a^2)(arctan(m) - arctan(k))
+  $
+
+// #pagebreak()
+=== 4
+证明:$integral.double_(x^2+y^2<=1) e^(x^2+y^2) dif x dif y<= (integral_(-sqrt(pi)/2)^(sqrt(pi)/2)e^(x^2)dif x)^2$
+
+$
+integral.double_(x^2+y^2<=1) e^(x^2+y^2) dif x dif y
+&= integral_0^(2pi) dif theta integral_0^1 r e^r dif r\
+&= 2pi integral_0^1 r e^(r^2) dif r\
+&= 2pi [1/2 e^(r^2)]_0^1\
+&= pi(e-1)
+$
+
+#strike[右侧没想明白, 暴力也能做就是了:]
+
+$
+(integral_(-sqrt(pi)/2)^(sqrt(pi)/2)e^(x^2)dif x)^2
+&= (2 integral_0^(sqrt(pi)/2)e^(x^2)dif x)^2\
+&>= (2 integral_0^(sqrt(pi)/2) (1+ x^2 + x^4/2)dif x)^2\
+&= (pi^(1/2) + 1/12 pi^(3/2)+1/160 pi^(5/2))^2\
+&>= pi + 1/6 pi^2 + 1/144 pi^3 + 1/80 pi^3 + 1/960 pi^4
+$
+
+#strike[这不可能是正常做法, 这样放缩至少需要把 $pi > 22/7$ 代入, 然后至少计算到小数点后三位.]
+
+#strike[但考场做不出来用这种骗分也说不定呢]
+
+#pagebreak()
+=== 6
+
+考虑把关于原点对称的两个区域合并计算, 即我们现在在右半平面上计算, 左侧的区域对称到 $(-x,-y)$ 计算:
+$
+& quad integral.double_(abs(x)+abs(y)<=1)e^(f(x,y)) dif x dif y\
+& = integral.double_(abs(x)+abs(y)<=1, x>0)e^(f(x,y))+e^(f(-x,-y)) dif x dif y\
+& = integral.double_(abs(x)+abs(y)<=1, x>0)e^(f(x,y))+e^(-f(x,y)) dif x dif y\
+& >= 2integral.double_(abs(x)+abs(y)<=1, x>0) dif x dif y\
+& = 2 quad qed
+$
+
+=== 7
+
+考虑变换 $s=x+y, t=x-y, (diff (x,y))/(diff (s,t)) = 1/2$
+
+$
+integral.double_D f(x-y) dif x dif y &= integral.double_(D^') 1/2 f(t) dif s dif t\
+&=1/2 integral_(-A)^A dif t integral_(abs(t) - A)^(A-abs(t)) f(t) dif s\
+&=integral_(-A)^A (A-abs(t)) f(t) dif t quad qed
+$

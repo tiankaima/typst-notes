@@ -155,15 +155,17 @@ $
 可以解出
 
 $
-P_0=(pi / 6,pi / 6,pi / 6)\
+P_0=(pi / 6,pi / 6,pi / 6) quad
 P_1=(pi / 2,0,0)\
-P_2=(0,pi / 2,0)\
+P_2=(0,pi / 2,0) quad
 P_3=(0,0,pi / 2)\
 $
 
 分别代入 $u$ 可以得到 $u(P_0)=1/8, u(P_1)=0, u(P_2)=0, u(P_3)=0$
 
 极大值极小值的判断不能直接从拉格朗日乘子法中得到, 应该通过如下方法判断:
+
+- *降为二元函数*
 
 $
 u(x,y)=u(x,y,z)=u(x,y,pi / 2-x-y)=sin x sin y cos(x+y)\
@@ -174,7 +176,7 @@ $
 #image("./imgs/6.png", width: 50%)
 
 #box[
-  更一般的, 我们可以做如下处理:
+  可以做如下处理:
 
   $
   u&=sin x sin y sin z \
@@ -207,6 +209,12 @@ $
 
 下图是 $u(x,y,z)=sin x sin y sin z $ 的热力图,通过颜色来反应无法画出的另一维度的信息.
 #image("imgs/5.png", width: 50%)
+
+- *紧集最值定理*:
+  - 考虑 $f: D -> RR, D subset RR^d$ $D$ 在 $RR^d$ 上 compact, $f$ 在 $D$ 上连续, 则 $f$ 在 $D$ 上有最大值和最小值.
+  - 讨论在 $diff D$ 上 $f$ 的取值, 在这个问题中 $f|_(diff D) eq.triple 0$
+  - 在 $D^o$ 中, 最值必定在驻点中取得 $=> f(D^o)= [0,1\/8]$
+  - 那么 $f(D) = [0, 1\/8] quad forall x in D$, 在 $P_0$ 的一个局部$U(P_0) subset D$ 内, $forall x in P_0, f(x) <= 1\/8 = f(P_0)$, 因此是极大值
 
 #pagebreak()
 === 10(4)
@@ -391,10 +399,10 @@ $
 (diff z)/(diff x) &= cos x -cos(x+y) = 0 \
 (diff z)/(diff y) &= cos y -cos(x+y) = 0 \
 ) \
-&P_1(0,0) quad P_2(2pi,0) quad P_3(0,2pi) quad P_4(pi / 3, pi / 3)
+&P_1(0,0) quad P_2(2pi,0) quad P_3(0,2pi) quad P_4(2 / 3 pi, 2 / 3 pi)
 $
 
-$ => z_min = 0, z_max=sqrt(3) / 2 quad forall x in D^o $
+$ => z_min = 0, z_max=3 / 2 sqrt(3) quad forall x in D^o $
 
 边界上的情况，我们分成三段：
 
@@ -531,7 +539,7 @@ dcases(
 (x,y,z) = cal(k) (a,b,c) quad=>quad cal(k)=sqrt(3) / 3
 $
 
-此时 $V = 8x y z = 8/9 sqrt(3)$, 为最大值.
+此时 $V = 8x y z = 8/9 sqrt(3) a b c$, 为最大值.
 
 #image("imgs/13.png", width: 50%)
 
@@ -557,6 +565,7 @@ F(x,y,z)=sqrt(x)-sqrt(y)-sqrt(z)-sqrt(a) eq.triple 0\
 dif F = 1 / (2sqrt(x))dif x - 1 / (2sqrt(y))dif y - 1 / (2sqrt(z))dif z = 0\
 1 / (2sqrt(x_0))(x-x_0) - 1 / (2sqrt(y_0))(y-y_0) - 1 / (2sqrt(z_0))(z-z_0) = 0\
 x / (2sqrt(x_0)) - y / (2 sqrt(y_0)) - z / (2 sqrt(z_0)) = sqrt(x_0) / 2 - sqrt(y_0) / 2 - sqrt(z_0) / 2\
+x / (sqrt(x_0)) - y / (sqrt(y_0)) - z / (sqrt(z_0)) = sqrt(x_0) - sqrt(y_0) - sqrt(z_0)\
 $
 
 所有截距之和:
@@ -568,24 +577,24 @@ $
 四面体体积:
 
 $
-1 / 6 l_1 dot l_2 dot l_3 = 1 / 6 sqrt(a) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0)
+1 / 6 l_1 dot l_2 dot l_3 = 1 / 6 a^(3/2) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0)
 $
 
 $
 f(
   x_0, y_0, z_0, mu
-) = sqrt(a) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0) - mu(sqrt(x_0) - sqrt(y_0) - sqrt(z_0) - sqrt(a)) \
-f(l,m,n,mu) = l m n - mu(l - m - n - a)\
+) = a^(3/2) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0) - mu(sqrt(x_0) - sqrt(y_0) - sqrt(z_0) - sqrt(a)) \
+f(l,m,n,mu) = a^(3/2) dot l m n - mu(l - m - n - sqrt(a))\
 dcases(
-  (diff f)/(diff l) = m n - mu = 0\
-  (diff f)/(diff m) = l n - mu = 0\
-  (diff f)/(diff n) = l m - mu = 0\
+  (diff f)/(diff l) = a^(3/2) dot m n - mu = 0\
+  (diff f)/(diff m) = a^(3/2) dot l n - mu = 0\
+  (diff f)/(diff n) = a^(3/2) dot l m - mu = 0\
   l m n = a\
 )\
-=> quad l = m = n = sqrt(a)
+=> quad l = m = n = 1/3 sqrt(a)
 $
 
-所以最大四面体面积为 $a^2/6$, 截面: $x-y-z+a=0$
+所以最大四面体面积为 $a^3/162$, 截面: $x-y-z+1/9 a=0$
 
 #pagebreak()
 === P156 1
@@ -606,7 +615,7 @@ $
 $
 integral_0^1 dif x integral_0^x f(x,y) dif y+integral_1^2 dif x+integral_0^(2-x) f(
   x,y
-) dif y = integral_0^2 dif y integral_0^(2-y) f(x,y) dif x\
+) dif y = integral_0^2 dif y integral_y^(2-y) f(x,y) dif x\
 $
 - (6)
 $
@@ -657,11 +666,11 @@ $
 
 - (2)
 $
-&quad integral.double_D sin(x+y) dif x dif y quad D=[0,1]times[0,1]\
-&=integral_0^1 dif x integral_0^1 sin(x+y) dif y\
-&=integral_0^1 (-cos(1+x)+cos x) dif x\
-&=-sin 2 + sin 1 + sin 1 - sin 0\
-&=2sin 1 - sin 2
+&quad integral.double_D sin(x+y) dif x dif y quad D=[0,pi]times[0,pi]\
+&=integral_0^pi dif x integral_0^pi sin(x+y) dif y\
+&=integral_0^pi (-cos(pi+x)+cos x) dif x\
+&=-sin 2pi + sin pi + sin pi - sin 0\
+&=0
 $
 
 - (3)
@@ -777,11 +786,11 @@ $
 - (1)
 $
 &quad integral_0^R dif x integral_0^(sqrt(R^2-x^2)) ln(1+x^2+y^2) dif y\
-&= integral_0^(2pi) dif theta integral_0^R ln(1+r^2) r dif r\
-&= 2pi integral_0^R ln(1+r^2) r dif r\
-&= pi integral_0^R^2 ln(1+t) dif t\
-&= pi[(t+1)ln(1+t)-t]_0^R^2\
-&= pi[(R^2+1)ln(1+R^2)-R^2]
+&= integral_0^(pi/2) dif theta integral_0^R ln(1+r^2) r dif r\
+&= pi/2 integral_0^R ln(1+r^2) r dif r\
+&= pi/4 integral_0^R^2 ln(1+t) dif t\
+&= pi/4 dot [(t+1)ln(1+t)-t]_0^R^2\
+&= pi/4 dot [(R^2+1)ln(1+R^2)-R^2]
 $
 
 - (4)
@@ -812,8 +821,8 @@ $
 $
 &quad integral.double_D sqrt(x^2/a^2+y^2/b^2) dif x dif y\
 (x=a dot r sin theta, y=b dot r cos theta) & = integral.double_D r dot a b dot r dif r dif theta\
-&= a b integral_0^(arctan(b\/a)) dif theta integral_0^2 r^2 dif r\
-&= 8 / 3 a b dot arctan(b/a)
+&= a b integral_0^(arctan(a\/b)) dif theta integral_0^2 r^2 dif r\
+&= 8 / 3 a b dot arctan(a/b)
 $
 
 - (5)
@@ -831,9 +840,9 @@ $
 $
 integral.double_D x y dif x dif y
 &= 1 / 3integral.double_D u^1 v^(-1) dif u dif v\
-&= 1 / 3integral_1^2dif u integral_1^2 u / v dif v\
-&= 1 / 3(integral_1^2 u dif u)(integral_1^2 (dif v) / v)\
-&= 1 / 2 ln 2
+&= 1 / 3integral_a^b dif u integral_c^d u / v dif v\
+&= 1 / 3(integral_a^b u dif u)(integral_c^d (dif v) / v)\
+&= 1 / 6 (b^2-a^2)(ln d - ln c)
 $
 
 - (8)
@@ -871,7 +880,7 @@ $
   $
   integral.double_D dif x dif y &= integral.double_D u / (1+v)^2 dif u dif v\
   &=(integral_a^b u dif u)(integral_k^m (dif v) / (1+v)^2)\
-  &=(b^2-a^2)(arctan(m) - arctan(k))
+  &=1/2(b^2-a^2)(arctan(m) - arctan(k))
   $
 
 // #pagebreak()

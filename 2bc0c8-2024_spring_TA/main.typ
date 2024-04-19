@@ -8,9 +8,8 @@
 ]
 
 #let dcases(..args) = {
-  math.cases(
-    math.display(..args),
-  )
+  let dargs = args.pos().map(it => math.display(it))
+  math.cases(..dargs)
 }
 
 #show image: it => [
@@ -39,28 +38,28 @@
 $
 &space.quad f(x,y) = e^(2x) (x+2y+y^2) \
 &dcases(
-(diff f)/(diff x) &= e^(2x)(2x+4y+2y^2+1)\
-(diff f)/(diff y) &= e^(2x)(2+2y) \
-(diff^2 f)/(diff x^2) &= e^(2x)(4x+8y+4y^2+4) \
-(diff^2 f)/(diff y^2) &= e^(2x) dot 2 \
-(diff^2 f)/(diff x diff y) &= e^(2x)(4+4y) \
+(diff f)/(diff x) &= e^(2x)(2x+4y+2y^2+1),
+(diff f)/(diff y) &= e^(2x)(2+2y),
+(diff^2 f)/(diff x^2) &= e^(2x)(4x+8y+4y^2+4),
+(diff^2 f)/(diff y^2) &= e^(2x) dot 2,
+(diff^2 f)/(diff x diff y) &= e^(2x)(4+4y),
 )\
 &dcases(
-(diff f)/(diff x) &= 0 \
-(diff f)/(diff y) &= 0 \
+(diff f)/(diff x) &= 0 ,
+(diff f)/(diff y) &= 0 ,
 )space.quad => space.quad
 dcases(
-  x = 1/2 \
-  y = -1 \
+  x = 1/2 ,
+  y = -1 ,
 )\
 &dcases(
-  A = 2e^1 \
-  B = 0 \
-  C = 2e^1 \
+  A = 2e^1 ,
+  B = 0 ,
+  C = 2e^1 ,
 )
 space.quad => space.quad
 dcases(
-  Delta = A C - B^2 = 4e^2 > 0 \
+  Delta = A C - B^2 = 4e^2 > 0,
   A > 0
 )
 $
@@ -88,8 +87,8 @@ $
 
 $
 dcases(
-  x^2+y^2=1/2a^2\
-  x^2-y^2=1/4a^2\
+  x^2+y^2=1/2a^2 ,
+  x^2-y^2=1/4a^2 ,
 ) space.quad => space.quad
 y^2 = 1 / 8
 $
@@ -145,10 +144,10 @@ $
 u(x,y,z)&=sin x sin y sin z\
 U(x,y,z,phi)&=sin x sin y sin z -phi dot.c(x+y+z-pi/2)\
 &dcases(
-(diff U)/(diff x) &= cos x sin y sin z -phi=0\
-(diff U)/(diff y) &= sin x cos y sin z -phi=0\
-(diff U)/(diff z) &= sin x sin y cos z -phi=0\
-&x+y+z=pi/2\
+(diff U)/(diff x) &= cos x sin y sin z -phi=0 ,
+(diff U)/(diff y) &= sin x cos y sin z -phi=0 ,
+(diff U)/(diff z) &= sin x sin y cos z -phi=0 ,
+&x+y+z=pi/2 ,
 )
 $
 
@@ -259,11 +258,11 @@ $
 $
 &U(x,y,z, lambda, mu) = x y z - lambda(x+y+z) - mu(x^2+y^2+z^2-1) \
 &dcases(
-(diff U)/(diff x) &= y z - lambda - 2mu x = 0 \
-(diff U)/(diff y) &= x z - lambda - 2mu y = 0 \
-(diff U)/(diff z) &= x y - lambda - 2mu z = 0 \
-&x+y+z = 0 \
-&x^2+y^2+z^2 = 1 \
+(diff U)/(diff x) &= y z - lambda - 2mu x = 0 ,
+(diff U)/(diff y) &= x z - lambda - 2mu y = 0 ,
+(diff U)/(diff z) &= x y - lambda - 2mu z = 0 ,
+&x+y+z = 0 ,
+&x^2+y^2+z^2 = 1 ,
 )\
 $
 
@@ -290,14 +289,14 @@ $
 
 $
 &dcases(
-y z + 1/6 - 2 mu x = 0 \
-x z + 1/6 - 2 mu y = 0 \
+y z + 1/6 - 2 mu x = 0 ,
+x z + 1/6 - 2 mu y = 0 ,
 ) => dcases(
-  y^2 z + 1/6 y - 2 mu x y = 0 \
-  x^2 z + 1/6 x - 2 mu y x = 0 \
+  y^2 z + 1/6 y - 2 mu x y = 0 ,
+  x^2 z + 1/6 x - 2 mu y x = 0 ,
 )\
-&=> [z(x+y) + 1 / 6](x-y) = 0 \
-&=> [(x+y)^2 - 1 / 6](x-y) = 0 \
+&=> [z(x+y) + 1 / 6](x-y) = 0 ,
+&=> [(x+y)^2 - 1 / 6](x-y) = 0 ,
 $
 
 接下来我们分别讨论 $x=y$ 和 $(x+y)^2=1/6$. 其实他们反映的是一种情况的对称.
@@ -323,8 +322,8 @@ $
 
   $
   dcases(
-  (x-y) = plus.minus 3/6sqrt(6) \
-  (x+y) = plus.minus 1/6sqrt(6) \
+  (x-y) = plus.minus 3/6sqrt(6) ,
+  (x+y) = plus.minus 1/6sqrt(6) ,
 )\
   $
 
@@ -376,8 +375,8 @@ Hessian 矩阵总是负定的, 函数在${(x,y)mid("|") x^2+y^2 <4}$内部不存
 $
 L(x,y, mu) = x^2-y^2 + mu(x^2+y^2-4) \
 dcases(
-  (diff L)/(diff x) = 2x(1+mu) = 0 \
-  (diff L)/(diff y) = -2y(1-mu) = 0 \
+  (diff L)/(diff x) = 2x(1+mu) = 0 ,
+  (diff L)/(diff y) = -2y(1-mu) = 0 ,
   x^2+y^2 = 4 \
 )\
 P_1(0,2) quad P_2(0,-2) quad P_3(2,0) quad P_4(-2,0)
@@ -396,8 +395,8 @@ $
 
 $
 &dcases(
-(diff z)/(diff x) &= cos x -cos(x+y) = 0 \
-(diff z)/(diff y) &= cos y -cos(x+y) = 0 \
+(diff z)/(diff x) &= cos x -cos(x+y) = 0 ,
+(diff z)/(diff y) &= cos y -cos(x+y) = 0 ,
 ) \
 &P_1(0,0) quad P_2(2pi,0) quad P_3(0,2pi) quad P_4(2 / 3 pi, 2 / 3 pi)
 $
@@ -425,8 +424,8 @@ $
 === 13
 $
 dcases(
-  z=x^2+2y^2\
-  z=6-2x^2-y^2\
+  z=x^2+2y^2 ,
+  z=6-2x^2-y^2 ,
 ) quad => quad x^2 + y^2 = 2
 $
 
@@ -437,9 +436,9 @@ $
 $
 L(x,y, mu) = x^2+2y^2 + mu(x^2+y^2-2) \
 dcases(
-  (diff L)/(diff x) = 2x(1+mu) = 0 \
-  (diff L)/(diff y) = 4y(1+mu) = 0 \
-  x^2+y^2 = 2 \
+  (diff L)/(diff x) = 2x(1+mu) = 0 ,
+  (diff L)/(diff y) = 4y(1+mu) = 0 ,
+  x^2+y^2 = 2 ,
 )\
 P_1(0,sqrt(2)) quad P_2(0,-sqrt(2)) quad P_3(sqrt(2),0) quad P_4(-sqrt(2),0)
 $
@@ -454,11 +453,11 @@ $
     $
     f(x,y)=3x^2y-x^4-2y^2\
     dcases(
-  (diff f)/(diff x)|_((0,0)) = 6x y-4x^3 = 0 \
-  (diff f)/(diff y)|_((0,0)) = 3x^2-4y = 0 \
-  (diff^2 f)/(diff x^2)|_((0,0)) = 6y-12x^2 = 0 \
-  (diff^2 f)/(diff y^2)|_((0,0)) = -4 \
-  (diff^2 f)/(diff x diff y)|_((0,0)) = 6x = 0 \
+  (diff f)/(diff x)|_((0,0)) = 6x y-4x^3 = 0 ,
+  (diff f)/(diff y)|_((0,0)) = 3x^2-4y = 0 ,
+  (diff^2 f)/(diff x^2)|_((0,0)) = 6y-12x^2 = 0 ,
+  (diff^2 f)/(diff y^2)|_((0,0)) = -4 ,
+  (diff^2 f)/(diff x diff y)|_((0,0)) = 6x = 0 ,
 )\
     $
 
@@ -468,10 +467,10 @@ $
 
     $
     dcases(
-(diff^3 f)/(diff x^3)|_((0,0)) = -24x = 0 \
-(diff^3 f)/(diff x^2 diff y)|_((0,0)) = 6 \
-(diff^3 f)/(diff x diff y^2)|_((0,0)) = 0 \
-(diff^3 f)/(diff y^3)|_((0,0)) = 0 = 0 \
+(diff^3 f)/(diff x^3)|_((0,0)) = -24x = 0 ,
+(diff^3 f)/(diff x^2 diff y)|_((0,0)) = 6 ,
+(diff^3 f)/(diff x diff y^2)|_((0,0)) = 0 ,
+(diff^3 f)/(diff y^3)|_((0,0)) = 0 = 0 ,
 )
     $
   ]
@@ -495,8 +494,8 @@ $
 $
 f(x) = 3k x^3 - x^4 - 2k^2 x^2\
 dcases(
-(dif f)/(dif x)|_((0,0)) = 9k x^2 - 4x^3 - 4k^2 x = 0\
-(dif^2 f)/(dif x^2)|_((0,0)) = 18k x - 12x^2 - 4k^2 = - 4k^2<0\
+(dif f)/(dif x)|_((0,0)) = 9k x^2 - 4x^3 - 4k^2 x = 0 ,
+(dif^2 f)/(dif x^2)|_((0,0)) = 18k x - 12x^2 - 4k^2 = - 4k^2<0 ,
 )
 $
 因此在每条过原点的直线上 $(0,0)$ 都是极大值点.
@@ -507,11 +506,11 @@ $
 $
 f(x,y) = (x - x_1)^2 + (y - y_1)^2 + dots.c + (x - x_n)^2 + (y - y_n)^2\
 dcases(
-  (diff f)/(diff x) = 2(x - x_1) + dots.c + 2(x - x_n) = 0\
-  (diff f)/(diff y) = 2(y - y_1) + dots.c + 2(y - y_n) = 0\
-  (diff^2 f)/(diff x^2) = 2n\
-  (diff^2 f)/(diff y^2) = 2n\
-  (diff^2 f)/(diff x diff y) = 0\
+  (diff f)/(diff x) = 2(x - x_1) + dots.c + 2(x - x_n) = 0 ,
+  (diff f)/(diff y) = 2(y - y_1) + dots.c + 2(y - y_n) = 0 ,
+  (diff^2 f)/(diff x^2) = 2n ,
+  (diff^2 f)/(diff y^2) = 2n ,
+  (diff^2 f)/(diff x diff y) = 0 ,
 )\
 $
 
@@ -521,7 +520,7 @@ $
 $
 
 $
-Delta = A C - B^2 = 2n^2 - 0 = 2n^2 > 0 quad A = 2n > 0
+Delta = A C - B^2 = 4n^2 - 0 = 4n^2 > 0 quad A = 2n > 0
 $
 因此是极小值点.
 
@@ -531,10 +530,10 @@ $
 $
 f(x,y, mu) = x y z - mu(x^2/a^2 + y^2/b^2 + z^2/c^2 - 1)\
 dcases(
-  (diff f)/(diff x) = y z - 2 mu x / a^2 = 0\
-  (diff f)/(diff y) = x z - 2 mu y / b^2 = 0\
-  (diff f)/(diff z) = x y - 2 mu z / c^2 = 0\
-  x^2/a^2 + y^2/b^2 + z^2/c^2 = 1\
+  (diff f)/(diff x) = y z - 2 mu x / a^2 = 0,
+  (diff f)/(diff y) = x z - 2 mu y / b^2 = 0,
+  (diff f)/(diff z) = x y - 2 mu z / c^2 = 0,
+  x^2/a^2 + y^2/b^2 + z^2/c^2 = 1,
 )\
 (x,y,z) = cal(k) (a,b,c) quad=>quad cal(k)=sqrt(3) / 3
 $
@@ -548,10 +547,10 @@ $
 $
 f(x,y,z,mu)=abs(x+y+2z-9) / (sqrt(1^2+1^2+2^2)) - mu(x^2/4+y^2+z^2-1)\
 dcases(
-  (diff f)/(diff x) = -1/(sqrt(6)) - mu x / 2 = 0\
-  (diff f)/(diff y) = -1/(sqrt(6)) - 2mu y = 0\
-  (diff f)/(diff z) = -2/(sqrt(6)) - 2mu z = 0\
-  x^2/4 + y^2 + z^2 = 1\
+  (diff f)/(diff x) = -1/(sqrt(6)) - mu x / 2 = 0 ,
+  (diff f)/(diff y) = -1/(sqrt(6)) - 2mu y = 0 ,
+  (diff f)/(diff z) = -2/(sqrt(6)) - 2mu z = 0 ,
+  x^2/4 + y^2 + z^2 = 1 ,
 )\
 P_1(4 / 3,1 / 3,2 / 3) quad P_2(-4 / 3,-1 / 3,-2 / 3)
 $
@@ -577,21 +576,21 @@ $
 四面体体积:
 
 $
-1 / 6 l_1 dot l_2 dot l_3 = 1 / 6 a^(3/2) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0)
+1 / 6 l_1 dot l_2 dot l_3 = 1 / 6 a^(3 / 2) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0)
 $
 
 $
 f(
   x_0, y_0, z_0, mu
-) = a^(3/2) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0) - mu(sqrt(x_0) - sqrt(y_0) - sqrt(z_0) - sqrt(a)) \
-f(l,m,n,mu) = a^(3/2) dot l m n - mu(l - m - n - sqrt(a))\
+) = a^(3 / 2) dot sqrt(x_0) dot sqrt(y_0) dot sqrt(z_0) - mu(sqrt(x_0) - sqrt(y_0) - sqrt(z_0) - sqrt(a)) \
+f(l,m,n,mu) = a^(3 / 2) dot l m n - mu(l - m - n - sqrt(a))\
 dcases(
-  (diff f)/(diff l) = a^(3/2) dot m n - mu = 0\
-  (diff f)/(diff m) = a^(3/2) dot l n - mu = 0\
-  (diff f)/(diff n) = a^(3/2) dot l m - mu = 0\
-  l m n = a\
+  (diff f)/(diff l) = a^(3/2) dot m n - mu = 0 ,
+  (diff f)/(diff m) = a^(3/2) dot l n - mu = 0 ,
+  (diff f)/(diff n) = a^(3/2) dot l m - mu = 0 ,
+  l m n = a ,
 )\
-=> quad l = m = n = 1/3 sqrt(a)
+=> quad l = m = n = 1 / 3 sqrt(a)
 $
 
 所以最大四面体面积为 $a^3/162$, 截面: $x-y-z+1/9 a=0$
@@ -732,8 +731,8 @@ $
 #image("imgs/8.png", width: 50%)
 
 $
-integral.double_D sin x sin y dif x dif y &= integral sin x dot dif x integral_(y_2(x))^(y_1(x)) sin y dot y dif y\
-(forall x, y_1(x) + y_2(x) = 0) &=> integral 0 dot sin x dif x\
+integral.double_D sin x sin y dif x dif y &= integral sin x dot dif x integral_(y_2(x))^(y_1(x)) sin y dif y\
+(forall x, quad y_1(x) + y_2(x) = 0) &=> integral 0 dot sin x dif x\
 &=0
 $
 
@@ -786,11 +785,11 @@ $
 - (1)
 $
 &quad integral_0^R dif x integral_0^(sqrt(R^2-x^2)) ln(1+x^2+y^2) dif y\
-&= integral_0^(pi/2) dif theta integral_0^R ln(1+r^2) r dif r\
-&= pi/2 integral_0^R ln(1+r^2) r dif r\
-&= pi/4 integral_0^R^2 ln(1+t) dif t\
-&= pi/4 dot [(t+1)ln(1+t)-t]_0^R^2\
-&= pi/4 dot [(R^2+1)ln(1+R^2)-R^2]
+&= integral_0^(pi / 2) dif theta integral_0^R ln(1+r^2) r dif r\
+&= pi / 2 integral_0^R ln(1+r^2) r dif r\
+&= pi / 4 integral_0^R^2 ln(1+t) dif t\
+&= pi / 4 dot [(t+1)ln(1+t)-t]_0^R^2\
+&= pi / 4 dot [(R^2+1)ln(1+R^2)-R^2]
 $
 
 - (4)
@@ -873,15 +872,15 @@ $
 
   考虑变换 $u=x+y,v=y/x quad => quad x = u/(1+v), y=(u v)/(1+v)$
 
-  $
-  (diff (x,y)) / (diff (u,v)) = u / (1+v)
-  $
+$
+(diff (x,y)) / (diff (u,v)) = u / (1+v)
+$
 
-  $
-  integral.double_D dif x dif y &= integral.double_D u / (1+v) dif u dif v\
-  &=(integral_a^b u dif u)(integral_k^m (dif v) / (1+v))\
-  &=1/2(b^2-a^2)(ln(1+m) - ln ( 1+ k))
-  $
+$
+integral.double_D dif x dif y &= integral.double_D u / (1+v) dif u dif v\
+&=(integral_a^b u dif u)(integral_k^m (dif v) / (1+v))\
+&=1 / 2(b^2-a^2)(ln(1+m) - ln (1+ k))
+$
 
 // #pagebreak()
 === 4
@@ -894,8 +893,8 @@ $
 注意到
 $
 dcases(
-  forall (x,y) in D_1 quad x^2+y^2 <=1\
-  forall (x,y) in D_2 quad x^2+y^2 >= 1\
+  forall (x,y) in D_1 quad x^2+y^2 <=1 ,
+  forall (x,y) in D_2 quad x^2+y^2 >= 1 ,
 )\
 => forall (x_1,y_1) in D_1, (x_2,y_2) in D_2 quad f(x_1,y_1) <= f(x_2,y_2)\
 \

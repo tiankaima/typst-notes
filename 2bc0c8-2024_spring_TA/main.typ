@@ -874,13 +874,13 @@ $
   考虑变换 $u=x+y,v=y/x quad => quad x = u/(1+v), y=(u v)/(1+v)$
 
   $
-  (diff (x,y)) / (diff (u,v)) = u / (1+v)^2
+  (diff (x,y)) / (diff (u,v)) = u / (1+v)
   $
 
   $
-  integral.double_D dif x dif y &= integral.double_D u / (1+v)^2 dif u dif v\
-  &=(integral_a^b u dif u)(integral_k^m (dif v) / (1+v)^2)\
-  &=1/2(b^2-a^2)(arctan(m) - arctan(k))
+  integral.double_D dif x dif y &= integral.double_D u / (1+v) dif u dif v\
+  &=(integral_a^b u dif u)(integral_k^m (dif v) / (1+v))\
+  &=1/2(b^2-a^2)(ln(1+m) - ln ( 1+ k))
   $
 
 // #pagebreak()

@@ -16,11 +16,10 @@ $
 The characteristic function space of the set $O_(alpha, B)$ is defined as:
 
 $
-Lambda_B &= {f | f in RR^m, \#f(O_(alpha,B)) = 1, forall alpha in RR^n } \
-        //  &= {f | f in RR^m, \# f(O_B) = 1}
+Lambda_B &= {f | f in RR^m, \#f(O_(alpha,B)) = 1, forall alpha in RR^n } subset V(RR^n)\
 $
 
-Here we treat $f(k) = f dot k$ ($L^2$ inner product) as a function $f: RR^m -> RR$, provided that $(L^2)^* = L^2$
+Here we treat $f(k) = f dot k$ ($L^2$ inner product) as a function $f: RR^m -> RR$
 
 *Prop 7.2*
 
@@ -47,7 +46,7 @@ Use induction:
 
 - $m=1$
 
-  The target function $g_alpha (k) = sum_(j=1)^n abs(a_(j) - k b_(j))$ is a piecewise convex function of $k$, since the slope at each piece $(diff g_alpha)/(diff k) = sum_(j=1)^n (-1)^(n_j) b_(j) !=0 quad forall n_j in {0,1}(forall j)$, which means $g_alpha (k)$ is a stricly convex function.
+  The target function $g_alpha (k) = sum_(j=1)^n abs(a_(j) - k b_(j))$ is a piecewise convex function of $k$, since the slope at each piece $(dif g_alpha)/(dif k) = sum_(j=1)^n (-1)^(n_j) b_(j) !=0 quad forall n_j in {0,1}(forall j)$, (For $k = a_j\/b_j$ points, its left and right derivitives holds the same property) which means $g_alpha (k)$ is a stricly convex function.
 
   Provided that the solution exists, using contradiction, we can show the solution is unique, so $ forall alpha quad \# O_(alpha, B) = 1 $ which would mean $ forall f: RR -> RR quad \# f(O_(alpha, B)) = 1 $ then $f_j (k) = b_j dot k$ is a characteristic function of the optimization problem. ($forall j$), a even stronger statement for $m = 1$
 
@@ -77,7 +76,7 @@ Use induction:
   k_2 = (k_12, k_22, dots.c, k_(M 2)) \
   $
 
-  Take a mapping $lambda in [0,1] -> R^m$ using the convex combination:
+  Take a mapping $lambda in [0,1] -> RR^m$ using the convex combination:
 
   $
   k_lambda = lambda k_1 + (1-lambda) k_2 = (k_i)_i
@@ -93,18 +92,12 @@ Use induction:
   Then
 
   $
-  sum_(i=1)^m (lambda k_(i 1) + (1-lambda) k_(i 2)) b_(i,j_0) = a_(j_0) quad forall lambda in [0,1] quad a.e.\
+  sum_(i=1)^M (lambda k_(i 1) + (1-lambda) k_(i 2)) b_(i,j_0) = a_(j_0) quad forall lambda in [0,1] quad a.e.\
   $
 
-  For the remaining individial $lambda$ left,
-
-  $ exists lambda in [0,1], s.t. quad lambda k_(M 1) + (1-lambda)k_(M 2) in S_(M, l) quad (exists l!=j_0) $
-
-  We have already shown, for $k_M in S_M$, $sum_(i=1)^M k_i b_(i, j_0)$ is unique. (???)
-
-  Thus
+  Consider the mapping $[0,1] ->^lambda RR^m ->^(g_(a )) RR$ is continous, $[0,1] subset RR$ is compact, we can expand the result to $RR$ (considering it's constant at each segaments (finite), and continous in $RR$)
   $
-  sum_(i=1)^M (alpha k_(i 1) + (1-alpha) k_(i 2)) b_(i,j_0) = a_(j_0) quad forall alpha in [0,1]
+  sum_(i=1)^M (alpha k_(i 1) + (1-alpha) k_(i 2)) b_(i,j_0) = a_(j_0) quad forall alpha in RR
   $
 
   So the linear function $f(k)=sum_(i=1)^M k_i b_(i, j_0)$ is the characteristic function of the optimization problem.

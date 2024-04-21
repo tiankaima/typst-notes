@@ -24,6 +24,160 @@
   PB21000030 马天开
 ]
 
+== 小测答案
+
+=== 1
+
+计算 $I = integral.double_D x(1+y e^(x^4 y^6)) dif x dif y$, 其中 $D: y=sin x,x=-pi/2, y=1$
+
+$
+I&=integral_(-pi / 2)^(pi / 2) dif x integral_(sin x)^1 x (1+y e^(x^4 y^6)) dif y\
+&=integral_(-1)^1 dif y integral_(-pi / 2)^(arcsin y) x(1+y dot e^(x^4 y^6)) dif x\
+$
+
+显然这两个方向上都无法得到初等函数解, 做如下处理
+
+先对 $f_1(x,y) = x$ 在 $D$ 上积分:
+$
+I_1&=integral_(-pi / 2)^(pi / 2) dif x integral_(sin x)^1 x dif y\
+&=integral_(-pi / 2)^(pi / 2) x (1-sin(x)) dif x\
+&=integral_(-pi / 2)^(pi / 2) x dif x - integral_(-pi / 2)^(pi / 2) x sin(x) dif x\
+&=0 - 2 integral_(-pi / 2)^(pi / 2) x sin(x) dif x\
+&=-2
+$
+
+对于 $f_2(x,y)=x y dot e^(x^4 y^6)$ 有比较强的对称性, 但是处理起来容易出错, 我们这里处理如下:
+
+$
+I_2 &= integral_(-pi / 2)^(pi / 2) dif x integral_(sin(x))^1 f_2(x,y) dif y\
+&= integral_(pi / 2)^(-pi / 2) dif (-x) integral_(sin(-x))^1 f_2(-x,y) dif y\
+&= integral_(-pi / 2)^(pi / 2) dif x integral_1^(sin(x)) f_2(x,y) dif y\
+&= 1 / 2 integral_(-pi / 2)^(pi / 2) dif x integral_(sin(x))^(-sin(x)) f_2(x,y) dif y\
+&= 1 / 2 integral_(-pi / 2)^(pi / 2) dif x integral_(-sin(x))^(sin(x)) f_2(x,-y) dif (-y)\
+&= 1 / 2 integral_(-pi / 2)^(pi / 2) dif x integral_(sin(x))^(-sin(x)) - f_2(x,y) dif (y)\
+&= 0 \
+$
+
+=== 2
+
+$
+F(t) = integral_1^t dif y integral_y^t e^(-x^2) dif x
+$
+
+计算 $(dif F)/(dif t)$
+
+在 B1 中我们讲过含参变上限求导的方法, 例如:
+
+$
+F(x,t) = integral_(x_0)^t f(x,t) dif x\
+(dif F) / (dif t) = f(t,t) + integral_(x_0)^t (diff f) / (diff t) dif x
+$
+
+对于本题, 只需要应用两遍:
+
+$
+(dif F) / (dif t) &= dif / (dif t) integral_1^t dif y integral_y^t e^(-x^2) dif x\
+&= [integral_y^t e^(-x^2) dif x]_(y=t) + integral_1^t (diff / (diff t) integral_y^t e^(-x^2) dif x) dif y\
+&= 0 + integral_1^t e^(-t^2) dif y\
+&= e^(-t^2) (t-1)
+$
+
+=== 3
+
+求 $ (x^2+y^2)^2 + z^4 = y $ 内部的体积
+
+考虑球坐标变换:
+
+$
+dcases(
+  x = r sin theta cos phi,
+  y = r sin theta sin phi,
+  z = r cos theta,
+) quad => quad dif x dif y dif z = r^2 sin theta dif r dif theta dif phi
+$
+
+$
+&r^4 sin^4 theta (cos^2 phi + sin^phi)^2 + r^4 cos^4 theta = r sin theta sin phi\
+=>&r^3 = (sin theta sin phi)/(sin^4 theta + cos^4 theta) > 0
+$
+
+注意到 $0<theta<pi => sin(theta) > 0$, 只需要 $sin phi > 0 => phi in (0,pi)$
+
+所以转变为求下面的三重积分:
+
+$
+integral.triple_V dif x dif y dif z &= integral.triple_(V^') r^2 sin theta dif r dif theta dif phi\
+&= integral_0^pi dif phi integral_0^pi dif theta integral_0^R r^2 sin theta dif r\
+&= integral_0^pi dif phi integral_0^pi R^3 / 3 dif theta\
+&= 1/3 integral_0^pi dif phi integral_0^pi (sin^2 theta sin phi)/(sin^4 theta + cos^4 theta) dif theta\
+&= 1/3 (integral_0^pi sin phi dif phi)(integral_0^pi (sin^2 theta)/(sin^4 theta + cos^4 theta) dif theta)\
+$
+
+前面 $integral_0^pi sin phi dif phi = 2$ 容易得到, 后面的处理也不算容易, 我们展开讨论:
+
+$
+integral_0^pi &= integral_0^(pi/2) + integral_(pi/2)^pi\
+&= integral_0^(pi/2) (sin^2 theta)/(sin^4 theta + cos^4 theta) dif theta + integral_(pi/2)^pi (sin^2 theta)/(sin^4 theta + cos^4 theta) dif theta\
+&= integral_0^(pi/2) (sin^2 theta)/(sin^4 theta + cos^4 theta) dif theta + integral_0^(pi/2) (cos^2 theta)/(cos^4 theta + sin^4 theta) dif theta\
+&= integral_0^(pi/2) 1/(sin^4 theta + cos^4 theta) dif theta
+$
+
+接下来是三角换元, 所有都是平方项, 考虑 $tan$ 相关的方向:
+
+$
+& quad integral 1/(sin^4 theta + cos^4 theta) dif theta\
+&=integral (sec^4 theta)/(tan^4 theta + 1) dif theta\
+&=integral (sec^2 theta (tan^2 theta + 1))/(tan^4 theta + 1) dif theta\
+&= integral (t^2 + 1)/(t^4 + 1) dif t\
+&= integral (1/t^2 + 1)/(1/t^2 + t^2) dif t\
+&= integral (dif (t - 1/t))/((t - 1/t)^2 + 2)\
+&= 1/sqrt(2) arctan((t-1/t)/sqrt(2))\
+$
+
+当 $theta = 0 -> pi/2$ 时, $t= 0->oo$, $t-1/t = -oo -> oo$, 反常积分存在, 代入即可: $I = 2/3 dot pi/sqrt(2) = sqrt(2)/3 pi$
+
+=== 4
+
+$
+D = {x^2 + y^2 <=a }\
+f: D->RR^+, quad f in C^1(D), quad f|_(diff D) = 0\
+$
+
+证明:
+
+$
+abs(integral.double_D f(x,y) dif x dif y) <= 1/3 pi a^3 max_((x,y) in D) sqrt(((diff f)/(diff x))^2 + ((diff f)/(diff y))^2 )
+$
+
+我们把问题转化为极坐标系下面的问题:
+
+$
+& (diff f)/(diff r) = (diff f)/(diff x) (diff x)/(diff r) + (diff f)/(diff y) (diff y)/(diff r) = cos theta (diff f)/(diff x) + sin theta (diff f)/(diff y)\
+=> & abs((diff f)/(diff r)) <= sqrt(((diff f)/(diff x))^2 + ((diff f)/(diff y))^2)\
+& quad quad space.thin <= max_((x,y) in D) sqrt(((diff f)/(diff x))^2 + ((diff f)/(diff y))^2) = M\
+$
+
+对于每个 $f(r,theta)$, 考虑到边界上函数值已知, 我们可以通过单变量的中值定理给出它的一个估计:
+
+$
+&k_theta (r) = f(r, theta) \
+&k_theta (a) - k_theta (r) = (dif k_theta)/(dif r)|_(r = xi) (a-r) quad xi in (a,r) \
+=>&k_theta(r) = - (dif k_theta)/(dif r)|_(r = xi) (a-r)\
+& quad quad space.thin <= M (a-r)\
+$
+
+因此
+
+$
+abs(integral.double_D f(x,y) dif x dif y) &<= integral.double_D abs(f(x,y)) dif x dif y\
+&<= M integral.double_D (a-r) dot r dif r dif theta\
+&= M integral_0^(2pi) dif theta integral_0^a (a-r) r dif r\
+&= M dot 2pi dot (1/2 a^3 - 1/3 a^3)\
+& = 1/3 pi a^3 quad qed
+$
+
+#pagebreak()
+
 == 作业答案
 
 #text(weight: "bold")[

@@ -22,8 +22,13 @@ Due 2024.05.12
 
   #table(
     columns: (auto, auto, auto),
-    fill: (x, y) => if x == 0 or y == 0 {
-      blue.lighten(80%)
+    fill: (x, y) => {
+      if (x == 0 or y == 0) and not (x == 0 and y == 0) {
+        blue.lighten(80%)
+      }
+      if (x == 0 and y == 0) {
+        blue.lighten(60%)
+      }
     },
     stroke: blue,
     align: center,
@@ -102,8 +107,13 @@ b. 如果你知道雅典的出租车 $10$ 辆中有 $9$ 辆是绿色的呢？
 
   #table(
     columns: (auto, auto, auto),
-    fill: (x, y) => if x == 0 or y == 0 {
-      blue.lighten(80%)
+    fill: (x, y) => {
+      if (x == 0 or y == 0) and not (x == 0 and y == 0) {
+        blue.lighten(80%)
+      }
+      if (x == 0 and y == 0) {
+        blue.lighten(60%)
+      }
     },
     stroke: blue,
     align: center,
@@ -186,18 +196,26 @@ c. 题目中的条件独立性假设合理吗?请讨论。
     [
       #raw-render(```dot
       digraph {
+        layout=neato;
         rankdir=TD;
         node [shape=circle];
-        F_1, F_2, M_1, M_2, N;
+        F_1 [pos="0,0!"];
+        F_2 [pos="1.5,0!"];
+        M_1 [pos="0,2!"];
+        M_2 [pos="1.5,2!"];
+        N [pos="0.5,1"];
         M_1 -> F_1; M_1 -> M_2; M_1 -> N;
         N -> F_1; N -> F_2; M_2 -> N; M_2 -> F_2;
       }
       ```)
-    ],[
+    ],
+    [
       (i)
-    ],[
+    ],
+    [
       (ii)
-    ],[
+    ],
+    [
       (iii)
     ],
   )
@@ -206,17 +224,247 @@ c. 题目中的条件独立性假设合理吗?请讨论。
 a. 这三种网络结构哪些是对上述信息的正确(但不一定高效)表示？
 
 #ans[
+  (ii), (iii) 正确;
 
+  考虑到 $ P(N mid(|)M_1)!=P(N|M_1,F_1) $ 所以 $F_1$ 与 $M$ 应该同时连接到 $N$, (i) 不正确.
 ]
 
 b.哪一种网络结构是最好的？请解释。
 
+#ans[
+  (ii), 关系少, 更紧致.
+]
+
 c.当 $N in {1,2,3}, quad M_1 in {0,1,2,3,4}$时，请写出 $P(M_1 mid(|) N)$ 的条件概率表。概率分布表里的每个条目都应该表达为参数$e$和/或$f$的一个函数。
+
+#ans[
+
+  $
+  P(M_1 mid(|) N) &= P(M_1 mid(|) N, F_1) P(F_1 mid(|) N) + P(M_1 mid(N), not F_1) P(not F_1 mid(|) N)\
+  &= P(M_1 mid(|) N, F_1) P(F_1) + P(M_1 mid(N), not F_1) P(not F_1)\
+  $
+
+  #table(
+    columns: (auto, auto, auto, auto, auto, auto),
+    align: center,
+    fill: (x, y) => {
+      if (x == 0 or y == 0) and not (x == 0 and y == 0) {
+        blue.lighten(80%)
+      }
+      if (x == 0 and y == 0) {
+        blue.lighten(90%)
+      }
+    },
+    stroke: blue,
+    [
+      $P(M_1 mid(|) N)$
+    ],
+    [
+      $M_1 = 0$
+    ],
+    [
+      $M_1 = 1$
+    ],
+    [
+      $M_1 = 2$
+    ],
+    [
+      $M_1 = 3$
+    ],
+    [
+      $M_1 = 4$
+    ],
+    [
+      $N = 1$
+    ],
+    [
+      $f+e(1-f)$
+    ],
+    [
+      $(1-2e)(1-f)$
+    ],
+    [
+      $e(1-f)$
+    ],
+    [
+      #set text(fill: red)
+      $0$
+    ],
+    [
+      $0$
+    ],
+    [
+      $N = 2$
+    ],
+    [
+      $f$
+    ],
+    [
+      #set text(fill: green)
+      $e(1-f)$
+    ],
+    [
+      $(1-2e)(1-f)$
+    ],
+    [
+      #set text(fill: green)
+      $e(1-f)$
+    ],
+    [
+      $0$
+    ],
+    [
+      $N = 3$
+    ],
+    [
+      $f$
+    ],
+    [
+      #set text(fill: red)
+      $0$
+    ],
+    [
+      $e(1-f)$
+    ],
+    [
+      $(1-2e)(1-f)$
+    ],
+    [
+      $e(1-f)$
+    ],
+  )
+]
 
 d.假设 $M_1 = 1, quad M_2 = 3$。如果我们假设 $N$ 取值上没有先验概率约束,可能的恒星数目是多少？
 
+#ans[
+
+  #table(
+    columns: (auto, auto, auto, auto, auto, auto, auto),
+    align: center,
+    fill: (x, y) => {
+      if (x == 0 or y == 0) and not (x == 0 and y == 0) {
+        blue.lighten(80%)
+      }
+      if (x == 0 and y == 0) {
+        blue.lighten(90%)
+      }
+    },
+    stroke: blue,
+    [
+      $P(M_1 mid(|) N)$
+    ],
+    [
+      $M_1 = 0$
+    ],
+    [
+      $M_1 = 1$
+    ],
+    [
+      $M_1 = 2$
+    ],
+    [
+      $M_1 = 3$
+    ],
+    [
+      $M_1 = 4$
+    ],
+    [
+      $dots.c$
+    ],
+    [
+      $N = 4$
+    ],
+    [
+      $f$
+    ],
+    [
+      #set text(fill: green)
+      $f$
+    ],
+    [
+      $0$
+    ],
+    [
+      #set text(fill: green)
+      $e(1-f)$
+    ],
+    [
+      $(1-2e)(1-f)$
+    ],
+    [
+      $dots.c$
+    ],
+    [
+      $N=5$
+    ],
+    [
+      $f$
+    ],
+    [
+      $f$
+    ],
+    [
+      $f$
+    ],
+    [
+      #set text(fill: red)
+      $0$
+    ],
+    [
+      $e(1-f)$
+    ],
+    [
+      $dots.c$
+    ],
+  )
+  #let color_r(x) = text(fill: red, $#x$)
+  $
+  P(M = 3 mid(|) N = 0) = 0 &quad& => &quad& N!=0\
+  P(M = 3 mid(|) N = 1) = 0 &quad& => &quad& N!=1\
+  P(M = 1 mid(|) N = 3) = 0 &quad& => &quad& N!=3\
+  P(M = 1 mid(|) N = 5) = 0 &quad& => &quad& N!=5\
+  $
+
+  $P(M = i mid(|) N = n) > 0 quad forall i = 1,3; n = 2,4$ 已经在表中标记出来了. (考虑到 $f approx 0$ 时=, 我们近似地认为每行加起来为 $1$. )
+
+  考虑 $n >= 6$ 时, $P(M = 1 mid(|) N = n) = P(M = 3 mid(|) N = n) = f > 0$.
+
+  因此可能的 $n$ 的取值为 $2,4$ 或 $n>=6$
+]
+
 e.在这些观测结果下，最可能的恒星数目是多少？解释如何计算这个数目，或者，如果不可能计算，请解释还需要什么附加信息以及它将如何影响结果。
+
+#ans[
+  缺少 $N$ 的先验概率分布, 无法计算最可能的恒星数目.
+
+  考虑我们提供一个分布: $P(N=n) = p_n quad forall n = 2,4,6,7, dots$
+
+  $
+  &P(N=2, M_1 = 1, M_2 = 3) &=& p_2 e^2(1-f)^2\
+  &P(N=4, M_1 = 1, M_2 = 3) &=& p_4 e f(1-f)^2\
+  (n>=6) quad &P(N=n, M_1 = 1, M_2 = 3) &=& p_n f^2\
+  $
+
+  计算出并比较大小即可, 取 $n="argmax"_n P(N=n, M_1 = 1, M_2 = 3)$.
+]
 
 === Question 14.13
 
-考虑 图14.22(ii) 的网络,假设两个望远镜完全相同。$N in {1,2,3}$，$M_1, M_2 in {0,1,2,3,4}$，CPT表和习题14.12所描述的一样。使用枚举算法(图14.9)计算概率分布。
+考虑 图14.22(ii) 的网络,假设两个望远镜完全相同。$N in {1,2,3}$，$M_1, M_2 in {0,1,2,3,4}$，CPT表和习题14.12所描述的一样。使用枚举算法(图14.9)计算概率分布 $P(N mid(|) M_1=1,M_2 = 2)$。
+
+#ans[
+  $
+  cal(P)(N mid(|) M_1=2, M_2=2) &= alpha sum_(f_1,f_2) cal(P)(f_1, f_2, N, M_1=2,M_2=2)\
+  &=alpha sum_(f_1,f_2) P(f_1) P(f_2) cal(P)(N) P(M_1=2,M_2=2)
+  $
+
+  考虑到 $M_1=M_2=2$, 只有 $F_1=F_2="false"$ 时才能满足, 因此:
+
+  $
+  cal(P)(N mid(|) M_1=2, M_2=2) &= alpha (1-f)^2 angle.l p_1, p_2, p_3 angle.r angle.l e, (1-2e), e angle.r angle.l e, (
+    1-2e
+  ), e angle.r\
+  &= alpha^' angle.l p_1 e^2, p_2(1-2e)^2, p_3 e^2 angle.r
+  $
+]

@@ -17,15 +17,21 @@
   #it
 ]
 
-#let ans(it) = [
-  // #box(width: 100%, inset: 1em, stroke: blue + 0.03em)[
-  // #align(center)[
+#let Q_A(Q_it, A_it) = [
+  #let blue = rgb("#0000bb")
+
+  #box(width: 100%)[
+    #Q_it
+  ]
+  #rect(width: 100%, stroke: 0.005em + blue, height: 0em)
   #pad(x: 1.5em)[
     #set text(fill: blue)
-    #it
+    *Answer*
+
+    #A_it
   ]
-  // ]
-  // ]
+  #rect(width: 100%, stroke: 0.005em + blue, height: 0em)
+  #v(4em)
 ]
 
 #align(center)[
@@ -37,13 +43,13 @@
 
 == 作业答案
 
-=== P193 1(3)
+#Q_A([
+  === P193 1(3)
 
-$
-x=a cos t,y=a sin t,z=a ln(cos t) space (0<=t<=pi / 4)
-$
-
-#ans[
+  $
+  x=a cos t,y=a sin t,z=a ln(cos t) space (0<=t<=pi / 4)
+  $
+])[
   $
   &r(t)&=&(a cos t,y=a sin t, a ln(cos t))\
   &r'(t)&=&(-a sin t,a cos t,-a tan t)\
@@ -68,13 +74,13 @@ $
   $
 ]
 
-=== 1(4)
+#Q_A([
+  === 1(4)
 
-$
-z^2=2a x, 9y^2=16x z space O(0,0,0) -> A(2a,8 / 3 a, 2a)
-$
-
-#ans[
+  $
+  z^2=2a x, 9y^2=16x z quad O(0,0,0) -> A(2a,8 / 3 a, 2a)
+  $
+])[
   The key here is to turn the implict function into a parametric one.
 
   Since the goal is to make the result come as simple as possible, we can pick $x=2a t^2$ to make the first equation easier to solve:
@@ -98,13 +104,13 @@ $
   $
 ]
 
-=== 1(5)
+#Q_A([
+  === 1(5)
 
-$
-4a x=(y+z)^2, 4x^2+3y^2=3z^2 space O(0,0,0) -> A(x,y,z)
-$
-
-#ans[
+  $
+  4a x=(y+z)^2, 4x^2+3y^2=3z^2 quad O(0,0,0) -> A(x,y,z)
+  $
+])[
   As mentioned in the previous question, we can turn the implict function into a parametric one. Take $x=a t^2$:
 
   $
@@ -124,13 +130,13 @@ $
   $
 ]
 
-=== 2(2)
+#Q_A([
+  === 2(2)
 
-$
-integral_L z^2 / (x^2+y^2) dif s, L: x=a cos t, y=a sin t, z=a t space (0<=t<=2pi)
-$
-
-#ans[
+  $
+  integral_L z^2 / (x^2+y^2) dif s, L: x=a cos t, y=a sin t, z=a t space (0<=t<=2pi)
+  $
+])[
   $
   &r(t)&=&(a cos t,a sin t,a t)\
   &r'(t)&=&(-a sin t,a cos t,a)\
@@ -139,17 +145,17 @@ $
   $
 
   $
-  integral_L z^2 / (x^2+y^2) dif s=sqrt(2)a integral_0^(2pi) t^2 dif t= 8 / 3 sqrt(2) pi a^3
+  integral_L z^2 / (x^2+y^2) dif s=sqrt(2)a integral_0^(2pi) t^2 dif t= 8 / 3 sqrt(2) pi^3 a
   $
 ]
 
-=== 2(5)
+#Q_A([
+  === 2(5)
 
-$
-&integral_L (x+y+z) dif s\ L: &A(1,1,0)->B(1,0,0)\ &B C: x=cos t, y=sin t, z=t space (0<=t<=2pi)
-$
-
-#ans[
+  $
+  &integral_L (x+y+z) dif s\ L: &A(1,1,0)->B(1,0,0)\ &B C: x=cos t, y=sin t, z=t space (0<=t<=2pi)
+  $
+])[
   $L_1$:
 
   $
@@ -161,15 +167,19 @@ $
   $
   integral_(L_2) (x+y+z) dif s=integral_0^(2pi) (cos t+sin t+t) sqrt(2) dif t=2 sqrt(2) pi^2
   $
+
+  $
+  => integral_L (x+y+z) dif s=integral_(L_1) + integral_(L_2)=3 / 2 + 2 sqrt(2) pi^2
+  $
 ]
 
-=== 2(9)
+#Q_A([
+  === 2(9)
 
-$
-integral_L x sqrt(x^2-y^2)dif s, L: (x^2+y^2)^2=a^2(x^2-y^2) space (x>=0)
-$
-
-#ans[
+  $
+  integral_L x sqrt(x^2-y^2)dif s, L: (x^2+y^2)^2=a^2(x^2-y^2) space (x>=0)
+  $
+])[
   Here's an example of bad parametrization:
   $
   x^2-y^2= t^2, space x^2+y^2=a t\
@@ -196,18 +206,18 @@ $
   integral_L x sqrt(x^2-y^2)dif s=&integral_(-pi / 4)^(pi / 4) a cos theta sqrt(cos 2 theta) dot (
     r^2 cos 2 theta
   ) dot 1 / sqrt(cos 2 theta) dif theta\
-  =&integral_(-pi / 4)^(pi / 4) a^3 cos theta cos^2 2 theta dif theta\
-  =&8 / 15sqrt(2) a^3
+  =&integral_(-pi / 4)^(pi / 4) a^3 cos theta cos 2 theta dif theta\
+  =&(2sqrt(2)) / 3 a^3
   $
 ]
 
-=== 2(10)
+#Q_A([
+  === 2(10)
 
-$
-integral_L (x^2+y^2+z^2)^n dif s, L: x^2+y^2=a^2, z=0
-$
-
-#ans[
+  $
+  integral_L (x^2+y^2+z^2)^n dif s quad L: x^2+y^2=a^2, z=0
+  $
+])[
   This is a simple one. We don't need to parametrize the curve, since the function always equal to $a^(2n)$, multiplied by $2pi a$(the length of the curve):
 
   $
@@ -215,27 +225,29 @@ $
   $
 ]
 
-=== 2(11)
+#Q_A([
+  === 2(11)
 
-$
-integral_L x^2 dif s, L: x^2+y^2+z^2=a^2, x+y+z=0
-$
-
-#ans[
+  $
+  integral_L x^2 dif s quad L: x^2+y^2+z^2=a^2, x+y+z=0
+  $
+])[
   Just for demostration, you still can parametrize the curve, being a intersection of a sphere and a plane, it's obviously a circle.
 
   With a little imagination, we can find the center of the circle $P$ is $(0,0,0)$, and the radius is $a$. We find two perpendicular vectors on the plane, $v_1=(1,-1,0)$ and $v_2=(1,0,-1)$, then the parametric equation of the circle is:
 
   $
-  r(theta) &= cos theta dot (1,-1,0)+sin theta dot (1,0,-1) + (0,0,0)\
-  &= (cos theta+sin theta,-cos theta, -sin theta)
+  r(theta) &= cos theta dot (sqrt(2) / 2 a ,-sqrt(2) / 2 a ,0)+sin theta dot (sqrt(2) / 2 a ,0,-sqrt(2) / 2 a) + (
+    0,0,0
+  )\
+  &= sqrt(2) / 2 a dot (cos theta+sin theta,-cos theta, -sin theta)
   $
 
   The rest is just plug in the formula:
 
   $
-  r'(theta) &= (-sin theta+cos theta, sin theta, -cos theta)\
-  abs(r'(theta)) &= sqrt(2 - 2 cos theta sin theta)
+  r'(theta) &= sqrt(2) / 2 a dot (-sin theta+cos theta, sin theta, -cos theta)\
+  abs(r'(theta)) &= sqrt(2) / 2 a dot sqrt(2 - 2 cos theta sin theta)
   $
 
   I'll leave the rest to you.
@@ -248,14 +260,13 @@ $
 
   This is something we've already shown multiple times in previous homeworks.
 ]
+#Q_A([
+  === 2(12)
 
-=== 2(12)
-
-$
-integral_L (x y + y z+ x z) dif s, L: x^2+y^2+z^2=a^2, x+y+z=0
-$
-
-#ans[
+  $
+  integral_L (x y + y z+ x z) dif s quad L: x^2+y^2+z^2=a^2, x+y+z=0
+  $
+])[
   Since $(x+y+z)^2=x^2+y^2+z^2+2(x y + y z + x z)$
 
   $
@@ -263,16 +274,17 @@ $
   $
 ]
 
-=== P200 1(1)
+#Q_A([
+  === P200 1(1)
 
-$
-"surface area of" space z=sqrt(x^2+y^2) quad "inside" x^2+y^2=2x
-$
+  $
+  "surface area of" space z=sqrt(x^2+y^2) quad "inside" x^2+y^2=2x
+  $
 
-#ans[
-  I recommend against you recite the textbook style of calculating $E=r'_u^2 ...$. It's time consuming and error-prone.
+])[
+  I actually recommend *against* you reciting the textbook style of calculating $E=r'_u^2 ...$. It's time consuming and error-prone.
 
-  But if you do use them, DO NOT CHANGE SYMBOLS. The textbook uses $r(u,v), r_u, r_v, E, F, G$, they comes from the field of differential geometry, use the exact same symbols to avoid confusion.
+  _But if you do use them, DO NOT CHANGE SYMBOLS. The textbook uses $r(u,v), r_u, r_v, E, F, G$, they comes from the field of differential geometry, use the exact same symbols to avoid confusion._
 
   Here's two formula you should recite to make your life easier:
 
@@ -311,7 +323,7 @@ $
 
   Another way to parametricize the surface without a heart attack is to use a real polar coordinate, origin at $(0,0)$. You get a better $z(r,theta)$ this time, but you now have to interate over a varing $r(theta)$. *It's recommended you try it yourself using this method.*
 
-  The real idea behind this question is the idea to generalize $dif S$ on $(r, theta, z)$, much as the textbook done with $(r, theta, phi)$ on page 197, let's discuss it here:
+  _The real idea behind this question is the idea to generalize $dif S$ on $(r, theta, z)$, much as the textbook done with $(r, theta, phi)$ on page 197, let's discuss it here:_
 
   Assuming we're fixing it on $r=r_0$:
 
@@ -351,13 +363,13 @@ $
   In this chapter and later, much more calculate techniques are introduced to make your life easier, use them wisely, a personal advice.
 ]
 
-=== 1(2)
+#Q_A([
+  === 1(2)
 
-$
-"surface area of" space x^2+y^2=a^2 quad "intersected by" x+z=0, x-z=0
-$
-
-#ans[
+  $
+  "surface area of" space x^2+y^2=a^2 quad "intersected by" x+z=0, x-z=0
+  $
+])[
   With the discussion above, it's a "$r=r_0$ fixed type":
 
   $
@@ -377,45 +389,57 @@ $
   The absolute value is easily noticed during calculation, one shall get confused to get a $0$ result if otherwise. These are the checks you should "unconsiously" perform during calculation.
 ]
 
-=== 1(5)
+#Q_A([
+  === 1(5)
 
-$
-"surface area of" space x=1 / 2(2y^2+z^2) quad "inside" 4y^2+z^2=1
-$
+  $
+  "surface area of" space x=1 / 2(2y^2+z^2) quad "inside" 4y^2+z^2=1
+  $
 
-#ans[
+])[
   This is nothing more than changing $x y$ to $y z$... use the second formula:
 
   $
   dif S&=sqrt(1+f_y^2+f_z^2) dif y dif z\
   &=sqrt(1+(2y)^2+z^2) dif y dif z\
   &=sqrt(4y^2+z^2+1) dif y dif z\
-  &= sqrt(2) dif y dif z
+  &= sqrt(r^2 + 1) dot r / 2 dif r dif theta
   $
 
-  You can stop here, the area is $sqrt(2)$ times the area of the projection of the surface on the $y z$ plane, which is a elipse with $a=1/2, b=1$, whose area is $pi / 2$. Thus the surface area is $sqrt(2) /2 pi$.
+  If you have doubts about the last step, you can parametrize the surface:
+
+  $
+  hat(r)(r,theta)&=(1 / 2 r cos theta, r sin theta, 1 / 4 r^2 cos^2 theta+1 / 2 r^2 sin^2 theta)\
+  hat(r)'_r&=(1 / 2 cos theta, sin theta, 1 / 2 r cos^2 theta+ r sin^2 theta)\
+  hat(r)'_theta&=(-1 / 2 r sin theta, r cos theta, 1 / 2 r^2 sin theta cos theta)\
+  hat(r)'_theta times hat(r)'_r&=(1 / 2 r^2 cos theta, 1 / 2 r^2 sin theta, -1 / 2 r)\
+  abs(hat(r)'_theta times hat(r)'_r)&=r sqrt(1+r^2 cos^2 theta+r^2 sin^2 theta)=r / 2 dot sqrt(r^2+1)
+  $
+
+  $
+  integral.double_S dif S = integral_0^(2pi) dif theta integral_0^1 sqrt(r^2+1) dot r / 2 dif r = (2sqrt(2)-1) / 3 pi
+  $
 ]
+#Q_A([
+  === 2(2)
 
-=== 2(2)
-
-$
-integral.double_S x y z dif S, quad S: x+y+z=1, x,y,z>0
-$
-
-#ans[
+  $
+  integral.double_S x y z dif S quad S: x+y+z=1, x,y,z>0
+  $
+])[
   $
   dif S = sqrt(1+f_x^2+f_y^2) dif x dif y = sqrt(3) dif x dif y\
   integral.double_S dif S = sqrt(3) integral_0^1 dif x integral_0^(1-x) x y (1-x-y) dif y = sqrt(3) / 120
   $
 ]
 
-=== 2(3)
+#Q_A([
+  === 2(3)
 
-$
-integral.double_S (x^2+y^2) dif S, quad S: "surrounded by" z=sqrt(x^2+y^2), z=1
-$
-
-#ans[
+  $
+  integral.double_S (x^2+y^2) dif S quad S: "surrounded by" z=sqrt(x^2+y^2), z=1
+  $
+])[
   $S_1: {(x,y) mid(|) x^2+y^2<=1} times {1}$
 
   $
@@ -435,14 +459,13 @@ $
   integral.double_S dif S = integral.double_(S_1) + integral.double_(S_2) = (sqrt(2)+1) / 2 pi
   $
 ]
+#Q_A([
+  === 2(6)
 
-=== 2(6)
-
-$
-integral.double_S (dif S) / (r^2) quad S: x^2+y^2=R^2, z in [0,H]
-$
-
-#ans[
+  $
+  integral.double_S (dif S) / (r^2) quad S: x^2+y^2=R^2, z in [0,H]
+  $
+])[
   $
   hat(r)(theta, z)&=(R cos theta, R sin theta, z)\
   hat(r)'_theta&=(-R sin theta, R cos theta, 0)\
@@ -458,13 +481,13 @@ $
   If you recall, you might already done similar execise in your electrodynamics course, where you calculate the electric field of a infinite cylinder.
 ]
 
-=== 2(7)
+#Q_A([
+  === 2(7)
 
-$
-integral.double_S abs(x y z) dif S, quad S: z=x^2+y^2, z in [0,1]
-$
-
-#ans[
+  $
+  integral.double_S abs(x y z) dif S quad S: z=x^2+y^2, z in [0,1]
+  $
+])[
   $
   dif S = sqrt(1+f_x^2+f_y^2) dif x dif y = sqrt(4x^2+4y^2+1) dif x dif y
   $
@@ -492,18 +515,15 @@ $
     125 sqrt(5) - 1
   )
   $
-
-  // WTF IS THIS REALLY THE ANSWER?
-  // TODO: CROSS CHECK WITH THE TEXTBOOK
 ]
 
-=== 3(1)
+#Q_A([
+  === 3(1)
 
-$
-integral.double_S (x^2+y^2) dif S, quad S: x^2+y^2+z^2=R^2
-$
-
-#ans[
+  $
+  integral.double_S (x^2+y^2) dif S quad S: x^2+y^2+z^2=R^2
+  $
+])[
   $
   integral.double_S (x^2+y^2) dif S = integral.double_S (y^2+z^2) dif S = integral.double_S (z^2+x^2) dif S
   $
@@ -515,13 +535,14 @@ $
   $
 ]
 
-=== 3(2)
+#Q_A([
+  === 3(2)
 
-$
-integral.double_S (x+y+z) dif S, quad S: x^2+y^2+z^2=a^2 (z>=0)
-$
+  $
+  integral.double_S (x+y+z) dif S, quad S: x^2+y^2+z^2=a^2 (z>=0)
+  $
 
-#ans[
+])[
   Reverse $S->S'$, this essentially means we take a new parametrization of the upper half of the sphere, namely $(x,y)->(-x,-y,sqrt(a^2-x^2-y^2))$
 
   Changing the parametrization shouldn't result in a change of the integral value, so:
@@ -545,14 +566,14 @@ $
   $
 ]
 
-=== 4
+#Q_A([
+  === 4
 
-$G$ is a bounded, closed region on plane $A x+B y+C z+D=0 space (C!=0)$, its projection on $O x y$ is $G_1$. Show that
-$
-sigma(G) / sigma(G_1)=sqrt((A^2+B^2+C^2)/C^2)
-$
-
-#ans[
+  $G$ is a bounded, closed region on plane $A x+B y+C z+D=0 space (C!=0)$, its projection on $O x y$ is $G_1$. Show that
+  $
+  sigma(G) / sigma(G_1)=sqrt((A^2+B^2+C^2)/C^2)
+  $
+])[
   $
   z=-A / C x-B / C y-D / C\
   dif S=sqrt(1+f_x^2+f_y^2) dif x dif y=sqrt(1+A^2/C^2+B^2/C^2) dif x dif y
@@ -564,13 +585,14 @@ $
   $
 ]
 
-=== P215 1(3)
+#Q_A([
+  === P215 1(3)
 
-$
-integral_L (-x dif y+y dif x) / (x^2+y^2) quad L:x^2+y^2=a^2 "counter-clockwise"
-$
+  $
+  integral_L (-x dif y+y dif x) / (x^2+y^2) quad L:x^2+y^2=a^2 "counter-clockwise"
+  $
 
-#ans[
+])[
   $
   x=a cos t, y=a sin t quad t: 0->2pi
   $
@@ -590,13 +612,13 @@ $
   // $
 ]
 
-=== (4)
+#Q_A([
+  === (4)
 
-$
-integral_L y^2 dif x + x y dif y + x z dif z quad L: O(0,0,0)->A(1,0,0)->B(1,1,0)->C(1,1,1)
-$
-
-#ans[
+  $
+  integral_L y^2 dif x + x y dif y + x z dif z quad L: O(0,0,0)->A(1,0,0)->B(1,1,0)->C(1,1,1)
+  $
+])[
   $
   integral_(L_1) y^2 dif x = 0\
   integral_(L_2) x y dif y=1 / 2\
@@ -605,13 +627,14 @@ $
   $
 ]
 
-=== 2(6)
+#Q_A([
+  === 2(6)
 
-$
-integral_L y dif x+z dif y + z dif z quad L: x+y=0, x^2+y^2+z^2=2(x+y)
-$
+  $
+  integral_L y dif x+z dif y + z dif z quad L: x+y=0, x^2+y^2+z^2=2(x+y)
+  $
 
-#ans[
+])[
   The key again falls back onto the parametrization:
 
   We treat L as intersection between $x+y=1$ and $x^2+y^2+z^2=4$
@@ -630,3 +653,126 @@ $
   = &-2 sqrt(2) pi
   $
 ]
+
+#Q_A([
+  === 2
+
+  $
+  bold(v)=(y+z)bold(i)+(z+x)bold(j)+(x+y)bold(k)\
+  L: x=a sin^2t,y=2a sin t cos t,z=a cos^2 t space (0<=t<=pi)
+  $
+])[
+  $
+  integral_L bold(v)dot dif bold(r) &= integral (y+z)dif x+(z+x)dif y+(x+y)dif z\
+  &=integral dif(x y +y z+x z)\
+  &=integral dif (a sin^2 t dot 2a sin t cos t+2a sin t cos t dot a cos^2 t+a cos^2 t dot a sin^2 t)\
+  &=0\
+  $
+]
+
+#Q_A([
+  === 4
+
+  Use Green's theorem to calculate the following integral:
+
+  (2) $
+  integral.cont_L (x y+x+y)dif x+(x y+x-y)dif y quad L:x^2+y^2=1 "counter-clockwise"
+  $
+
+  (3) $
+  integral.cont_L (y x^3+e^y)dif x+(x y^3+x e^y-2y)dif y quad L:"symmetric with respect to x and y axis"
+  $
+
+  (4) $
+  integral.cont sqrt(x^2+y^2)dif x+y[x y+ln(x+sqrt(x^2+y^2))]dif y quad L: y^2=x-1, x=2
+  $
+
+  (6) $
+  integral_(A M O)(e^x sin y-m y)dif x+(e^x cos y-m)dif y\
+  "AMO": A(a,0) -> O(0,0), x^2+y^2=a x (a>0) "upper half"
+  $
+])[
+  (2) $
+  integral_L bold(v) dot dif bold(r) = integral.double_S ((diff Q)/(diff x)-(diff P)/(diff y)) dif S = integral.double_S (y+1)-(x+1) dif x dif y = 0
+  $
+
+  (3) $
+  integral_L bold(v) dot dif bold(r) = integral.double_S ((diff Q)/(diff x)-(diff P)/(diff y)) dif S = integral.double_S (y^3+e^y)-(x^3+e^y) dif x dif y = 0
+  $
+
+  (4) $
+  integral_L bold(v) dot dif bold(r) = integral.double_S ((diff Q)/(diff x)-(diff P)/(diff y)) dif S &= integral.double_S y(y+1/sqrt(x^2+y^2)) - y/sqrt(x^2+y^2) dif x dif y\
+  &= integral_1^2 dif x integral_(-sqrt(x-1))^(sqrt(x-1)) y^2 dif y\
+  &= integral_0^1 2/3 x^(3/2) dif x\
+  &=4/15
+  $
+
+  (6) $
+  integral.cont = integral.double_S (e^x cos y)-(e^x cos y - m) dif x dif y = m/8 pi a^2\
+  integral_0^a (e^x sin y - m y) dif x = 0\
+  => integral_(A M O) = m/8 pi a^2
+  $
+]
+
+#Q_A([
+  === 5
+
+  Calculate the following area:
+
+  (1) $
+  x=a cos^3 t, y=a sin^3 t space (0<=t<=2pi)
+  $
+
+  (2) $
+  x=a(t-sin t), y=a(1-cos t) space (0<=t<=2pi)
+  $
+])[
+
+  (1) $
+  sigma(D)=integral_0^(2pi) x dif y=integral_0^(2pi) a cos^3 t dot 3 a sin^2 t cos t dif t=3/8 pi a^2
+  $
+
+  (2) $
+  sigma(D)=-integral_(2pi)^0 y dif x + integral_0^(2pi a) 0 dif x=integral_0^(2pi) a^2 (1-cos t)^2 dif t = 3 pi a^2
+  $
+]
+
+#Q_A([
+  === 6
+
+  Calculate the following integral: $
+    integral_L (-y dif x+ x dif y)/(x^2+y^2)
+  $
+
+  (1) From $A(-a,0)->B(a,0)$, $y=sqrt(a^2-x^2), space a>0$
+
+  (2) From $A(-1,0)->B(3,0)$, $y=4-(x-1)^2$
+])[
+  This is still something we already encountered multiple times:
+
+  $
+  gradient(arctan(y/x)) = (-y / (x^2+y^2), x / (x^2+y^2)) quad x>0
+  $
+
+  The scalar field can be extended to the $RR^2\\{(0,y)mid(|)y<=0}$ as the following:
+
+  $
+  &phi(x,y) = arctan(y/x) quad &x>0\
+  &phi(0,y) = pi / 2 quad &y>0\
+  &phi(x,y) = arctan(y/x)+pi quad &x<0\
+  $
+
+  Given that two path don't cross the negative y-axis, we just need to calculate $phi(x,y)$ at the following points:
+
+  $
+  A_1(-a,0) quad B_1(a,0) quad A_2(-1,0) quad B_2(3,0)
+  $
+
+  Thus,
+
+  $
+  phi(A_1) = pi, phi(B_1) = 0 => integral_L_1 = -pi\
+  phi(A_2) = pi, phi(B_2) = 0 => integral_L_2 = -pi
+  $
+]
+

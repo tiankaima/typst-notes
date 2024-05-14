@@ -4,7 +4,8 @@
 
 | Term | Date | Title | GitHub | Google Docs |
 | ---- | ---- | ----- | ----------- | ---------------- |
-| 2024 Spring | 2024.04.15 | 数学分析 B2 (24 SP) 讲义 (TBC) | [GitHub](./2bc0c8-2024_spring_TA/) | [Google Docs](https://docs.google.com/viewer?url=https://github.com/tiankaima/typst-notes/releases/download/ci_latest/2bc0c8-2024_spring_TA.pdf) |
+| 2024 Spring | 2024.05.14 | LUG 101 Ch 7 报告 | [GitHub](./b647c0-lug_101_ch7/) | [Google Docs](https://docs.google.com/viewer?url=https://github.com/tiankaima/typst-notes/releases/download/ci_latest/b647c0-lug_101_ch7.pdf) |
+| | 2024.04.15 | 数学分析 B2 (24 SP) 讲义 (TBC) | [GitHub](./2bc0c8-2024_spring_TA/) | [Google Docs](https://docs.google.com/viewer?url=https://github.com/tiankaima/typst-notes/releases/download/ci_latest/2bc0c8-2024_spring_TA.pdf) |
 | | 2024.03.18 | 人工智能基础 作业 | [GitHub](./ea2724-ai_hw/) | [Google Docs](https://docs.google.com/viewer?url=https://github.com/tiankaima/typst-notes/releases/download/ci_latest/ea2724-ai_hw.pdf) |
 | | 2024.03.16 | 算法基础 作业 | [GitHub](./7e1810-algo_hw/) | [Google Docs](https://docs.google.com/viewer?url=https://github.com/tiankaima/typst-notes/releases/download/ci_latest/7e1810-algo_hw.pdf) |
 | | 2024.03.07 | 计算机图形学 作业 1 报告 | [GitHub](./1cc213-cg_hw1_report/) | [Google Docs](https://docs.google.com/viewer?url=https://github.com/tiankaima/typst-notes/releases/download/ci_latest/1cc213-cg_hw1_report.pdf) |

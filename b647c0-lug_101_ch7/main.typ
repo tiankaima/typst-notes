@@ -423,7 +423,7 @@
   == pip / 拿来主义
   #set text(size: 20pt)
 
-  这也意味着需要一个更方面的办法来安装这些库, 通常的包装方法是 `requirements.txt`:
+  这也意味着需要一个更方便的办法来安装这些库, 通常的包装方法是 `requirements.txt`:
 
   ```txt
   requests==2.26.0

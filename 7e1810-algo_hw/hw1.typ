@@ -25,14 +25,16 @@ You can also think of insertion sort as a recursive algorithm. In order to sort 
   The recurrence for its worst-case running time is
 
   $
-  T(n) = cases(T(n - 1) + Theta(n) space.quad & n>1, Theta(1) & n=1)
+    T(n) = cases(T(n - 1) + Theta(n) space.quad & n>1, Theta(1) & n=1)
   $
 
   The solution to the recurrence is $Theta(n^2)$ worst-case time.
 
 ]
 
-=== Question 2-1 Insertion sort on small arrays in merge sort
+=== Question 2-1
+
+*Insertion sort on small arrays in merge sort*
 
 Although merge sort runs in $Theta(n lg n)$ worst-case time and insertion sort runs in $Theta(n^2)$ worst-case time, the constant factors in insertion sort can make it faster in practice for small problem sizes on many machines. Thus it makes sense to coarsen the leaves of the recursion by using insertion sort within merge sort when subproblems become suffificiently small. Consider a modifification to merge sort in which $n\/k$ sublists of length $k$ are sorted using insertion sort and then merged using the standard merging mechanism, where $k$ is a value to be determined.
 
@@ -47,7 +49,7 @@ Although merge sort runs in $Theta(n lg n)$ worst-case time and insertion sort r
   - a. For each sublist, the insertion sort can sort the $k$ elements in $Theta(k^2)$ worst-case time. Thus, the insertion sort can sort the $n\/k$ sublists, each of length $k$, in $Theta(n k)$ worst-case time.
   - b. Given $n\/k$ sorted sublists, each of length $k$, the recurrence for merging the sublists is
   $
-  T(n) = cases(2 dot.c T(n\/2) + Theta(n) space.quad & n>k, 0 & n=k)
+    T(n) = cases(2 dot.c T(n\/2) + Theta(n) space.quad & n>k, 0 & n=k)
   $
   The solution to the recurrence is $Theta(n lg(n\/k))$ worst-case time.
 
@@ -55,10 +57,10 @@ Although merge sort runs in $Theta(n lg n)$ worst-case time and insertion sort r
 
   - c. Take $Theta(n k + n lg(n \/ k)) = Theta(n lg n)$, consider $k = Theta(lg n)$:
   $
-  Theta(n k + n lg(n \/ k))
-  &= Theta (n k + n lg n - n lg k) \
-  &= Theta (n lg n + n lg n - n lg (lg n)) \
-  &= Theta (n lg n)
+    Theta(n k + n lg(n \/ k))
+    &= Theta (n k + n lg n - n lg k) \
+    &= Theta (n lg n + n lg n - n lg (lg n)) \
+    &= Theta (n lg n)
   $
   - d. Choose $k$ to be the largest length of sublist for which insertion sort is faster than merge sort. Use a small constant such as $5$ or $10$.
 

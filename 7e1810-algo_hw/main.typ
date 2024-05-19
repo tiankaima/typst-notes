@@ -7,6 +7,8 @@
 
 PB21000030 马天开
 
+#include "hw9.typ"
+#pagebreak()
 #include "hw8.typ"
 #pagebreak()
 #include "hw7.typ"

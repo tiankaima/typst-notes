@@ -9,7 +9,7 @@ Due: 2024.05.05
   ]
 }
 
-== Exerciese 1
+=== Exerciese 1
 Proof that Bellman-Ford maximizes $x_1+x_2+dots.c+x_n$ subject to the constraints $x_j - x_i <= w_(i j)$ for all edges $(i,j)$ and $x <= 0$, and also minmizes $max_i {x_i}-min_i {x_i}$.
 
 #ans[
@@ -28,7 +28,7 @@ Proof that Bellman-Ford maximizes $x_1+x_2+dots.c+x_n$ subject to the constraint
   To see why this also minmizes $max_i {x_i}-min_i {x_i}$, we can see that the longest path is the one that maximizes the difference between the maximum and minimum values. (Suppose there exists another set of solutions that has a larger difference, say $max_i {x_i '} - min_i {x_i '}$, the constraint between the two sets of solutions would be violated, since the longest path is the one that maximizes the difference.)
 ]
 
-== Question 23.2-6
+=== Question 23.2-6
 
 Show how to use the output of the Floyd-Warshall algorithm to detect presence of a negative-weight cycle.
 
@@ -36,7 +36,7 @@ Show how to use the output of the Floyd-Warshall algorithm to detect presence of
   If the output of the Floyd-Warshall algorithm contains a negative number on the diagonal, then there exists a negative-weight cycle in the graph. This is because the diagonal represents the shortest path from a vertex to itself, and if there exists a negative-weight cycle, then the shortest path from a vertex to itself would be negative infinity.
 ]
 
-== Question 23.3-4
+=== Question 23.3-4
 
 Professor Greenstreet claims that there is a simpler way to reweight edges than the method used in Johnson's algorithm. Letting $w^*=min_((u,v)in E){w(u,v)}$, just define $hat(w) (u,v)=w(u,v)-w^*$ for all edges $(u,v)in E$. What is wrong with the professor's method of reweighting?
 
@@ -44,7 +44,7 @@ Professor Greenstreet claims that there is a simpler way to reweight edges than 
   Might result in path with more edges longer than direct edge, which is not optimal.
 ]
 
-== Question 24.3-3
+=== Question 24.3-3
 
 Let $G=(V,E)$ be a bipartite graph with vertex partition $V=L union R$, and let $G$ be its corresponding flow network. Give a good upper bound on the length of any augmenting path found in $G$ during the execution of FORD-FULKERSON.
 

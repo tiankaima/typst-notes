@@ -27,7 +27,7 @@ $
 Explain why the modified algorithm is correct, and explain in what sense this change constitutes an improvement.
 
 #ans[
-  If $P[q+1]!=T[i] "and" P[pi[q]+q]=P[q+1]!=T[i]$, there's no need to compare $P[pi[q]+q]$ with $T[i]$, because $P[pi[q]+q]$ is the same as $P[q+1]$, so we can directly compare $P[q+1]$ with $T[i]$. This change improves the efficiency of the algorithm.
+  If $P[q+1]!=T[i] "and" P[pi[q]+1]=P[q+1]!=T[i]$, there's no need to compare $P[pi[q]+1]$ with $T[i]$, because $P[pi[q]+1]$ is the same as $P[q+1]$, so we can directly compare $P[q+1]$ with $T[i]$. This change improves the efficiency of the algorithm.
 ]
 
 #align(center)[

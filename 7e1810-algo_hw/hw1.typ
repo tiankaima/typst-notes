@@ -74,6 +74,6 @@ What is the largest $k$ such that if you can multiply $3 times 3$ matrices using
 
   Assuming $n = 3^m$. Use block matrix multiplication, the recursive running time is $T(n) = k T(n\/3) + O(1)$.
 
-  Using master theorem, the largest $k$ to satisfy $log_3 k < lg 7$ is $k=21$.
+  When $log_3 k > 2 $, using master theorem, the largest $k$ to satisfy $log_3 k < lg 7$ is $k=21$.
 
 ]

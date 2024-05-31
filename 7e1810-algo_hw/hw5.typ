@@ -1,7 +1,15 @@
-#import "@preview/cetz:0.2.2": canvas, draw, tree
+#import "@preview/cetz:0.2.2": *
 
 == HW5 (Week 6)
 Due: 2024.04.14
+
+#let ans(it) = [
+  #pad(1em)[
+    #text(fill: blue)[
+      #it
+    ]
+  ]
+]
 
 === Question 14.5-2
 Determine the cost and structure of an optimal binary serach tree for a set of $n=7$ keys with the following probabilities:
@@ -44,9 +52,7 @@ Determine the cost and structure of an optimal binary serach tree for a set of $
   )
 ]
 
-#text(fill: blue)[
-  === Solution 14.5-2
-
+#ans[
   Running the code provided in appendix, we get the following result (cost, preorder traversal of the optimal BST):
   ```text
   (3.17, [5, 2, 1, 3, 4, 7, 6])
@@ -127,8 +133,7 @@ What is an optimal Huffman code for the following set of frequencies, based on t
 
 Can you generalize your answer to find the optimal code when the frequencies are the first $n$ Fibonacci numbers?
 
-#text(fill: blue)[
-  === Solution 15.3-3
+#ans[
   #align(center)[
     #table(
       stroke: none,
@@ -175,8 +180,8 @@ Can you generalize your answer to find the optimal code when the frequencies are
   Proof is also trivial, let's discuss sums of Fibonacci first:
 
   $
-  f_n = f_(n-1) + f_(n-2) => f_(n) = f_(n+2) - f_(n-1)\
-  sum_(i=0)^n f_i = f_(n+2) - 1 => sum_(i=0)^n f_i < f_(n+2)
+    f_n = f_(n-1) + f_(n-2) => f_(n) = f_(n+2) - f_(n-1)\
+    sum_(i=0)^n f_i = f_(n+2) - 1 => sum_(i=0)^n f_i < f_(n+2)
   $
 
   so after merging the first $k$ elements, we're left with $((sum_(i=0)^k f_i), f_(k+1), dots.c, f_n)$, amoung which $((sum_(i=k)^n f_i), f_(k+1))$ are the smallest two, so they should be merged first, and so on, using induction it's easy to prove Huffman generates such tree, thus giving the optimal code.

@@ -1,15 +1,21 @@
-#import "@preview/cetz:0.2.2": canvas, draw, tree
+#import "@preview/cetz:0.2.2": *
 
 == HW6 (Week 7)
 Due: 2024.04.21
+
+#let ans(it) = [
+  #pad(1em)[
+    #text(fill: blue)[
+      #it
+    ]
+  ]
+]
 
 === Question 20.1-3
 
 The transpose of a directed graph $G=(V,E)$ is the graph $G^T = (V, E^T)$ where $ E^T = {(v,u) in V times V:(u,v) in E} $ That is, $G^T$ is $G$ with all its edges reversed. *Describe efficient algorithms for computing $G^T$ from $G$, for both the adjacency-list and adjacency-matrix representation of $G$, Analyze the running times of your algorithms.*
 
-#text(fill: blue)[
-  === Solution 20.1-3
-
+#ans[
   - adjacency-list:
 
   ```txt
@@ -62,9 +68,7 @@ Under the assumption of uniform independent hashing, if all edge lookups are equ
 
 Give an example of a directed graph $G=(V,E)$, a source vertex $s in V$, and a set of tree edges $E_pi subset.eq E$ such that for each vertex $v in V$, the unique simple path in the graph $(V, E_pi)$ from $s$ to $v$ is a shortest path in $G$, yet the set of edges $E_pi$ cannot be produced by running BFS on $G$, no matter how the vertices are ordered in each adjacency list.
 
-#text(fill: blue)[
-  === Solution 20.2-6
-
+#ans[
   Consider the following graph $G$:
 
   #let data = (
@@ -119,7 +123,7 @@ Give an example of a directed graph $G=(V,E)$, a source vertex $s in V$, and a s
       [
         #let data = (
           [$1$],
-          ([$2$], [$4$],[$5$]),
+          ([$2$], [$4$], [$5$]),
           ([$3$]),
         )
 
@@ -153,10 +157,11 @@ Give an example of a directed graph $G=(V,E)$, a source vertex $s in V$, and a s
             )
           },
         )
-      ],[
+      ],
+      [
         #let data = (
           [$1$],
-          ([$3$], [$4$],[$5$]),
+          ([$3$], [$4$], [$5$]),
           ([$2$]),
         )
 
@@ -190,7 +195,7 @@ Give an example of a directed graph $G=(V,E)$, a source vertex $s in V$, and a s
             )
           },
         )
-      ]
+      ],
     )
   ]
 
@@ -241,9 +246,7 @@ Give an example of a directed graph $G=(V,E)$, a source vertex $s in V$, and a s
 
 Another way to topologically sort a directed acyclic graph $G=(V,E)$ is to repeatedly find a vertex of in-degree $0$, output it, and remove it and all of its outgoing edges from the graph. *Explain how to implement this idea so that is runs in time $O(V + E)$. What happens to this algorithm if $G$ has cycles?*
 
-#text(fill: blue)[
-  === Solution 20.4-5
-
+#ans[
   - Implementation:
 
   ```txt
@@ -277,9 +280,7 @@ Another way to topologically sort a directed acyclic graph $G=(V,E)$ is to repea
 
 Prove that for any directed graph $G$, the transpose of the component graph $G^T$ is the same as the component graph of $G$. That is $((G^T)^(S C C))^T = G^(S C C)$
 
-#text(fill: blue)[
-  === Solution 20.5-4
-
+#ans[
   Let $C$ be a component of $G$.
 
   - If $C$ is a single vertex, then $C$ is also a component of $G^T$.

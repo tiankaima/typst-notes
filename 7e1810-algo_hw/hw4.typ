@@ -1,11 +1,18 @@
 == HW4 (Week 5)
 Due: 2024.04.07
+
+#let ans(it) = [
+  #pad(1em)[
+    #text(fill: blue)[
+      #it
+    ]
+  ]
+]
+
 === Question 14.4-2
 Give pseudocode to reconstruct an LCS from te completed c table (See Theorem 14.1 Optimal substructure of an LCS) and the original sequences $X = angle.l x_1, x_2, dots.c, x_m angle.r$ and $Y = angle.l y_1, y_2, dots.c y_n angle.r$ in $O(m+n)$ time, without using the b table.
 
-#text(fill: blue)[
-  === Solution 14.4-2
-
+#ans[
   Consider the following pseudocode:
 
   ```txt
@@ -25,9 +32,7 @@ Give pseudocode to reconstruct an LCS from te completed c table (See Theorem 14.
 === Question 14.4-5
 Give an $O(n^2)$-time algorithm to find the longest monotonically increasing subsequence of a sequence of $n$ numbers.
 
-#text(fill: blue)[
-  === Solution 14.4-5
-
+#ans[
   Given a sequence of numbers $L$, make a copy and sort it, let the $L^'$ be the sorted array:
   $o(n^2)$ time to sort $L$
 

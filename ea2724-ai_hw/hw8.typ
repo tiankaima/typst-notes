@@ -121,7 +121,7 @@ $
 
   计算得到: $w=(-1,2)^T, b = -2$, 超平面方程: $-x+2y-2=0$
 
-  #image("./img/Solution_HW8_Q4.png", width: 70%)
+  #image("./imgs/Solution_HW8_Q4.png", width: 70%)
 ]
 
 === Q5

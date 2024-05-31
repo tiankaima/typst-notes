@@ -1,13 +1,13 @@
 == HW8 (Week 9)
 Due: 2024.05.05
 
-#let ans(it) = {
-  box(inset: 1em, width: 100%)[
+#let ans(it) = [
+  #pad(1em)[
     #text(fill: blue)[
       #it
     ]
   ]
-}
+]
 
 === Exerciese 1
 Proof that Bellman-Ford maximizes $x_1+x_2+dots.c+x_n$ subject to the constraints $x_j - x_i <= w_(i j)$ for all edges $(i,j)$ and $x <= 0$, and also minmizes $max_i {x_i}-min_i {x_i}$.

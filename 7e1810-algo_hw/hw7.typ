@@ -1,13 +1,13 @@
 == HW7 (Week 8)
 Due: 2024.04.28
 
-#let ans(it) = {
-  box(inset: 1em, width: 100%)[
+#let ans(it) = [
+  #pad(1em)[
     #text(fill: blue)[
       #it
     ]
   ]
-}
+]
 
 === Question 21.1-1
 

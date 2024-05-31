@@ -1,3 +1,6 @@
+#import "@preview/cetz:0.2.2": *
+#import "@preview/diagraph:0.2.1": *
+
 #set text(
   font: ("linux libertine", "Source Han Serif SC", "Source Han Serif"),
   size: 10pt,
@@ -23,6 +26,10 @@
 ]
 
 #pagebreak(weak: true)
+
+#show math.equation: it => math.display(it)
+#show image: it => align(center, it)
+#show raw.where(block: true): it => rect(stroke: 0.02em, width: 100%, inset: 1em, it)
 
 #include "hw1.typ"
 #pagebreak(weak: true)

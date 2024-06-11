@@ -1,15 +1,8 @@
 #import "@preview/cetz:0.2.2": *
+#import "utils.typ": *
 
 == HW5 (Week 6)
 Due: 2024.04.14
-
-#let ans(it) = [
-  #pad(1em)[
-    #text(fill: blue)[
-      #it
-    ]
-  ]
-]
 
 === Question 14.5-2
 Determine the cost and structure of an optimal binary serach tree for a set of $n=7$ keys with the following probabilities:
@@ -50,6 +43,20 @@ Determine the cost and structure of an optimal binary serach tree for a set of $
     [$0.05$],
     [$0.05$],
   )
+]
+
+#rev1_note[
+  Review: 最优二叉搜索树
+
+  考虑一组已经排序的关键字 $K={k_1, k_2, ..., k_n}$, 和对应的访问频率 $P={p_1, p_2, ... p_n}$, 另外哨兵节点的频率(假想的关键字, 位于真正关键字的「中间」) $Q={q_0, q_1, ... , q_n}$. 计算思路是: 定义 $e[i][j]$ 为包含关键字 $k_i ... k_j$ 子树的查找代价, 目标即寻找 $e[1][n]$, 这就转变为动态规划问题.
+
+  初始条件: $e[i][i-1]=q_(i-1)$. 另外考虑这样一个问题, 将$k_i, ..., k_j$ 成为一个节点的子树之后, 搜索的期望就增加了 $p_i + p_(i+1) + ... + p_j + q_(i-1)+ ... + q_j$. 记这个参数为 $w(i,j):=sum_(l=i)^j p_l + sum_(l=i-1)^j q_l$.
+
+  得到转移方程:
+
+  $
+    e[i][j] = min_(i <= r <= j)(e[i][r-1] + e[r+1][j] + w(i,j))
+  $
 ]
 
 #ans[
@@ -132,6 +139,18 @@ What is an optimal Huffman code for the following set of frequencies, based on t
 ]
 
 Can you generalize your answer to find the optimal code when the frequencies are the first $n$ Fibonacci numbers?
+
+#rev1_note[
+  Review: Huffman 编码
+
+  典型的贪心算法, 思路如下:
+
+  - 取两个使用频率最低的两个子节点, 合并, 并记录新的节点的频率为两者之和.
+
+  - 重复上述过程, 直到所有节点合并为一个节点.
+
+  细节上需要维护一个最小堆, 初始化时用时 $O(n)$, 每次弹出、加入堆用时 $O(log n)$, 总时间复杂度 $O(n log n)$.
+]
 
 #ans[
   #align(center)[

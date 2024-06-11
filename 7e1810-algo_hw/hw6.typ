@@ -1,15 +1,8 @@
 #import "@preview/cetz:0.2.2": *
+#import "utils.typ": *
 
 == HW6 (Week 7)
 Due: 2024.04.21
-
-#let ans(it) = [
-  #pad(1em)[
-    #text(fill: blue)[
-      #it
-    ]
-  ]
-]
 
 === Question 20.1-3
 
@@ -18,24 +11,24 @@ The transpose of a directed graph $G=(V,E)$ is the graph $G^T = (V, E^T)$ where 
 #ans[
   - adjacency-list:
 
-  ```txt
-  def MAKE_ADJACENCY_LIST_TRANSPOSE(G):
-    GT = EMPTY_GRAPH()
-    GT.V = G.V
-    for uT in GT.V
-      uT.adj = []
-    for u in G.V
-      for v in u.adj
-        GT.v.adj.append(u)
-  ```
+    ```txt
+    def MAKE_ADJACENCY_LIST_TRANSPOSE(G):
+      GT = EMPTY_GRAPH()
+      GT.V = G.V
+      for uT in GT.V
+        uT.adj = []
+      for u in G.V
+        for v in u.adj
+          GT.v.adj.append(u)
+    ```
 
-  Time complexity: $O(abs(V)+abs(E))$
+    Time complexity: $O(abs(V)+abs(E))$
 
   - adjacency-matrix:
 
-  Same as matrix transpose(flipping the matrix along the diagonal).
+    Same as matrix transpose(flipping the matrix along the diagonal).
 
-  Time complexity: $O(V^2)$. (with special design of matrix representation, sparse matrix: $O(abs(V)+abs(E))$, dense matrix: $O(V^2)$, lazy transpose: $O(1)$)
+    Time complexity: $O(V^2)$. (with special design of matrix representation, sparse matrix: $O(abs(V)+abs(E))$, dense matrix: $O(V^2)$, lazy transpose: $O(1)$)
 ]
 
 === Question 20.1-8
@@ -46,21 +39,22 @@ Under the assumption of uniform independent hashing, if all edge lookups are equ
 
 - what is the expected time to determine whether an edge is in the graph?
 
-  #text(fill: blue)[
+  #ans[
     $O(1)$
   ]
 
 - What disadvantages does this scheme have compared to the linked-list representation?
 
-  #text(fill: blue)[
+  #ans[
     Worst case time complexity is $O(V)$, while linked-list representation is $O(abs(u."adj"))$.
   ]
 
 - Suggest an alternate data structure for each edge list that solves these problems. Does your alternative have disadvantages compared with the hash table?
 
-  #text(fill: blue)[
+  #ans[
     Use a balanced binary search tree to store the edge list.
     - Time complexity: $O(log(abs(u."adj")))$. (worst case time complexity)
+
     - Disadvantages: $O(log(abs(u."adj"))) > O(1)$. (worse average time complexity)
   ]
 
@@ -249,31 +243,35 @@ Another way to topologically sort a directed acyclic graph $G=(V,E)$ is to repea
 #ans[
   - Implementation:
 
-  ```txt
-  def TOPOLOGICAL_SORT(G):
-    for u in G.V
-      u.indegree = 0
-    for u in G.V
-      for v in u.adj
-        v.indegree += 1
-    Q = []
-    for u in G.V
-      if u.indegree == 0
-        Q.append(u)
-    while Q
-      u = Q.pop()
-      print(u)
-      for v in u.adj
-        v.indegree -= 1
-        if v.indegree == 0
-          Q.append(v)
-  ```
+    ```txt
+    def TOPOLOGICAL_SORT(G):
+      for u in G.V
+        u.indegree = 0
+      for u in G.V
+        for v in u.adj
+          v.indegree += 1
+      Q = []
+      for u in G.V
+        if u.indegree == 0
+          Q.append(u)
+      while Q
+        u = Q.pop()
+        print(u)
+        for v in u.adj
+          v.indegree -= 1
+          if v.indegree == 0
+            Q.append(v)
+    ```
 
-  Time complexity: $O(V+E)$
+    Time complexity: $O(V+E)$
 
   - If $G$ has cycles:
 
-  The algorithm will not terminate, since there is no vertex of in-degree $0$.
+    #rev1_note[
+      当 $G$ 中有环时, 所有的环和环的后继都不会入队, 不会出现在拓扑序中.
+    ]
+
+    The algorithm will not terminate, since there is no vertex of in-degree $0$.
 ]
 
 === Question 20.5-4

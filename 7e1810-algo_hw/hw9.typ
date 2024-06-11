@@ -1,13 +1,7 @@
+#import "utils.typ": *
+
 == HW9 (Week 11)
 Due: 2024.05.19
-
-#let ans(it) = [
-  #pad(1em)[
-    #text(fill: blue)[
-      #it
-    ]
-  ]
-]
 
 === Question 32.4-1
 Compute the prefix function $pi$ for the pattern `ababbabbabbababbabb`.

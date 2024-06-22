@@ -17,6 +17,12 @@ for folder in $(ls -d */); do
     if [ "$folder" == "build" ]; then
         continue
     fi
-    echo "Compiling $folder"
-    typst compile --font-path fonts/ ./$folder/main.typ build/${folder}.pdf
+    # if folder contains Makefile, run make
+    if [ -f "$folder/Makefile" ]; then
+        echo "Running make in $folder"
+        make -C $folder
+    else
+        echo "Compiling $folder"
+        typst compile --font-path fonts/ ./$folder/main.typ build/${folder}.pdf
+    fi
 done

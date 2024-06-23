@@ -155,23 +155,23 @@ $
 === 2(2)
 
 $
-  integral_0^(+oo) e^(alpha x) sin(beta x) dif x
+  integral_0^(+oo) e^(-alpha x) sin(beta x) dif x
 $
 
 + When $0<alpha_0<=alpha<+oo$:
 
   $
-    abs(e^(alpha x) sin(beta x))<=e^(alpha_0 x)
+    abs(e^(-alpha x) sin(beta x))<=e^(-alpha_0 x)
   $
 
-  With the fact that $integral_1^(+oo)e^(alpha_0 x)dif x$ is convergent and Weierstrass M-test, we can show that $integral_0^(+oo)e^(alpha x) sin(beta x) dif x$ uniformly converges.
+  With the fact that $integral_1^(+oo)e^(-alpha_0 x)dif x$ is convergent and Weierstrass M-test, we can show that $integral_0^(+oo)e^(-alpha x) sin(beta x) dif x$ uniformly converges.
 
-+ When $0<alpha<+oo$, except for $beta=0$ (which is a trivial case), we can show that $ integral_0^(+oo)e^(alpha x) sin(beta x) dif x $ doesn't uniformly converges (with Q3).
++ When $0<alpha<+oo$, except for $beta=0$ (which is a trivial case), we can show that $ integral_0^(+oo)e^(-alpha x) sin(beta x) dif x $ doesn't uniformly converges (with Q3).
 
 For this question, we can actually calculate the integral:
 
 $
-  integral e^(alpha x) sin(beta x) = integral Imaginary(e^(alpha x) dot e^(i beta x)) = Imaginary(integral e^(alpha + i beta x)) = Imaginary(-1/(alpha + i beta)) = - Imaginary(alpha - i beta) / (alpha^2-beta^2) = beta / (alpha^2 - beta^2)
+  integral e^(-alpha x) sin(beta x) = integral Imaginary(e^(-alpha x) dot e^(i beta x)) = Imaginary(integral e^(-alpha + i beta x)) = Imaginary(-1/(-alpha + i beta)) = - Imaginary(-alpha - i beta) / (alpha^2-beta^2) = beta / (alpha^2 - beta^2)
 $
 
 This would provide the same result as above.
@@ -218,7 +218,7 @@ Given that $abs(e^(-alpha x)) <=1 quad forall 1<x<+oo space.quad 0<=alpha <+oo$ 
   This is a alternating series, after this step, don't use Mean Value Theorem for integrals, which you have no control of $xi_n$ over $[pi/2+(n-1)pi, pi/2+n pi]$. Instead, for each nearby interval, subtract them directly, then one would have:
 
   $
-    integral_(pi / 2+(n-1)pi)^(pi / 2+n pi) (cos x) / (x^p) + (cos (x+pi / 2)) / ((x+pi / 2)^p) >0
+    integral_(pi / 2+(n-1)pi)^(pi / 2+n pi) (cos x) / (x^p) + (cos (x+pi)) / ((x+pi)^p) >0
   $
 
 So the alternating series have a decreasing absolute value, and the integral converges. Thus for $p>0$, the integral uniformly converges.
@@ -241,16 +241,16 @@ Consider substitute $x^2 -> u$:
 
 $
   integral_0^(+oo) sin(x^2) dif x &= integral_0^(+oo) (sin x) / (2 sqrt(x)) dif x\
-  &= sum_(n=0)^(+oo) integral_(2 n pi)^(2 (n+1) pi) sin(x) / (2 sqrt(x)) dif x
+  &= sum_(n=0)^(+oo) integral_(n pi)^((n+1) pi) sin(x) / (2 sqrt(x)) dif x
 $
 
 With the same idea, we subtract the nearby intervals:
 
 $
-  &quad integral_(2 n pi)^(2 (n+1) pi) sin(x) / (2 sqrt(x)) dif x + integral_(2 (n+1) pi)^(2 (
-    n+1
+  &quad integral_(n pi)^((n+1) pi) sin(x) / (2 sqrt(x)) dif x + integral_((n+1) pi)^((
+    n+2
   ) pi) sin(x) / (2 sqrt(x)) dif x \
-  &=integral_(2 n pi)^(2 (n+1) pi) sin(x) / (2 sqrt(x)) - sin(x) / (2 sqrt(x+pi)) dif x\
+  &=integral_(n pi)^((n+1) pi) sin(x) / (2 sqrt(x)) - sin(x) / (2 sqrt(x+pi)) dif x\
   & > 0
 $
 

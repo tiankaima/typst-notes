@@ -18,7 +18,10 @@
     )
   ],
 )
-#set heading(numbering: "1.")
+
+#let argmax = math.limits(math.op("argmax"))
+#let argmin = math.limits(math.op("argmin"))
+
 #set par(first-line-indent: 1em)
 #let problem = (title, it) => outline-colorbox(
   title: title,
@@ -28,6 +31,292 @@
   centering: true,
   it,
 )
+
+#align(center)[
+  #text(weight: "bold", size: 16pt)[
+    Homework 2
+  ]
+]
+
+== 1.1
+
+$
+  Theta_"MAP" &= argmax_theta p(theta | x, y) \
+  &= argmax_theta (p(x,y,theta)) / (p(x,y)) \
+  &= argmax_theta (p(x,y,theta)) / cancel(p(x,y)) dot cancel(p(x,y)) / p(x) \
+$
+
+Given $display(p(theta) = p(theta | x) = p(x,theta) /p(x))$, we plug $display(p(x)= p(x,theta)/p(theta))$:
+
+$
+  Theta_"MAP" &= argmax_theta p(x,y,theta) / p(x,theta) dot p(theta) \
+  &= argmax_theta p(y | x,theta) dot p(theta) quad qed
+$
+
+== 1.2
+
+With $Theta ~ cal(N)(0, eta^2 I)$, trivial to show $p(theta) = p(theta | x)$, using results from 2.1:
+
+$
+  Theta_"MAP" = argmax_theta p(y | x, theta) dot p(theta)
+$
+
+taking negative logs inside $argmax$:
+
+$
+  Theta_"MAP" = argmin_theta - log p(y | x, theta) - ln p(theta)
+$
+
+Plugin $display(p(theta) = 1/(eta sqrt(2 pi)) exp(-theta^2 / (2 eta^2)))$:
+
+$
+  Theta_"MAP" &= argmin_theta - log p(y | x, theta) - ln(1/(eta sqrt(2 pi)) exp(-theta^2 / (2 eta^2))) \
+  &= argmin_theta - log p(y | x, theta) + theta^2 / (2 eta^2) + cancel(ln(eta sqrt(2 pi))) quad qed
+$
+
+Thus $display(lambda = 1/(2 eta^2))$.
+
+== 1.3
+
+Given $y=theta^T x + epsilon$, where $epsilon ~ cal(N)(0,sigma^2)$, thus:
+
+$
+  p(y | x, theta) = p_epsilon (y - theta^T x) = cal(N)(y - theta^T x, sigma^2)
+$
+
+For a single sample $(x,y)$, we have:
+
+$
+  Theta_"MAP" &= argmin_theta - log p(y | x, theta) + 1 / (2 eta^2) norm(theta)_2^2 \
+  &= 1 / (2 sigma^2) norm(y - theta^T x)_2^2 + 1 / (2 eta^2) norm(theta)_2^2
+$
+
+Expanding to all training samples, since:
+
+$
+  p(theta | bold(x), bold(y)) = product_(i=1)^n p(y^((i)) | x^((i)), theta) p(theta)
+$
+
+we have:
+
+$
+  Theta_"MAP" &= argmin_theta - sum_(i=1)^n log p(y^((i)) | x^((i)), theta) + 1 / (2 eta^2) norm(theta)_2^2 \
+  &= argmin_theta 1 / (2 sigma^2) sum_(i=1)^n norm(y^((i)) - theta^T x^((i)))_2^2 + 1 / (2 eta^2) norm(theta)_2^2 \
+  &= argmin_theta 1 / (2 sigma^2) (Y - X^T theta)^T (Y - X^T theta) + 1 / (2 eta^2) theta^T theta \
+$
+
+For a closed form of $theta_"MAP"$, take derivative w.r.t $theta$:
+
+$
+  nabla_theta f(theta) &=- 1 / (sigma^2) X^T (Y - X theta) + 1 / eta^2 theta = 0
+$
+
+Solving for $theta$,
+
+$
+  eta^2 X^T Y = (eta^2 X^T X + sigma^2 I) space.thin theta
+$
+
+So we have $display(theta = (X^T X + (sigma/eta)^2 I)^(-1) X^T Y)$ as the closed-form solution.
+
+== 1.4
+
+Consider Laplace prior $theta_i ~ cal(L)(0, eta)$, which could be expressed as:
+
+$
+  f_(cal(L)) (z | mu, b) = 1 / (2 b) exp (-abs(z-mu) / b)
+$
+
+Then:
+
+$
+  Theta_"MAP" &= argmin_theta - log p(y | x, theta) - log p(theta) \
+  &= argmin_theta - log p(y | x, theta) - sum_(i=1)^d log p(theta_i) \
+  &= argmin_theta - log p(y | x, theta) - sum_(i=1)^d log f_(cal(L)) (theta_i | 0, eta) \
+  &= argmin_theta - log p(y | x, theta) - sum_(i=1)^d log (1 / (2 eta) exp(-abs(theta_i) / eta)) \
+  &= argmin_theta - log p(y | x, theta) - sum_(i=1)^d (log(1) - log(2 eta) - abs(theta_i) / eta) \
+  &= argmin_theta - log p(y | x, theta) - cancel(d log(2 eta)) - 1 / eta norm(theta)_1\
+  &= argmax_theta norm(Y - X theta)_2^2 + 1 / eta norm(theta)_1
+$
+
+Therefore $display(gamma = 1/eta quad qed)$
+
+== 2.1
+
+For positive examples, we have: $display(p(y=1 | x^((i)))> p(y=0 | x^((i))))$, thus:
+
+$
+  p(y=1 | x^((i))) &= 1 / (1+exp(-theta^T x^((i)))) > 1 / 2
+$
+
+which shows $theta^T x^((i)) > 0$, changing $theta -> c dot theta$, as $c -> +oo$, it's trivial to show $display(p(y=1 | x^((i))) -> 1)$, vice versa for negative examples.
+
+== 2.2
+
+Using results from 2.1, as $c -> +oo$, the loss function $display(l(theta)) arrow.br -oo$, so there's always a postive derivative towards infinity for $theta$, meaning gradient descent would never converge in this case.
+
+== 2.3
+
+In comparison, for the non-separble case, each incorrect prediction would have a negative derivative (which grows as $c -> +oo$), the gradient descent would converge to a local minimum.
+
+== 2.4
+
+The following methods WOULD lead to the training algorithm converging to a solution:
+
+- Decrease the learning rate over time. (Techincally the loss function is still convex, but at least now it would "stop" at some point)
+
+- Add a regularization term to the loss function. (To punish the model for having large weights)
+
+- Adding zero-mean Gaussian noise to the training data. (Essentially making the data non-separable)
+
+The following methods WONT lead to the training algorithm converging to a solution:
+
+- Use a different constant learning rate. (Still not converging, just slower)
+
+- Applying linear scaling to the input features. (Doesn't change the model's ability to separate the data)
+
+== 3.1
+
+With softmax input $z_L = [-1,0,1]$, the output is:
+
+$
+  a^1_1 = e^(-1) / (e^(-1)+e^0+e^1) = 1 / (1 + e + e^2) \
+  a^1_2 = e^0 / (e^(-1)+e^0+e^1) = e / (1 + e + e^2) \
+  a^1_3 = e^1 / (e^(-1)+e^0+e^1) = e^2 / (1 + e + e^2)
+$
+
+== 3.2
+
+$
+  "NLL"(bold(a), bold(y)) = -sum_(j=1)^(n_L) y_j log a_j^L \
+$
+
+Given $bold(a) = [0.3, 0.5, 0.2]^T$ $bold(y) = [0,0,1]^T$, we have:
+
+$
+  "NLL"(bold(a), bold(y)) = -log 0.2 = 0.69
+$
+
+== 3.3
+
+$
+  z_j^L = sum_k w_(k,j)^L x_k +w_(0, j)^L \
+  a^L = "SM"(z^L)
+$
+
+$
+  (diff) / (diff w_(k j)^L) "NLL"(a^L, bold(y)) = x_k (a_j^L - y_j)
+$
+
+Given weight matrix $display(W^L = mat(delim: "[", 1, -2, -2; -1, 2, 1))$, input $display(bold(x) = [1,1]^T)$, target output $display(bold(y) = [0,1,0]^T)$, we calculate $display(nabla_(W^L) "NLL"(a^L, bold(y)))$ with the following steps:
+
+- Foward pass
+
+$
+  z^L = (W^L)^T bold(x) = mat(delim: "[", 1, -1; -1, 2; -2, 1) mat(delim: "[", 1; 1) = mat(delim: "[", 0; 0; -1) \
+  a^L = "SM"(
+    z^L
+  ) = mat(delim: "[", display(1 / (2 + e^(-1))), display(1 / (2 + e^(-1))), display(e^(-1) / (2 + e^(-1)))) = mat(delim: "[", 0.42, 0.42, 0.16)
+$
+
+- Backward:
+
+$
+  nabla_(W^L) "NLL"(a^L, bold(y)) = bold(x) (
+    bold(a) - bold(y)
+  )^T = mat(delim: "[", 1; 1) mat(delim: "[", 0.42, -0.58, 0.16) = mat(delim: "[", 0.42, -0.58, 0.16; 0.42, -0.58, 0.16)
+$
+
+== 3.4
+
+$
+  p_2 = 0.42
+$
+
+== 3.5
+
+$
+  (W^L)' &= ( W^L ) - lambda dot nabla_(W^L) "NLL" \
+  &= mat(delim: "[", 1, -2, -2; -1, 2, 1) - 0.5 mat(delim: "[", 0.42, -0.58, 0.16; 0.42, -0.58, 0.16) \
+  &= mat(delim: "[", 0.79, -1.71, -1.92; -1.21, 2.29, 1.08)
+$
+
+== 3.6
+
+With the new weight, forwarding $x$:
+
+$
+  z^L = mat(delim: "[", 0.79, -1.21; -1.71, 2.29; -1.92, 1.08) mat(delim: "[", 1; 1) = mat(delim: "[", -0.42; 0.58; -0.16) \
+  a^L = "SM"(z^L) = mat(delim: "[", 0.2, 0.54, 0.26)
+$
+
+So new $p'_2 = 0.54$
+
+== 4.1
+
+$
+  vec(f^1(z_1^1),f^1(z_2^1),f^1(z_3^1),f^1(z_4^1)) = vec(2, 13, 0 ,0) \
+  (a_1^2, a_2^2) = (1,0)
+$
+
+== 4.2
+
+$
+  mat(0,0,0;0,1,0;0,0,2;0,0,0)
+$
+
+== 4.3
+
+Case 1,
+
+$
+  vec(z_1^2, z_2^2) = vec(0, 2) \
+  => vec(a_1^2, a_2^2) = vec(0.119, 0.881)
+$
+
+Case 2,
+
+$
+  vec(z_1^2,z_2^2) = vec(1,1) \
+  => vec(a_1^2, a_2^2) = vec(0.5,0.5)
+$
+
+Case 3:
+
+$
+  vec(z_1^2, z_2^2) = vec(3,-1) \
+  => vec(a_1^2, a_2^2) = vec(0.982, 0.018)
+$
+
+== 4.3
+
+$
+  (diff "Loss") / (diff w_(i j)^2) = mat(0,0;13,-13;0,0;10,-10) \
+  (diff "Loss") / (diff w_(i j)^1) = mat(0,6,0,6;0,28,0,28) \
+  (diff "Loss") / (diff w_(0 i)^2) = vec(1, -1) \
+  (diff "Loss") / (diff w_(0 i)^1) = vec(0,2,0,2) \
+$
+
+Updated parameters:
+
+$
+  w_(2,1)^2 = -0.3, \
+  w_(2,2)^2 = 0.3, \
+  w_(4,1)^2 = 0, \
+  w_(4,2)^2 = 0 \
+  w_(1,2)^1 = - 0.6, \
+  w_(2,2)^1 = -1.8 \
+  w_(1,4)^1 = -0.6, \
+  w_(2,4)^1 = -3.8 \
+  w_(0,2)^1 = -1.2, \
+  w_(0,4)^1 = -1.2 \
+  w_(0,1)^2 = -0.1, \
+  w_(0,2)^2 = 2.1
+$
+
+(Other parameter remains)
+
+#pagebreak()
 
 #align(center)[
   #text(weight: "bold", size: 16pt)[

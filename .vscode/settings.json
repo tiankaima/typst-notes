@@ -1,0 +1,21 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "autocorrect.enable": true,
+    "autocorrect.enableLint": true,
+    "autocorrect.formatOnSave": true,
+    "typst-preview.fontPaths": [
+        "${workspaceFolder}/fonts"
+    ],
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/*.pdf": true,
+        "**/build/": true,
+    },
+}

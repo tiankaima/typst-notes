@@ -1,0 +1,47 @@
+name: Build Typst document
+on: [push, workflow_dispatch]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - uses: rickstaa/action-create-tag@v1
+        if: github.ref_type != 'tag'
+        with:
+          tag: "ci_latest"
+          tag_exists_error: false
+          force_push_tag: true
+      - uses: typst-community/setup-typst@v5
+      - name: Run
+        run: |
+          ./setup-font.sh
+          ./compile.sh
+      - name: Upload Build files
+        uses: actions/upload-artifact@v6
+        with:
+          name: PDFs
+          path: |
+            ./build
+      - name: Get current date
+        id: date
+        run: echo "DATE=$(date +%Y-%m-%d-%H:%M)" >> $GITHUB_ENV
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          name: "${{ github.ref_name }} — ${{ env.DATE }}"
+          files: "./build/*"
+          make_latest: false
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type != 'tag'
+        with:
+          name: "${{ github.ref_name }} — ${{ env.DATE }}"
+          files: "./build/*"
+          tag_name: ci_latest
+          make_latest: true
